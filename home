@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Scuola di Birra - Home</title>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Quicksand', sans-serif;
+      background: url('sfondobichiere.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: #fff;
+    }
+
+    .overlay {
+      background-color: rgba(0, 0, 0, 0.6);
+      padding: 0;
+      min-height: 100vh;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: rgba(0, 0, 0, 0.7);
+      padding: 10px 30px;
+      flex-wrap: wrap;
+    }
+
+    .logo {
+      flex-grow: 1;
+      text-align: center;
+    }
+
+    .logo img {
+      height: 50px;
+    }
+
+    nav {
+      display: flex;
+      gap: 15px;
+      flex-grow: 1;
+      justify-content: center;
+    }
+
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .title {
+      text-align: center;
+      margin-top: 60px;
+    }
+
+    .title h1 {
+      font-size: 3em;
+      margin: 0;
+      transform: rotate(-2deg);
+      text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.7);
+    }
+
+    .subtitle {
+      text-align: center;
+      font-size: 1.5em;
+      margin-top: 10px;
+    }
+
+    .main-image {
+      display: flex;
+      justify-content: center;
+      margin-top: 30px;
+    }
+
+    .main-image img {
+      width: 90%;
+      max-width: 800px;
+      border-radius: 15px;
+      box-shadow: 0 0 10px #000;
+    }
+
+    .event-box {
+      margin: 40px auto;
+      text-align: center;
+      background-color: rgba(255, 255, 255, 0.1);
+      padding: 20px;
+      width: 80%;
+      max-width: 600px;
+      border: 2px solid #fff;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .event-box:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .footer {
+      background-color: rgba(0, 0, 0, 0.8);
+      color: #fff;
+      text-align: center;
+      padding: 10px;
+      font-size: 0.9em;
+    }
+
+    .footer a {
+      color: #fff;
+      text-decoration: underline;
+    }
+
+    @media screen and (max-width: 600px) {
+      .title h1 {
+        font-size: 2em;
+      }
+
+      .subtitle {
+        font-size: 1.2em;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="overlay">
+    <header>
+      <nav>
+        <a href="index.html">HOME</a>
+        <a href="prossimieventi.html">PROSSIMI EVENTI</a>
+        <a href="corsodibirra.html">CORSO DI BIRRA</a>
+        <a href="losapeviche.html">LO SAPEVI CHE?</a>
+        <a href="contatti.html">CONTATTI</a>
+      </nav>
+      <div class="logo">
+        <img src="logo.jpg" alt="Logo Scuola di Birra">
+      </div>
+    </header>
+
+    <div class="title">
+      <h1>SCUOLA DI BIRRA</h1>
+    </div>
+    <div class="subtitle">
+      CORSO DI BIRRA Ottobre 2025
+    </div>
+
+    <div class="main-image">
+      <img src="corsohome.jpg" alt="Corso di Birra Ottobre 2025">
+    </div>
+
+    <div class="event-box" onclick="window.location.href='prossimieventi.html'">
+      <strong>PROSSIMI EVENTI:</strong><br />
+      BIRRE DI NATALE<br />
+      L’INGLESE PER LA DEGUSTAZIONE
+    </div>
+
+    <div class="footer">
+      2025 SCUOLA DI BIRRA – Tutti i diritti riservati P.IVA: IT07436420488
+      | <a href="privacy.html">Privacy</a>
+    </div>
+  </div>
+</body>
+</html>
+
