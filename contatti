@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contatti - Scuola di Birra</title>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      font-family: 'Quicksand', sans-serif;
+    }
+
+    .background {
+      background: url('contattibirra.jpg') no-repeat center center fixed;
+      background-size: cover;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .overlay {
+      background-color: rgba(0, 0, 0, 0.6);
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .form-container {
+      background-color: rgba(255, 255, 255, 0.1);
+      padding: 30px;
+      border-radius: 15px;
+      max-width: 500px;
+      width: 100%;
+      color: #fff;
+      box-shadow: 0 0 15px rgba(0,0,0,0.7);
+    }
+
+    .form-container h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin: 10px 0 5px;
+    }
+
+    input, textarea, select {
+      width: 100%;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      margin-bottom: 15px;
+      font-family: 'Quicksand', sans-serif;
+    }
+
+    button {
+      background-color: #ffffff;
+      color: #000;
+      border: none;
+      padding: 10px 20px;
+      font-size: 1em;
+      border-radius: 5px;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    button:hover {
+      background-color: #dddddd;
+    }
+
+    .footer {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      background-color: rgba(0, 0, 0, 0.8);
+      color: #fff;
+      text-align: center;
+      padding: 10px;
+      font-size: 0.9em;
+    }
+
+    .footer a {
+      color: #fff;
+      text-decoration: underline;
+    }
+
+    nav {
+      position: absolute;
+      top: 0;
+      width: 100%;
+      background-color: rgba(0, 0, 0, 0.7);
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      padding: 10px 0;
+    }
+
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="background">
+    <div class="overlay">
+      <form class="form-container" action="mailto:tuaemail@esempio.it" method="POST" enctype="text/plain">
+        <h2>Contattaci</h2>
+        <label for="nome">Nome</label>
+        <input type="text" id="nome" name="Nome" required>
+
+        <label for="azienda">Azienda</label>
+        <input type="text" id="azienda" name="Azienda">
+
+        <label for="telefono">Telefono</label>
+        <input type="tel" id="telefono" name="Telefono">
+
+        <label for="email">Email</label>
+        <input type="email" id="email" name="Email" required>
+
+        <label for="attivita">Attività di interesse</label>
+        <select id="attivita" name="Attività">
+          <option value="Corso di birra">Corso di birra</option>
+          <option value="Degustazioni">Degustazioni</option>
+          <option value="Altro">Altro</option>
+        </select>
+
+        <label for="messaggio">Il tuo messaggio</label>
+        <textarea id="messaggio" name="Messaggio" rows="5" required></textarea>
+
+        <button type="submit">Invia</button>
+      </form>
+    </div>
+  </div>
+
+  <nav>
+    <a href="index.html">HOME</a>
+    <a href="prossimieventi.html">PROSSIMI EVENTI</a>
+    <a href="corsodibirra.html">CORSO DI BIRRA</a>
+    <a href="degustazionipassate.html">DEGUSTAZIONI PASSATE</a>
+    <a href="losapeviche.html">LO SAPEVI CHE?</a>
+    <a href="contatti.html">CONTATTI</a>
+  </nav>
+
+  <div class="footer">
+    2025 SCUOLA DI BIRRA – Tutti i diritti riservati P.IVA: IT07436420488 | <a href="privacy.html">Privacy</a>
+  </div>
+</body>
+</html>
