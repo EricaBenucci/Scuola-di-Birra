@@ -21,7 +21,6 @@
     a {
       text-decoration: none;
       color: inherit;
-      font-weight: bold; /* grassetto per tutte le voci */
     }
     a:visited {
       color: inherit;
@@ -38,13 +37,13 @@
     /* Header / Navbar         */
     /* ---------------------- */
     header {
-      position: relative;
       display: flex;
-      justify-content: space-between;
+      justify-content: center;
       align-items: center;
       background-color: rgba(0, 0, 0, 0.7);
       padding: 10px 20px;
       flex-wrap: wrap;
+      gap: 40px;
     }
     .nav-left,
     .nav-right {
@@ -53,9 +52,6 @@
       align-items: center;
     }
     .logo-container {
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
       background-color: rgba(255,255,255,0.1);
       padding: 8px;
       border-radius: 10px;
@@ -67,6 +63,7 @@
       display: flex;
       align-items: center;
       gap: 5px;
+      font-weight: bold;
     }
     .carrello-link svg {
       fill: #fff;
@@ -185,21 +182,7 @@
     @media screen and (max-width: 800px) {
       header {
         flex-direction: column;
-        align-items: center;
         gap: 15px;
-      }
-      .nav-left,
-      .nav-right {
-        justify-content: center;
-        width: 100%;
-      }
-      .logo-container {
-        position: static;
-        transform: none;
-        margin: 15px 0;
-      }
-      .logo-container img {
-        height: 87.5px; /* 50% del valore originale */
       }
       .event img {
         width: 250px;
@@ -233,15 +216,19 @@
 </head>
 <body>
   <div class="overlay">
-    <!-- HEADER / NAVBAR CON LOGO PERFETTAMENTE CENTRATO -->
+    <!-- HEADER / NAVBAR CON LOGO CENTRATO -->
     <header>
-      <nav class="nav-left">
+      <div class="nav-left">
         <a href="index.html">HOME</a>
         <a href="prossimieventi.html">PROSSIMI EVENTI</a>
         <a href="losapeviche.html">LO SAPEVI CHE?</a>
-      </nav>
+      </div>
 
-      <nav class="nav-right">
+      <div class="logo-container">
+        <img src="logo.jpg" alt="Logo Scuola di Birra" />
+      </div>
+
+      <div class="nav-right">
         <a href="corsodibirra.html">CORSO DI BIRRA</a>
         <a href="degustazionipassate.html">DEGUSTAZIONI PASSATE</a>
         <a href="contatti.html">CONTATTI</a>
@@ -252,10 +239,6 @@
           </svg>
           CARRELLO
         </a>
-      </nav>
-
-      <div class="logo-container">
-        <img src="logo.jpg" alt="Logo Scuola di Birra" />
       </div>
     </header>
 
