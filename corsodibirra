@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Corso di Birra - Scuola di Birra</title>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Quicksand', sans-serif;
+      background: url('sfondobichiere.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: #fff;
+    }
+
+    .overlay {
+      background-color: rgba(0, 0, 0, 0.6);
+      min-height: 100vh;
+      padding-bottom: 40px;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: rgba(0, 0, 0, 0.7);
+      padding: 10px 30px;
+      flex-wrap: wrap;
+    }
+
+    nav {
+      display: flex;
+      gap: 15px;
+      flex-grow: 1;
+      justify-content: center;
+    }
+
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .section {
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    .section h1 {
+      font-size: 2em;
+      margin-bottom: 20px;
+    }
+
+    .description {
+      max-width: 800px;
+      margin: 0 auto 40px auto;
+      line-height: 1.6;
+      font-size: 1.1em;
+    }
+
+    .boxes {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+    }
+
+    .box {
+      width: 300px;
+      padding: 20px;
+      background-color: rgba(255, 255, 255, 0.1);
+      border: 2px dashed #fff;
+      border-radius: 25px 80px 25px 80px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.5);
+    }
+
+    .box h2 {
+      font-size: 1.3em;
+      margin-bottom: 10px;
+    }
+
+    .box ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    .box ul li {
+      margin: 8px 0;
+    }
+
+    .footer {
+      background-color: rgba(0, 0, 0, 0.8);
+      color: #fff;
+      text-align: center;
+      padding: 10px;
+      font-size: 0.9em;
+    }
+
+    .footer a {
+      color: #fff;
+      text-decoration: underline;
+    }
+
+    @media screen and (max-width: 700px) {
+      .box {
+        width: 90%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="overlay">
+    <header>
+      <nav>
+        <a href="index.html">HOME</a>
+        <a href="prossimieventi.html">PROSSIMI EVENTI</a>
+        <a href="corsodibirra.html">CORSO DI BIRRA</a>
+        <a href="degustazionipassate.html">DEGUSTAZIONI PASSATE</a>
+        <a href="losapeviche.html">LO SAPEVI CHE?</a>
+        <a href="contatti.html">CONTATTI</a>
+      </nav>
+    </header>
+
+    <div class="section">
+      <h1>CORSO DI BIRRA – OTTOBRE 2025</h1>
+      <div class="description">
+        Quattro serate per scoprire il mondo della birra artigianale, tra tecnica, cultura e piacere della degustazione. Il corso è pensato per chi vuole approfondire le proprie conoscenze, imparare a degustare con consapevolezza e riconoscere le caratteristiche che rendono ogni birra unica.<br><br>
+        Inizieremo dalle basi della produzione per capire come partendo da soli quattro ingredienti nascano stili così diversi. Analizzeremo gli stili birrari di Germania, Belgio, Inghilterra e USA, esplorando le loro caratteristiche attraverso l’assaggio. Parleremo di degustazione, equilibrio, possibili difetti, servizio, conservazione e abbinamento con il cibo.<br><br>
+        Ogni serata prevede la degustazione guidata di 4 birre. Al termine del corso, è previsto un piccolo esame finale con rilascio di attestato di partecipazione.
+        <br><br><strong>Quando:</strong> Venerdì 10, 17, 24 e 31 ottobre 2025<br>
+        <strong>Orario:</strong> 20:30 – 23.00 circa<br>
+        <strong>Dove:</strong> Novoli, Firenze (luogo da confermare)<br>
+        <strong>Costo:</strong> €120 – Sconto 5% per iscrizioni entro il 15 luglio<br>
+        <strong>Posti limitati</strong>
+      </div>
+
+      <div class="boxes">
+        <div class="box">
+          <h2>Venerdì 10 Ottobre</h2>
+          <ul>
+            <li>La produzione: una magia da 4 ingredienti</li>
+            <li>Degustare correttamente</li>
+            <li>4 birre in degustazione</li>
+          </ul>
+        </div>
+        <div class="box">
+          <h2>Venerdì 17 Ottobre</h2>
+          <ul>
+            <li>La Germania e i suoi stili birrari</li>
+            <li>Valutare la birra: equilibrio e difetti</li>
+            <li>4 birre in degustazione</li>
+          </ul>
+        </div>
+        <div class="box">
+          <h2>Venerdì 24 Ottobre</h2>
+          <ul>
+            <li>Il Belgio e i suoi stili birrari</li>
+            <li>Servizio e conservazione</li>
+            <li>4 birre in degustazione</li>
+          </ul>
+        </div>
+        <div class="box">
+          <h2>Venerdì 31 Ottobre</h2>
+          <ul>
+            <li>Inghilterra e USA</li>
+            <li>Abbinamento cibo e birra</li>
+            <li>4 birre in degustazione</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      2025 SCUOLA DI BIRRA – Tutti i diritti riservati P.IVA: IT07436420488 | <a href="privacy.html">Privacy</a>
+    </div>
+  </div>
+</body>
+</html>
