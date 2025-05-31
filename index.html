@@ -49,48 +49,14 @@
     .logo-container img {
       height: 175px;
     }
-
-    .main-image {
-      display: flex;
-      justify-content: center;
-      margin: 30px 0;
-    }
-    .main-course {
-      position: relative;
-      cursor: pointer;
-      text-align: center;
-    }
-    .main-course img {
-      width: 600px;
-      height: 600px;
-      border-radius: 50%;
-      object-fit: cover;
-      box-shadow: 0 0 15px rgba(0,0,0,0.7);
-    }
-    .course-title, .course-date {
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-      text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
-    }
-    .course-title {
-      top: 35%;
-      font-size: 4.5em; /* 3 volte più grande di 1.5em */
-      font-weight: bold;
-    }
-    .course-date {
-      top: 60%;
-      font-size: 2.25em; /* metà della precedente */
-    }
-
     .content {
       flex: 1;
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
       padding: 20px;
     }
-
     .event-container {
       display: flex;
       flex-wrap: wrap;
@@ -99,68 +65,91 @@
       align-items: center;
       text-align: center;
     }
-
     .event {
       display: flex;
       flex-direction: column;
       align-items: center;
       max-width: 600px;
-      cursor: pointer;
-      text-decoration: none;
-      color: #fff;
     }
-
     .event img {
-      width: 600px;
-      height: 600px;
+      width: 400px;
+      height: 400px;
       object-fit: cover;
       border-radius: 50%;
       box-shadow: 0 0 15px rgba(0,0,0,0.7);
     }
-
     .event-title {
       margin-top: 20px;
       font-size: 1.5em;
       font-weight: bold;
+      color: #fff;
     }
-
     .event-date {
       margin-top: 10px;
       font-size: 1.1em;
+      color: #fff;
+    }
+
+    /* Corso di birra box */
+    .main-course-box {
+      text-align: center;
+      margin: 40px 0;
+    }
+    .main-course-box a {
+      text-decoration: none;
+      color: inherit;
+    }
+    .main-course-box img {
+      width: 400px;
+      height: 400px;
+      object-fit: cover;
+      border-radius: 50%;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+    }
+    .main-course-title {
+      font-size: 4.5em;
+      font-weight: bold;
+      color: #fff;
+      margin-top: 20px;
+    }
+    .main-course-date {
+      font-size: 2.25em;
+      color: #fff;
+      margin-top: 10px;
     }
 
     @media screen and (max-width: 1200px) {
       .event img,
-      .main-course img {
-        width: 400px;
-        height: 400px;
+      .main-course-box img {
+        width: 300px;
+        height: 300px;
       }
-      .course-title {
+      .main-course-title {
         font-size: 3em;
       }
-      .course-date {
+      .main-course-date {
         font-size: 1.5em;
       }
     }
 
     @media screen and (max-width: 800px) {
       .event img,
-      .main-course img {
-        width: 300px;
-        height: 300px;
+      .main-course-box img {
+        width: 250px;
+        height: 250px;
       }
-      .course-title {
-        font-size: 2.5em;
+      .main-course-title {
+        font-size: 2.2em;
       }
-      .course-date {
-        font-size: 1.25em;
+      .main-course-date {
+        font-size: 1.2em;
       }
     }
 
     @media screen and (max-width: 500px) {
       .event img,
-      .main-course img {
-        width: 100%;
+      .main-course-box img {
+        width: 90%;
         height: auto;
         border-radius: 50%;
       }
@@ -172,6 +161,7 @@
       padding: 10px;
       font-size: 0.9em;
     }
+
     .footer a {
       color: #fff;
       text-decoration: underline;
@@ -194,11 +184,11 @@
       </div>
     </header>
 
-    <div class="main-image">
-      <a href="corsodibirra.html" class="main-course">
+    <div class="main-course-box">
+      <a href="corsodibirra.html">
         <img src="corsohome.jpg" alt="Corso di Birra">
-        <div class="course-title">CORSO DI BIRRA</div>
-        <div class="course-date">Ottobre 2025</div>
+        <div class="main-course-title">CORSO DI BIRRA</div>
+        <div class="main-course-date">Ottobre 2025</div>
       </a>
     </div>
 
