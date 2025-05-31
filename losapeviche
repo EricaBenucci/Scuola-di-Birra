@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lo sapevi che? - Scuola di Birra</title>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Quicksand', sans-serif;
+      background: url('sfondobichiere.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: #fff;
+    }
+
+    .overlay {
+      background-color: rgba(0, 0, 0, 0.6);
+      min-height: 100vh;
+      padding-bottom: 40px;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: rgba(0, 0, 0, 0.7);
+      padding: 10px 30px;
+      flex-wrap: wrap;
+    }
+
+    nav {
+      display: flex;
+      gap: 15px;
+      flex-grow: 1;
+      justify-content: center;
+    }
+
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      padding: 40px 20px;
+    }
+
+    .flip-card {
+      background-color: transparent;
+      width: 300px;
+      height: 200px;
+      perspective: 1000px;
+    }
+
+    .flip-card-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      text-align: center;
+      transition: transform 0.6s;
+      transform-style: preserve-3d;
+      cursor: pointer;
+    }
+
+    .flip-card:hover .flip-card-inner {
+      transform: rotateY(180deg);
+    }
+
+    .flip-card-front, .flip-card-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      border: 1px solid #fff;
+      border-radius: 10px;
+      padding: 15px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .flip-card-front {
+      font-weight: bold;
+    }
+
+    .flip-card-back {
+      transform: rotateY(180deg);
+      font-size: 0.95em;
+    }
+
+    .footer {
+      background-color: rgba(0, 0, 0, 0.8);
+      color: #fff;
+      text-align: center;
+      padding: 10px;
+      font-size: 0.9em;
+    }
+
+    .footer a {
+      color: #fff;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="overlay">
+    <header>
+      <nav>
+        <a href="index.html">HOME</a>
+        <a href="prossimieventi.html">PROSSIMI EVENTI</a>
+        <a href="corsodibirra.html">CORSO DI BIRRA</a>
+        <a href="degustazionipassate.html">DEGUSTAZIONI PASSATE</a>
+        <a href="losapeviche.html">LO SAPEVI CHE?</a>
+        <a href="contatti.html">CONTATTI</a>
+      </nav>
+    </header>
+
+    <div class="container">
+      <div class="flip-card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">Esiste una fobia della birra vuota</div>
+          <div class="flip-card-back">Si chiama "Cenosillicaphobia" ed è la paura di un bicchiere di birra vuoto. È più una curiosità che una fobia clinicamente riconosciuta, ma è un termine divertente che circola tra gli appassionati di birra!</div>
+        </div>
+      </div>
+
+      <div class="flip-card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">La birra può essere un buon fertilizzante per il giardino</div>
+          <div class="flip-card-back">Non pensare di versare la tua pinta sul prato! Ma i resti della sua produzione, lieviti e nutrienti residui, possono arricchire il terreno. Alcuni giardinieri la usano anche per attirare le lumache.</div>
+        </div>
+      </div>
+
+      <div class="flip-card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">Il record mondiale per la collezione di birre</div>
+          <div class="flip-card-back">Il record per la più grande collezione di bottiglie di birra non aperte appartiene a Ron Werner (USA), ottenuto nel 2012 con oltre 25.866 bottiglie diverse.</div>
+        </div>
+      </div>
+
+      <div class="flip-card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">Il Paese con più grande consumo di birra pro capite?</div>
+          <div class="flip-card-back">È la Repubblica Ceca, che detiene da anni il primato con una media di oltre 130 litri all'anno per persona. La birra è parte fondamentale della loro cultura.</div>
+        </div>
+      </div>
+
+      <div class="flip-card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">La birra come medicina?</div>
+          <div class="flip-card-back">Un tempo la birra era considerata più sicura dell'acqua in alcune aree. Bollita e alcolica, era usata anche come tonico o per aiutare la digestione.</div>
+        </div>
+      </div>
+
+      <div class="flip-card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">Un’inondazione di birra?</div>
+          <div class="flip-card-back">Sì, accadde a Londra nel 1814 quando una cisterna si ruppe riversando oltre 1,4 milioni di litri di Porter. L'ondata causò 8 vittime: fu la “Grande Inondazione di Birra”.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      2025 SCUOLA DI BIRRA – Tutti i diritti riservati P.IVA: IT07436420488 | <a href="privacy.html">Privacy</a>
+    </div>
+  </div>
+</body>
+</html>
