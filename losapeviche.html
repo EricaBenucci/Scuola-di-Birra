@@ -1,62 +1,106 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Lo sapevi che? - Scuola di Birra</title>
-  <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet" />
   <style>
+    /* ---------------------- */
+    /* Base pagina e sfondo   */
+    /* ---------------------- */
     body {
       margin: 0;
       font-family: 'Quicksand', sans-serif;
       background: url('sfondobichiere.jpg') no-repeat center center fixed;
       background-size: cover;
       color: #fff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
-
     .overlay {
       background-color: rgba(0, 0, 0, 0.6);
-      min-height: 100vh;
-      padding-bottom: 40px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
     }
 
+    /* ---------------------- */
+    /* Header / Navbar        */
+    /* ---------------------- */
     header {
       display: flex;
-      justify-content: space-between;
+      justify-content: center;
       align-items: center;
       background-color: rgba(0, 0, 0, 0.7);
-      padding: 10px 30px;
+      padding: 10px 20px;
       flex-wrap: wrap;
     }
-
-    nav {
+    .nav-container {
       display: flex;
-      gap: 15px;
-      flex-grow: 1;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
       justify-content: center;
+      width: 100%;
+      position: relative;
     }
-
-    nav a {
+    .nav-container a {
       color: #fff;
       text-decoration: none;
       font-weight: bold;
+      font-size: 1em;
+    }
+    .logo-container {
+      background-color: rgba(255,255,255,0.1);
+      padding: 8px;
+      border-radius: 10px;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    .logo-container img {
+      height: 175px;
+    }
+    .carrello-button {
+      margin-left: auto;
+      background-color: #ffcc33;
+      color: #000;
+      padding: 6px 12px;
+      border-radius: 5px;
+      font-weight: bold;
+      text-decoration: none;
+      font-size: 0.95em;
     }
 
+    /* ---------------------- */
+    /* Container flip-cards   */
+    /* ---------------------- */
     .container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
+      display: grid;
+      grid-template-columns: repeat( auto-fit, minmax(300px, 1fr) );
       gap: 20px;
       padding: 40px 20px;
+      justify-items: center;
+      flex: 1;
+    }
+    /* Forzare 3x2 su desktop > 900px */
+    @media screen and (min-width: 900px) {
+      .container {
+        grid-template-columns: repeat(3, 1fr);
+      }
     }
 
+    /* ---------------------- */
+    /* Flip-card              */
+    /* ---------------------- */
     .flip-card {
       background-color: transparent;
       width: 300px;
       height: 200px;
       perspective: 1000px;
     }
-
     .flip-card-inner {
       position: relative;
       width: 100%;
@@ -66,12 +110,13 @@
       transform-style: preserve-3d;
       cursor: pointer;
     }
-
-    .flip-card:hover .flip-card-inner {
+    /* Quando la carta ha classe "flipped" gira */
+    .flip-card.flipped .flip-card-inner {
       transform: rotateY(180deg);
     }
 
-    .flip-card-front, .flip-card-back {
+    .flip-card-front,
+    .flip-card-back {
       position: absolute;
       width: 100%;
       height: 100%;
@@ -82,26 +127,37 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      background-color: rgba(255, 255, 255, 0.1);
     }
 
+    /* FRONT: sfondo immagine schiuma */
     .flip-card-front {
       font-weight: bold;
+      font-size: 1.2em;
+      background: url('sfondoschiuma.jpg') no-repeat center center;
+      background-size: cover;
+      color: #000;
     }
 
+    /* BACK: sfondo colore birra (ambra) */
     .flip-card-back {
       transform: rotateY(180deg);
-      font-size: 0.95em;
+      font-size: 1.1em;
+      background-color: rgba(218, 165, 32, 0.85);
+      color: #000;
+      padding: 15px;
     }
 
+    /* ---------------------- */
+    /* Footer (fisso in basso)*/
+    /* ---------------------- */
     .footer {
       background-color: rgba(0, 0, 0, 0.8);
       color: #fff;
       text-align: center;
       padding: 10px;
       font-size: 0.9em;
+      flex-shrink: 0;
     }
-
     .footer a {
       color: #fff;
       text-decoration: underline;
@@ -110,64 +166,107 @@
 </head>
 <body>
   <div class="overlay">
+    <!-- HEADER / NAVBAR -->
     <header>
-      <nav>
+      <div class="nav-container">
         <a href="index.html">HOME</a>
         <a href="prossimieventi.html">PROSSIMI EVENTI</a>
         <a href="corsodibirra.html">CORSO DI BIRRA</a>
         <a href="degustazionipassate.html">DEGUSTAZIONI PASSATE</a>
-        <a href="losapeviche.html">LO SAPEVI CHE?</a>
+        <div class="logo-container">
+          <img src="logo.jpg" alt="Logo Scuola di Birra" />
+        </div>
+        <a href="losapeviche.html" style="text-decoration: underline;">LO SAPEVI CHE?</a>
         <a href="contatti.html">CONTATTI</a>
-      </nav>
+        <a href="carrello.html" class="carrello-button">CARRELLO</a>
+      </div>
     </header>
 
+    <!-- CONTENUTO: 6 FLIP-CARD ALLINEATE 3 X 2 -->
     <div class="container">
-      <div class="flip-card">
+      <!-- 1° Card -->
+      <div class="flip-card" onclick="this.classList.toggle('flipped')">
         <div class="flip-card-inner">
-          <div class="flip-card-front">Esiste una fobia della birra vuota</div>
-          <div class="flip-card-back">Si chiama "Cenosillicaphobia" ed è la paura di un bicchiere di birra vuoto. È più una curiosità che una fobia clinicamente riconosciuta, ma è un termine divertente che circola tra gli appassionati di birra!</div>
+          <div class="flip-card-front">
+            Esiste una fobia della birra vuota
+          </div>
+          <div class="flip-card-back">
+            Si chiama "Cenosillicaphobia" ed è la paura di un bicchiere di birra vuoto. È più una curiosità che una fobia clinicamente riconosciuta, ma è un termine divertente che circola tra gli appassionati di birra!
+          </div>
         </div>
       </div>
 
-      <div class="flip-card">
+      <!-- 2° Card -->
+      <div class="flip-card" onclick="this.classList.toggle('flipped')">
         <div class="flip-card-inner">
-          <div class="flip-card-front">La birra può essere un buon fertilizzante per il giardino</div>
-          <div class="flip-card-back">Non pensare di versare la tua pinta sul prato! Ma i resti della sua produzione, lieviti e nutrienti residui, possono arricchire il terreno. Alcuni giardinieri la usano anche per attirare le lumache.</div>
+          <div class="flip-card-front">
+            La birra può essere un buon fertilizzante per il giardino
+          </div>
+          <div class="flip-card-back">
+            Non pensare di versare la tua pinta sul prato! Ma i resti della sua produzione, lieviti e nutrienti residui, possono arricchire il terreno. Alcuni giardinieri la usano anche per attirare le lumache.
+          </div>
         </div>
       </div>
 
-      <div class="flip-card">
+      <!-- 3° Card -->
+      <div class="flip-card" onclick="this.classList.toggle('flipped')">
         <div class="flip-card-inner">
-          <div class="flip-card-front">Il record mondiale per la collezione di birre</div>
-          <div class="flip-card-back">Il record per la più grande collezione di bottiglie di birra non aperte appartiene a Ron Werner (USA), ottenuto nel 2012 con oltre 25.866 bottiglie diverse.</div>
+          <div class="flip-card-front">
+            Il record mondiale per la collezione di birre
+          </div>
+          <div class="flip-card-back">
+            Il record per la più grande collezione di bottiglie di birra non aperte appartiene a Ron Werner (USA), ottenuto nel 2012 con oltre 25.866 bottiglie diverse.
+          </div>
         </div>
       </div>
 
-      <div class="flip-card">
+      <!-- 4° Card -->
+      <div class="flip-card" onclick="this.classList.toggle('flipped')">
         <div class="flip-card-inner">
-          <div class="flip-card-front">Il Paese con più grande consumo di birra pro capite?</div>
-          <div class="flip-card-back">È la Repubblica Ceca, che detiene da anni il primato con una media di oltre 130 litri all'anno per persona. La birra è parte fondamentale della loro cultura.</div>
+          <div class="flip-card-front">
+            Il Paese con più grande consumo di birra pro capite?
+          </div>
+          <div class="flip-card-back">
+            È la Repubblica Ceca, che detiene da anni il primato con una media di oltre 130 litri all'anno per persona. La birra è parte fondamentale della loro cultura.
+          </div>
         </div>
       </div>
 
-      <div class="flip-card">
+      <!-- 5° Card -->
+      <div class="flip-card" onclick="this.classList.toggle('flipped')">
         <div class="flip-card-inner">
-          <div class="flip-card-front">La birra come medicina?</div>
-          <div class="flip-card-back">Un tempo la birra era considerata più sicura dell'acqua in alcune aree. Bollita e alcolica, era usata anche come tonico o per aiutare la digestione.</div>
+          <div class="flip-card-front">
+            La birra come medicina?
+          </div>
+          <div class="flip-card-back">
+            Un tempo la birra era considerata più sicura dell'acqua in alcune aree. Bollita e alcolica, era usata anche come tonico o per aiutare la digestione.
+          </div>
         </div>
       </div>
 
-      <div class="flip-card">
+      <!-- 6° Card -->
+      <div class="flip-card" onclick="this.classList.toggle('flipped')">
         <div class="flip-card-inner">
-          <div class="flip-card-front">Un’inondazione di birra?</div>
-          <div class="flip-card-back">Sì, accadde a Londra nel 1814 quando una cisterna si ruppe riversando oltre 1,4 milioni di litri di Porter. L'ondata causò 8 vittime: fu la “Grande Inondazione di Birra”.</div>
+          <div class="flip-card-front">
+            Un’inondazione di birra?
+          </div>
+          <div class="flip-card-back">
+            Sì, accadde a Londra nel 1814 quando una cisterna si ruppe riversando oltre 1,4 milioni di litri di Porter. L'ondata causò 8 vittime: fu la “Grande Inondazione di Birra”.
+          </div>
         </div>
       </div>
     </div>
 
+    <!-- FOOTER FISSO IN BASSO -->
     <div class="footer">
       2025 SCUOLA DI BIRRA – Tutti i diritti riservati P.IVA: IT07436420488 | <a href="privacy.html">Privacy</a>
     </div>
   </div>
+
+  <!-- Nessuno script esterno; lo script inline serve a far girare le carte al click -->
+  <script>
+    // Nota: abbiamo già usato onclick="this.classList.toggle('flipped')" inline,
+    //  quindi non serve ulteriore JS esterno.
+  </script>
 </body>
 </html>
