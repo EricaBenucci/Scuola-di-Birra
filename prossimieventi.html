@@ -6,123 +6,148 @@
   <title>Prossimi Eventi - Scuola di Birra</title>
   <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
   <style>
-    body {
+    html, body {
       margin: 0;
+      padding: 0;
+      height: 100%;
       font-family: 'Quicksand', sans-serif;
       background: url('sfondobichiere.jpg') no-repeat center center fixed;
       background-size: cover;
       color: #fff;
     }
-
     .overlay {
-      background-color: rgba(0, 0, 0, 0.6);
+      display: flex;
+      flex-direction: column;
       min-height: 100vh;
+      background-color: rgba(0, 0, 0, 0.6);
     }
-
     header {
       display: flex;
-      justify-content: space-between;
+      justify-content: center;
       align-items: center;
-      background-color: rgba(0, 0, 0, 0.7);
-      padding: 10px 30px;
       flex-wrap: wrap;
+      background-color: rgba(0, 0, 0, 0.7);
+      padding: 10px 20px;
     }
-
-    nav {
+    .nav-container {
       display: flex;
-      gap: 15px;
-      flex-grow: 1;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
       justify-content: center;
     }
-
-    nav a {
+    .nav-container a {
       color: #fff;
       text-decoration: none;
       font-weight: bold;
     }
-
+    .logo-container {
+      background-color: rgba(255,255,255,0.1);
+      padding: 8px;
+      border-radius: 10px;
+    }
+    .logo-container img {
+      height: 175px;
+    }
+    .content {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
     .event-container {
       display: flex;
       flex-wrap: wrap;
+      gap: 40px;
       justify-content: center;
       align-items: center;
-      padding: 40px 20px;
-      gap: 40px;
-    }
-
-    .event {
       text-align: center;
-      max-width: 300px;
     }
-
+    .event {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      max-width: 600px;
+    }
     .event img {
-      width: 200px;
-      height: 200px;
+      width: 600px;
+      height: 600px;
       object-fit: cover;
       border-radius: 50%;
-      box-shadow: 0 0 10px #000;
-      margin-bottom: 15px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.7);
     }
-
     .event-title {
-      font-size: 1.3em;
+      margin-top: 20px;
+      font-size: 1.5em;
       font-weight: bold;
     }
-
     .event-date {
-      margin-top: 5px;
-      font-size: 1em;
+      margin-top: 10px;
+      font-size: 1.1em;
     }
-
+    @media screen and (max-width: 1200px) {
+      .event img {
+        width: 400px;
+        height: 400px;
+      }
+    }
+    @media screen and (max-width: 800px) {
+      .event img {
+        width: 300px;
+        height: 300px;
+      }
+    }
+    @media screen and (max-width: 500px) {
+      .event img {
+        width: 100%;
+        height: auto;
+        border-radius: 50%;
+      }
+    }
     .footer {
       background-color: rgba(0, 0, 0, 0.8);
-      color: #fff;
       text-align: center;
       padding: 10px;
       font-size: 0.9em;
     }
-
     .footer a {
       color: #fff;
       text-decoration: underline;
-    }
-
-    @media screen and (max-width: 700px) {
-      .event-container {
-        flex-direction: column;
-      }
     }
   </style>
 </head>
 <body>
   <div class="overlay">
     <header>
-      <nav>
+      <div class="nav-container">
         <a href="index.html">HOME</a>
         <a href="prossimieventi.html">PROSSIMI EVENTI</a>
         <a href="corsodibirra.html">CORSO DI BIRRA</a>
+        <div class="logo-container">
+          <img src="logo.jpg" alt="Logo Scuola di Birra">
+        </div>
         <a href="degustazionipassate.html">DEGUSTAZIONI PASSATE</a>
         <a href="losapeviche.html">LO SAPEVI CHE?</a>
         <a href="contatti.html">CONTATTI</a>
-      </nav>
-    </header>
-
-    <div class="event-container">
-      <div class="event">
-        <img src="birrenatale.jpg" alt="Birre di Natale">
-        <div class="event-title">BIRRE DI NATALE</div>
-        <div class="event-date">Venerdì 21 Novembre<br>Info da confermare</div>
       </div>
-      <div class="event">
-        <img src="bandierainglese.jpg" alt="L'inglese per la degustazione">
-        <div class="event-title">L’INGLESE PER LA DEGUSTAZIONE</div>
-        <div class="event-date">Gennaio 2026<br>Info da confermare</div>
+    </header>
+    <div class="content">
+      <div class="event-container">
+        <div class="event">
+          <img src="birrenatale.jpg" alt="Birre di Natale">
+          <div class="event-title">BIRRE DI NATALE</div>
+          <div class="event-date">Venerdì 21 Novembre<br>Info da confermare</div>
+        </div>
+        <div class="event">
+          <img src="bandierainglese.jpg" alt="L'inglese per la degustazione">
+          <div class="event-title">L’INGLESE PER LA DEGUSTAZIONE</div>
+          <div class="event-date">Gennaio 2026<br>Info da confermare</div>
+        </div>
       </div>
     </div>
-
     <div class="footer">
-      2025 SCUOLA DI BIRRA – Tutti i diritti riservati P.IVA: IT07436420488
-      | <a href="privacy.html">Privacy</a>
+      2025 SCUOLA DI BIRRA – Tutti i diritti riservati P.IVA: IT07436420488 | <a href="privacy.html">Privacy</a>
     </div>
   </div>
 </body>
