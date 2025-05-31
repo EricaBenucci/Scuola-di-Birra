@@ -49,16 +49,40 @@
     .logo-container img {
       height: 175px;
     }
+
     .main-image {
       display: flex;
       justify-content: center;
       margin: 30px 0;
     }
-    .main-image img {
-      width: 43.75%; /* metà di 87.5% */
-      border-radius: 10px;
-      box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+    .main-course {
+      position: relative;
+      cursor: pointer;
+      text-align: center;
     }
+    .main-course img {
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      object-fit: cover;
+      box-shadow: 0 0 15px rgba(0,0,0,0.7);
+    }
+    .course-title, .course-date {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+    }
+    .course-title {
+      top: 35%;
+      font-size: 4.5em; /* 3 volte più grande di 1.5em */
+      font-weight: bold;
+    }
+    .course-date {
+      top: 60%;
+      font-size: 2.25em; /* metà della precedente */
+    }
+
     .content {
       flex: 1;
       display: flex;
@@ -66,6 +90,7 @@
       align-items: center;
       padding: 20px;
     }
+
     .event-container {
       display: flex;
       flex-wrap: wrap;
@@ -74,12 +99,17 @@
       align-items: center;
       text-align: center;
     }
+
     .event {
       display: flex;
       flex-direction: column;
       align-items: center;
       max-width: 600px;
+      cursor: pointer;
+      text-decoration: none;
+      color: #fff;
     }
+
     .event img {
       width: 600px;
       height: 600px;
@@ -87,34 +117,55 @@
       border-radius: 50%;
       box-shadow: 0 0 15px rgba(0,0,0,0.7);
     }
+
     .event-title {
       margin-top: 20px;
       font-size: 1.5em;
       font-weight: bold;
     }
+
     .event-date {
       margin-top: 10px;
       font-size: 1.1em;
     }
+
     @media screen and (max-width: 1200px) {
-      .event img {
+      .event img,
+      .main-course img {
         width: 400px;
         height: 400px;
       }
+      .course-title {
+        font-size: 3em;
+      }
+      .course-date {
+        font-size: 1.5em;
+      }
     }
+
     @media screen and (max-width: 800px) {
-      .event img {
+      .event img,
+      .main-course img {
         width: 300px;
         height: 300px;
       }
+      .course-title {
+        font-size: 2.5em;
+      }
+      .course-date {
+        font-size: 1.25em;
+      }
     }
+
     @media screen and (max-width: 500px) {
-      .event img {
+      .event img,
+      .main-course img {
         width: 100%;
         height: auto;
         border-radius: 50%;
       }
     }
+
     .footer {
       background-color: rgba(0, 0, 0, 0.8);
       text-align: center;
@@ -144,21 +195,25 @@
     </header>
 
     <div class="main-image">
-      <img src="corsohome.jpg" alt="Corso di Birra">
+      <a href="corsodibirra.html" class="main-course">
+        <img src="corsohome.jpg" alt="Corso di Birra">
+        <div class="course-title">CORSO DI BIRRA</div>
+        <div class="course-date">Ottobre 2025</div>
+      </a>
     </div>
 
     <div class="content">
       <div class="event-container">
-        <div class="event">
+        <a href="prossimieventi.html" class="event">
           <img src="birrenatale.jpg" alt="Birre di Natale">
           <div class="event-title">BIRRE DI NATALE</div>
           <div class="event-date">Venerdì 21 Novembre<br>Info da confermare</div>
-        </div>
-        <div class="event">
+        </a>
+        <a href="prossimieventi.html" class="event">
           <img src="bandierainglese.jpg" alt="L'inglese per la degustazione">
           <div class="event-title">L’INGLESE PER LA DEGUSTAZIONE</div>
           <div class="event-date">Gennaio 2026<br>Info da confermare</div>
-        </div>
+        </a>
       </div>
     </div>
 
