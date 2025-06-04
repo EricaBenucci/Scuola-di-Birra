@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Home - Scuola di Birra</title>
-  <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="cookie-style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet" />
   <style>
+    /* ---------------------- */
+    /* Base pagina e sfondo   */
+    /* ---------------------- */
     html, body {
       margin: 0;
       padding: 0;
@@ -16,38 +18,40 @@
       background-size: cover;
       color: #fff;
     }
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+    a:visited {
+      color: inherit;
+      text-decoration: none;
+    }
     .overlay {
       display: flex;
       flex-direction: column;
       min-height: 100vh;
       background-color: rgba(0, 0, 0, 0.6);
     }
+
+    /* ---------------------- */
+    /* Header / Navbar         */
+    /* ---------------------- */
     header {
+      display: flex;
+      justify-content: center;
+      align-items: center;
       background-color: rgba(0, 0, 0, 0.7);
       padding: 10px 20px;
-    }
-    .nav-bar {
-      display: flex;
       flex-wrap: wrap;
-      justify-content: space-between;
-      align-items: center;
+      gap: 40px;
     }
-    .nav-left, .nav-right {
+    .nav-left,
+    .nav-right {
       display: flex;
       gap: 15px;
       align-items: center;
     }
-    .nav-left a, .nav-right a {
-      color: #fff;
-      text-decoration: none;
-      font-weight: bold;
-    }
     .logo-container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex: 1 1 100%;
-      margin: 10px 0;
       background-color: rgba(255,255,255,0.1);
       padding: 8px;
       border-radius: 10px;
@@ -55,54 +59,55 @@
     .logo-container img {
       height: 175px;
     }
-    .hamburger {
-      display: none;
-      cursor: pointer;
-      flex-direction: column;
-      gap: 5px;
-    }
-    .hamburger div {
-      width: 25px;
-      height: 3px;
-      background-color: white;
-    }
-    .mobile-menu {
-      display: none;
-      flex-direction: column;
-      gap: 10px;
-      padding-top: 10px;
-    }
-    .mobile-menu a {
-      color: #fff;
-      text-decoration: none;
-      font-weight: bold;
-      text-align: center;
-    }
-    @media screen and (max-width: 768px) {
-      .nav-left, .nav-right {
-        display: none;
-      }
-      .hamburger {
-        display: flex;
-        margin-left: auto;
-      }
-      .mobile-menu.show {
-        display: flex;
-      }
-    }
-    .main-image {
+    .carrello-link {
       display: flex;
-      justify-content: center;
-      margin: 30px 0;
+      align-items: center;
+      gap: 5px;
+      font-weight: bold;
     }
-    .main-image img {
-      width: 43.75%;
-      border-radius: 10px;
+    .carrello-link svg {
+      fill: #fff;
+      width: 20px;
+      height: 20px;
+    }
+
+    /* ---------------------- */
+    /* Corso di birra box      */
+    /* ---------------------- */
+    .main-course-box {
+      text-align: center;
+      margin: 40px 0;
+    }
+    .main-course-box a {
+      text-decoration: none;
+      color: inherit;
+    }
+    .main-course-box img {
+      width: 480px;     /* Ingrandita del 20% rispetto a 400px */
+      height: 480px;
+      object-fit: cover;
+      border-radius: 50%;
       box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
     }
+    .main-course-title {
+      font-size: 4.5em;
+      font-weight: bold;
+      color: #fff;
+      margin-top: 20px;
+    }
+    .main-course-date {
+      font-size: 2.25em;
+      color: #fff;
+      margin-top: 10px;
+    }
+
+    /* ---------------------- */
+    /* Contenuto eventi         */
+    /* ---------------------- */
     .content {
       flex: 1;
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
       padding: 20px;
@@ -122,8 +127,8 @@
       max-width: 600px;
     }
     .event img {
-      width: 600px;
-      height: 600px;
+      width: 400px;
+      height: 400px;
       object-fit: cover;
       border-radius: 50%;
       box-shadow: 0 0 15px rgba(0,0,0,0.7);
@@ -132,11 +137,17 @@
       margin-top: 20px;
       font-size: 1.5em;
       font-weight: bold;
+      color: #fff;
     }
     .event-date {
       margin-top: 10px;
       font-size: 1.1em;
+      color: #fff;
     }
+
+    /* ---------------------- */
+    /* Footer                  */
+    /* ---------------------- */
     .footer {
       background-color: rgba(0, 0, 0, 0.8);
       text-align: center;
@@ -147,90 +158,119 @@
       color: #fff;
       text-decoration: underline;
     }
+
+    /* ---------------------- */
+    /* Responsive rules        */
+    /* ---------------------- */
+    @media screen and (max-width: 1200px) {
+      .event img {
+        width: 300px;
+        height: 300px;
+      }
+      .main-course-box img {
+        width: 360px;
+        height: 360px;
+      }
+      .main-course-title {
+        font-size: 3em;
+      }
+      .main-course-date {
+        font-size: 1.5em;
+      }
+    }
+
+    @media screen and (max-width: 800px) {
+      header {
+        flex-direction: column;
+        gap: 15px;
+      }
+      .event img {
+        width: 250px;
+        height: 250px;
+      }
+      .main-course-box img {
+        width: 300px;
+        height: 300px;
+      }
+      .main-course-title {
+        font-size: 2.2em;
+      }
+      .main-course-date {
+        font-size: 1.2em;
+      }
+    }
+
+    @media screen and (max-width: 500px) {
+      .event img {
+        width: 90%;
+        height: auto;
+        border-radius: 50%;
+      }
+      .main-course-box img {
+        width: 90%;
+        height: auto;
+        border-radius: 50%;
+      }
+    }
   </style>
 </head>
 <body>
   <div class="overlay">
+    <!-- HEADER / NAVBAR CON LOGO CENTRATO -->
     <header>
-      <div class="nav-bar">
-        <div class="nav-left">
-          <a href="index.html">HOME</a>
-          <a href="prossimieventi.html">PROSSIMI EVENTI</a>
-          <a href="losapeviche.html">LO SAPEVI CHE?</a>
-        </div>
-        <div class="hamburger" onclick="toggleMenu()">
-          <div></div>
-          <div></div>
-          <div></div>
-        </div>
-        <div class="nav-right">
-          <a href="corsodibirra.html">CORSO DI BIRRA</a>
-          <a href="degustazionipassate.html">DEGUSTAZIONI PASSATE</a>
-          <a href="contatti.html">CONTATTI</a>
-          <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/1170/1170678.png" alt="Carrello" style="height: 28px;"></a>
-        </div>
-      </div>
-      <div class="logo-container">
-        <img src="logo.jpg" alt="Logo Scuola di Birra">
-      </div>
-      <div class="mobile-menu" id="mobileMenu">
+      <div class="nav-left">
         <a href="index.html">HOME</a>
         <a href="prossimieventi.html">PROSSIMI EVENTI</a>
         <a href="losapeviche.html">LO SAPEVI CHE?</a>
+      </div>
+
+      <div class="logo-container">
+        <img src="logo.jpg" alt="Logo Scuola di Birra" />
+      </div>
+
+      <div class="nav-right">
         <a href="corsodibirra.html">CORSO DI BIRRA</a>
         <a href="degustazionipassate.html">DEGUSTAZIONI PASSATE</a>
         <a href="contatti.html">CONTATTI</a>
-        <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/1170/1170678.png" alt="Carrello" style="height: 24px;"></a>
+        <a href="carrello.html" class="carrello-link">
+          <!-- Icona carrello SVG -->
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+            <path d="M0 1a1 1 0 0 1 1-1h1.5a.5.5 0 0 1 .485.379L3.89 3H14.5a.5.5 0 0 1 .49.598l-1.5 7A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.49-.402L1.61 3.607 1.11 2H1a1 1 0 0 1-1-1zm4.5 9a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm7 1.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
+          </svg>
+          CARRELLO
+        </a>
       </div>
     </header>
 
-    <div class="main-image">
-      <img src="corsohome.jpg" alt="Corso di Birra">
+    <!-- SEZIONE PRINCIPALE: IMMAGINE ROTONDA INGANDITA -->
+    <div class="main-course-box">
+      <a href="corsodibirra.html">
+        <img src="corsohome.jpg" alt="Corso di Birra" />
+        <div class="main-course-title">CORSO DI BIRRA</div>
+        <div class="main-course-date">Ottobre 2025</div>
+      </a>
     </div>
 
+    <!-- CONTENUTO: EVENTI -->
     <div class="content">
       <div class="event-container">
-        <div class="event">
-          <img src="birrenatale.jpg" alt="Birre di Natale">
+        <a href="prossimieventi.html" class="event">
+          <img src="birrenatale.jpg" alt="Birre di Natale" />
           <div class="event-title">BIRRE DI NATALE</div>
           <div class="event-date">Venerdì 21 Novembre<br>Info da confermare</div>
-        </div>
-        <div class="event">
-          <img src="bandierainglese.jpg" alt="L'inglese per la degustazione">
+        </a>
+        <a href="prossimieventi.html" class="event">
+          <img src="bandierainglese.jpg" alt="L'inglese per la degustazione" />
           <div class="event-title">L’INGLESE PER LA DEGUSTAZIONE</div>
           <div class="event-date">Gennaio 2026<br>Info da confermare</div>
-        </div>
+        </a>
       </div>
     </div>
 
+    <!-- FOOTER -->
     <div class="footer">
       2025 SCUOLA DI BIRRA – Tutti i diritti riservati P.IVA: IT07436420488 | <a href="privacy.html">Privacy</a>
     </div>
   </div>
-
-  <!-- Cookie Banner -->
-  <div id="cookie-banner" class="cookie-banner">
-    <p>Questo sito utilizza cookie tecnici e, previo consenso, cookie di terze parti per migliorare la tua esperienza. <a href="privacy.html">Leggi di più</a></p>
-    <div class="cookie-buttons">
-      <button onclick="acceptCookies()">Accetta</button>
-      <button onclick="window.location.href='privacy.html'">Personalizza</button>
-    </div>
-  </div>
-
-  <script>
-    function acceptCookies() {
-      localStorage.setItem('cookieConsent', 'true');
-      document.getElementById('cookie-banner').style.display = 'none';
-    }
-    window.onload = function () {
-      if (!localStorage.getItem('cookieConsent')) {
-        document.getElementById('cookie-banner').style.display = 'flex';
-      }
-    }
-    function toggleMenu() {
-      const menu = document.getElementById('mobileMenu');
-      menu.classList.toggle('show');
-    }
-  </script>
 </body>
 </html>
