@@ -23,24 +23,18 @@
       background-color: rgba(0, 0, 0, 0.6);
     }
     header {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-wrap: wrap;
       background-color: rgba(0, 0, 0, 0.7);
       padding: 10px 20px;
     }
     .nav-bar {
       display: flex;
-      justify-content: center;
-      align-items: center;
       flex-wrap: wrap;
-      gap: 30px;
+      justify-content: space-between;
+      align-items: center;
     }
     .nav-left, .nav-right {
       display: flex;
       gap: 15px;
-      flex-wrap: wrap;
       align-items: center;
     }
     .nav-left a, .nav-right a {
@@ -49,12 +43,52 @@
       font-weight: bold;
     }
     .logo-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex: 1 1 100%;
+      margin: 10px 0;
       background-color: rgba(255,255,255,0.1);
       padding: 8px;
       border-radius: 10px;
     }
     .logo-container img {
       height: 175px;
+    }
+    .hamburger {
+      display: none;
+      cursor: pointer;
+      flex-direction: column;
+      gap: 5px;
+    }
+    .hamburger div {
+      width: 25px;
+      height: 3px;
+      background-color: white;
+    }
+    .mobile-menu {
+      display: none;
+      flex-direction: column;
+      gap: 10px;
+      padding-top: 10px;
+    }
+    .mobile-menu a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+      text-align: center;
+    }
+    @media screen and (max-width: 768px) {
+      .nav-left, .nav-right {
+        display: none;
+      }
+      .hamburger {
+        display: flex;
+        margin-left: auto;
+      }
+      .mobile-menu.show {
+        display: flex;
+      }
     }
     .main-image {
       display: flex;
@@ -124,15 +158,29 @@
           <a href="prossimieventi.html">PROSSIMI EVENTI</a>
           <a href="losapeviche.html">LO SAPEVI CHE?</a>
         </div>
-        <div class="logo-container">
-          <img src="logo.jpg" alt="Logo Scuola di Birra">
+        <div class="hamburger" onclick="toggleMenu()">
+          <div></div>
+          <div></div>
+          <div></div>
         </div>
         <div class="nav-right">
           <a href="corsodibirra.html">CORSO DI BIRRA</a>
           <a href="degustazionipassate.html">DEGUSTAZIONI PASSATE</a>
           <a href="contatti.html">CONTATTI</a>
-          <a href="#"><img src="carrello-icon.png" alt="Carrello" style="height: 30px;"></a>
+          <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/1170/1170678.png" alt="Carrello" style="height: 28px;"></a>
         </div>
+      </div>
+      <div class="logo-container">
+        <img src="logo.jpg" alt="Logo Scuola di Birra">
+      </div>
+      <div class="mobile-menu" id="mobileMenu">
+        <a href="index.html">HOME</a>
+        <a href="prossimieventi.html">PROSSIMI EVENTI</a>
+        <a href="losapeviche.html">LO SAPEVI CHE?</a>
+        <a href="corsodibirra.html">CORSO DI BIRRA</a>
+        <a href="degustazionipassate.html">DEGUSTAZIONI PASSATE</a>
+        <a href="contatti.html">CONTATTI</a>
+        <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/1170/1170678.png" alt="Carrello" style="height: 24px;"></a>
       </div>
     </header>
 
@@ -178,6 +226,10 @@
       if (!localStorage.getItem('cookieConsent')) {
         document.getElementById('cookie-banner').style.display = 'flex';
       }
+    }
+    function toggleMenu() {
+      const menu = document.getElementById('mobileMenu');
+      menu.classList.toggle('show');
     }
   </script>
 </body>
