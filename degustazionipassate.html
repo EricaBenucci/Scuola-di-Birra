@@ -1,449 +1,616 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Degustazioni Passate - Italian Beer School</title>
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet" />
-    <style>
-        /* ---------------------- */
-        /* Base pagina e sfondo   */
-        /* ---------------------- */
-        html, body {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            font-family: 'Quicksand', sans-serif;
-            background: url('sfondobichiere.jpg') no-repeat center center fixed;
-            background-size: cover;
-            color: #fff;
-        }
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-        a:visited {
-            color: inherit;
-            text-decoration: none;
-        }
-        .overlay {
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-            background-color: rgba(0, 0, 0, 0.6);
-            position: relative;
-            z-index: 1;
-        }
-        /* ---------------------- */
-        /* Header / Navbar        */
-        /* ---------------------- */
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background-color: rgba(0, 0, 0, 0.7);
-            padding: 85px 20px;
-            flex-wrap: wrap;
-            position: relative;
-            z-index: 2;
-        }
-        .logo-container {
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            padding: 0;
-            border-radius: 0;
-        }
-        .logo-container img {
-            height: 110px;
-        }
-        .hamburger-menu {
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            gap: 6px;
-            width: 30px;
-            height: 30px;
-        }
-        .hamburger-menu .line {
-            width: 30px;
-            height: 3px;
-            background-color: #fff;
-            border-radius: 5px;
-            transition: all 0.3s ease;
-        }
-        .hamburger-menu.open .line:nth-child(1) { transform: translateY(9px) rotate(45deg); }
-        .hamburger-menu.open .line:nth-child(2) { opacity: 0; }
-        .hamburger-menu.open .line:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
-        .carrello-link {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            font-weight: bold;
-        }
-        .carrello-link svg {
-            fill: #fff;
-            width: 25px;
-            height: 25px;
-        }
-        .carrello-link .cart-count {
-            display: block;
-            background-color: #e0ac4c;
-            color: #000;
-            font-size: 0.8em;
-            font-weight: bold;
-            border-radius: 50%;
-            padding: 4px 8px;
-            margin-left: -10px;
-            position: relative;
-            top: -10px;
-        }
-        .carrello-text {
-            display: none;
-        }
-        /* Pop-up Menu Laterale */
-        .menu-pop-up {
-            position: fixed;
-            top: 0;
-            left: -300px;
-            width: 280px;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.95);
-            color: #fff;
-            padding-top: 80px;
-            transition: left 0.3s ease-in-out;
-            z-index: 4;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-        .menu-pop-up a {
-            padding: 15px 20px;
-            display: block;
-            font-size: 1.2em;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            color: #fff;
-        }
-        .menu-pop-up a:hover {
-            background-color: rgba(255, 255, 255, 0.1);
-        }
-        .menu-pop-up.open {
-            left: 0;
-        }
-        .close-menu {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            color: #fff;
-            font-size: 2em;
-            cursor: pointer;
-        }
-        /* ---------------------- */
-        /* Contenuto Pagina       */
-        /* ---------------------- */
-        .content {
-            padding: 40px 20px;
-            max-width: 1200px;
-            margin: auto;
-            flex-grow: 1;
-        }
-        section.event-section {
-            margin-bottom: 60px;
-            text-align: center;
-        }
-        .event-header {
-            background-color: rgba(255, 255, 255, 0.1);
-            display: inline-block;
-            padding: 10px 20px;
-            border-radius: 10px;
-            margin-bottom: 15px;
-            text-align: center;
-        }
-        .event-header h2 {
-            font-size: 1.8em;
-            margin: 0;
-            color: #fff;
-        }
-        .photos {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            justify-content: center;
-        }
-        .photos img {
-            width: calc(25% - 10px);
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-        }
-        a.link-collab {
-            color: #e0ac4c;
-            text-decoration: underline;
-        }
-        /* ---------------------- */
-        /* Footer                 */
-        /* ---------------------- */
-        .footer {
-            background-color: rgba(0, 0, 0, 0.8);
-            text-align: center;
-            padding: 10px;
-            font-size: 0.9em;
-            margin-top: auto;
-        }
-        .footer a {
-            color: #fff;
-            text-decoration: underline;
-        }
-        /* ---------------------- */
-        /* Cookie Banner          */
-        /* ---------------------- */
-        #cookie-banner {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background-color: rgba(0, 0, 0, 0.9);
-            color: #fff;
-            padding: 20px;
-            text-align: center;
-            z-index: 1000;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 10px;
-        }
-        #cookie-banner.hidden {
-            display: none;
-        }
-        #cookie-banner p {
-            margin: 0;
-            font-size: 1em;
-        }
-        #cookie-buttons {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-        #cookie-buttons button {
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            font-weight: bold;
-            cursor: pointer;
-            font-family: 'Quicksand', sans-serif;
-        }
-        #accept-cookies {
-            background-color: #4CAF50;
-            color: #fff;
-        }
-        #reject-cookies {
-            background-color: #f44336;
-            color: #fff;
-        }
-        #customize-cookies {
-            background-color: #e0ac4c;
-            color: #000;
-        }
-        #cookie-banner a {
-            color: #e0ac4c;
-            text-decoration: underline;
-        }
-        /* ---------------------- */
-        /* Responsive rules       */
-        /* ---------------------- */
-        @media screen and (max-width: 1200px) {
-            .logo-container img { height: 90px; }
-        }
-        @media screen and (max-width: 800px) {
-            header { padding: 30px 10px; }
-            .logo-container img { height: 65px; }
-            .photos img {
-                width: calc(50% - 10px);
-            }
-        }
-        @media screen and (max-width: 500px) {
-            .photos img {
-                width: 100%;
-            }
-        }
-        @media screen and (min-width: 801px) {
-            .carrello-link svg {
-                width: 35px;
-                height: 35px;
-            }
-        }
-    </style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Degustazioni Passate - Italian Beer School</title>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet" />
+    <style>
+        /* ---------------------- */
+        /* Base pagina e sfondo   */
+        /* ---------------------- */
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: 'Quicksand', sans-serif;
+            background: url('sfondobichiere.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #fff;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        a:visited {
+            color: inherit;
+            text-decoration: none;
+        }
+        .overlay {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background-color: rgba(0, 0, 0, 0.6);
+            position: relative;
+            z-index: 1;
+        }
+        /* ---------------------- */
+        /* Header / Navbar        */
+        /* ---------------------- */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 85px 20px;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 2;
+        }
+        .logo-container {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 0;
+            border-radius: 0;
+        }
+        .logo-container img {
+            height: 110px;
+        }
+        .hamburger-menu {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 6px;
+            width: 30px;
+            height: 30px;
+        }
+        .hamburger-menu .line {
+            width: 30px;
+            height: 3px;
+            background-color: #fff;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        .hamburger-menu.open .line:nth-child(1) { transform: translateY(9px) rotate(45deg); }
+        .hamburger-menu.open .line:nth-child(2) { opacity: 0; }
+        .hamburger-menu.open .line:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
+        .carrello-link {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-weight: bold;
+        }
+        .carrello-link svg {
+            fill: #fff;
+            width: 25px;
+            height: 25px;
+        }
+        .carrello-link .cart-count {
+            display: block;
+            background-color: #e0ac4c;
+            color: #000;
+            font-size: 0.8em;
+            font-weight: bold;
+            border-radius: 50%;
+            padding: 4px 8px;
+            margin-left: -10px;
+            position: relative;
+            top: -10px;
+        }
+        .carrello-text {
+            display: none;
+        }
+        /* Pop-up Menu Laterale */
+        .menu-pop-up {
+            position: fixed;
+            top: 0;
+            left: -300px;
+            width: 280px;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.95);
+            color: #fff;
+            padding-top: 80px;
+            transition: left 0.3s ease-in-out;
+            z-index: 4;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .menu-pop-up a {
+            padding: 15px 20px;
+            display: block;
+            font-size: 1.2em;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            color: #fff;
+        }
+        .menu-pop-up a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        .menu-pop-up.open {
+            left: 0;
+        }
+        .close-menu {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: #fff;
+            font-size: 2em;
+            cursor: pointer;
+        }
+        /* ---------------------- */
+        /* Contenuto Pagina       */
+        /* ---------------------- */
+        .content {
+            padding: 40px 20px;
+            max-width: 1200px;
+            margin: auto;
+            flex-grow: 1;
+        }
+        section.event-section {
+            margin-bottom: 60px;
+            text-align: center;
+        }
+        .event-header {
+            background-color: rgba(255, 255, 255, 0.1);
+            display: inline-block;
+            padding: 10px 20px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .event-header h2 {
+            font-size: 1.8em;
+            margin: 0;
+            color: #fff;
+        }
+        .photos {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
+        .photos img {
+            width: calc(25% - 10px);
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+        a.link-collab {
+            color: #e0ac4c;
+            text-decoration: underline;
+        }
+        /* ---------------------- */
+        /* Footer                 */
+        /* ---------------------- */
+        .footer {
+            background-color: rgba(0, 0, 0, 0.8);
+            text-align: center;
+            padding: 10px;
+            font-size: 0.9em;
+            margin-top: auto;
+        }
+        .footer a {
+            color: #fff;
+            text-decoration: underline;
+        }
+        /* ---------------------- */
+        /* Cookie Banner          */
+        /* ---------------------- */
+        #cookie-banner {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+        #cookie-banner.hidden {
+            display: none;
+        }
+        #cookie-banner p {
+            margin: 0;
+            font-size: 1em;
+        }
+        #cookie-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        #cookie-buttons button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            font-family: 'Quicksand', sans-serif;
+        }
+        #accept-cookies {
+            background-color: #4CAF50;
+            color: #fff;
+        }
+        #reject-cookies {
+            background-color: #f44336;
+            color: #fff;
+        }
+        #customize-cookies {
+            background-color: #e0ac4c;
+            color: #000;
+        }
+        #cookie-banner a {
+            color: #e0ac4c;
+            text-decoration: underline;
+        }
+        /* ---------------------- */
+        /* Responsive rules       */
+        /* ---------------------- */
+        @media screen and (max-width: 1200px) {
+            .logo-container img { height: 90px; }
+        }
+        @media screen and (max-width: 800px) {
+            header { padding: 30px 10px; }
+            .logo-container img { height: 65px; }
+            .photos img {
+                width: calc(50% - 10px);
+            }
+        }
+        @media screen and (max-width: 500px) {
+            .photos img {
+                width: 100%;
+            }
+        }
+        @media screen and (min-width: 801px) {
+            .carrello-link svg {
+                width: 35px;
+                height: 35px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <div class="overlay">
-        <header>
-            <button class="hamburger-menu" aria-label="Menu">
-                <span class="line"></span>
-                <span class="line"></span>
-                <span class="line"></span>
-            </button>
-            <div class="logo-container">
-                <a href="index.html">
-                    <img src="logonew.png" alt="Logo ITALIAN BEER SCHOOL" />
-                </a>
-            </div>
-            <a href="carrello.html" class="carrello-link">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
-                    <path d="M0 1a1 1 0 0 1 1-1h1.5a.5.5 0 0 1 .485.379L3.89 3H14.5a.5.5 0 0 1 .49.598l-1.5 7A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.49-.402L1.61 3.607 1.11 2H1a1 1 0 0 1-1-1zm4.5 9a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm7 1.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
-                </svg>
-                <span class="cart-count">0</span>
-            </a>
-        </header>
+    <div class="overlay">
+        <header>
+            <button class="hamburger-menu" aria-label="Menu">
+                <span class="line"></span>
+                <span class="line"></span>
+                <span class="line"></span>
+            </button>
+            <div class="logo-container">
+                <a href="index.html">
+                    <img src="logonew.png" alt="Logo ITALIAN BEER SCHOOL" />
+                </a>
+            </div>
+            <a href="carrello.html" class="carrello-link">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                    <path d="M0 1a1 1 0 0 1 1-1h1.5a.5.5 0 0 1 .485.379L3.89 3H14.5a.5.5 0 0 1 .49.598l-1.5 7A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.49-.402L1.61 3.607 1.11 2H1a1 1 0 0 1-1-1zm4.5 9a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm7 1.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
+                </svg>
+                <span class="cart-count">0</span>
+            </a>
+        </header>
 
-        <div class="menu-pop-up">
-            <div class="close-menu">&times;</div>
-            <a href="index.html">HOME</a>
-            <a href="prossimieventi.html">PROSSIMI EVENTI</a>
-            <a href="losapeviche.html">LO SAPEVI CHE?</a>
-            <a href="corsodibirra.html">CORSO DI BIRRA</a>
-            <a href="degustazionipassate.html">DEGUSTAZIONI PASSATE</a>
-            <a href="contatti.html">CONTATTI</a>
-        </div>
+        <div class="menu-pop-up">
+            <div class="close-menu">&times;</div>
+            <a href="index.html">HOME</a>
+            <a href="prossimieventi.html">PROSSIMI EVENTI</a>
+            <a href="losapeviche.html">LO SAPEVI CHE?</a>
+            <a href="corsodibirra.html">CORSO DI BIRRA</a>
+            <a href="degustazionipassate.html">DEGUSTAZIONI PASSATE</a>
+            <a href="contatti.html">CONTATTI</a>
+        </div>
 
-        <div class="content">
-            <section class="event-section">
-                <div class="event-header">
-                    <h2>SAKE MONDAY con <a href="https://scuolaitalianasake.it/" class="link-collab" target="_blank">SCUOLA ITALIANA SAKE</a> – Maggio 2025</h2>
-                </div>
-                <div class="photos">
-                    <img src="mon1.jpg" alt="Sake Monday 1">
-                    <img src="mon2.jpg" alt="Sake Monday 2">
-                    <img src="mon3.jpg" alt="Sake Monday 3">
-                    <img src="mon5.jpg" alt="Sake Monday 5">
-                    <img src="mon6.jpg" alt="Sake Monday 6">
-                    <img src="mon7.jpg" alt="Sake Monday 7">
-                </div>
-            </section>
-            <section class="event-section">
-                <div class="event-header">
-                    <h2>ABBINAMENTO BIRRA E CUCINE ASIATICHE con <a href="https://www.facebook.com/search/top?q=calice%20h%20%E6%83%A0%E6%90%96%E9%AB%98%E8%85%B3%E6%9D%AF" class="link-collab" target="_blank">CALICE H</a> – Maggio 2024</h2>
-                </div>
-                <div class="photos">
-                    <img src="asia1.jpg" alt="Cucine Asiatiche 1">
-                    <img src="asia2.jpg" alt="Cucine Asiatiche 2">
-                    <img src="asia3.jpg" alt="Cucine Asiatiche 3">
-                    <img src="asia4.jpg" alt="Cucine Asiatiche 4">
-                    <img src="asia5.jpg" alt="Cucine Asiatiche 5">
-                    <img src="asia6.jpg" alt="Cucine Asiatiche 6">
-                    <img src="asia7.jpg" alt="Cucine Asiatiche 7">
-                </div>
-            </section>
-            <section class="event-section">
-                <div class="event-header">
-                    <h2>DEGUSTAZIONE E ABBINAMENTO BIRRE presso <a href="https://www.facebook.com/profile.php?id=100002089160831" class="link-collab" target="_blank">LA DEGNA TANA</a> – Aprile 2024</h2>
-                </div>
-                <div class="photos">
-                    <img src="degna1.jpg" alt="La Degna Tana 1">
-                    <img src="degna2.jpg" alt="La Degna Tana 2">
-                    <img src="degna3.jpg" alt="La Degna Tana 3">
-                    <img src="degna4.jpg" alt="La Degna Tana 4">
-                    <img src="degna5.jpg" alt="La Degna Tana 5">
-                </div>
-            </section>
-            <section class="event-section">
-                <div class="event-header">
-                    <h2>MASTERCLASS IN 2 SERATE: LA BIRRA ARTIGIANALE GIAPPONESE con <a href="https://scuolaitalianasake.it/" class="link-collab" target="_blank">SCUOLA ITALIANA SAKE</a> – Aprile 2024</h2>
-                </div>
-                <div class="photos">
-                    <img src="mas1.jpg" alt="Masterclass Giapponese 1">
-                    <img src="mas2.jpg" alt="Masterclass Giapponese 2">
-                    <img src="mas3.jpg" alt="Masterclass Giapponese 3">
-                    <img src="mas4.jpg" alt="Masterclass Giapponese 4">
-                    <img src="mas5.jpg" alt="Masterclass Giapponese 5">
-                    <img src="mas6.jpg" alt="Masterclass Giapponese 6">
-                    <img src="mas7.jpg" alt="Masterclass Giapponese 7">
-                    <img src="mas8.jpg" alt="Masterclass Giapponese 8">
-                    <img src="mas10.jpg" alt="Masterclass Giapponese 10">
-                    <img src="mas13.jpg" alt="Masterclass Giapponese 13">
-                </div>
-            </section>
-            <section class="event-section">
-                <div class="event-header">
-                    <h2>BIRRA ARTIGIANALE ITALIANA con <a href="https://www.facebook.com/search/top?q=calice%20h%20%E6%83%A0%E6%90%96%E9%AB%98%E8%85%B3%E6%9D%AF" class="link-collab" target="_blank">CALICE H</a> – Luglio 2024</h2>
-                </div>
-                <div class="photos">
-                    <img src="to1.jpg" alt="Birra Italiana 1">
-                    <img src="to2.jpg" alt="Birra Italiana 2">
-                    <img src="to3.jpg" alt="Birra Italiana 3">
-                </div>
-            </section>
-            <section class="event-section">
-                <div class="event-header">
-                    <h2>ANEDDOTI E BIRRE TRAPPISTE con <a href="https://www.facebook.com/search/top?q=calice%20h%20%E6%83%A0%E6%90%96%E9%AB%98%E8%85%B3%E6%9D%AF" class="link-collab" target="_blank">CALICE H</a> – Anno 2021</h2>
-                </div>
-                <div class="photos">
-                    <img src="tr2.jpg" alt="Trappiste 2">
-                    <img src="tr3.jpg" alt="Trappiste 3">
-                    <img src="tr4.jpg" alt="Trappiste 4">
-                    <img src="tr5.jpg" alt="Trappiste 5">
-                    <img src="tr1.jpg" alt="Trappiste 1">
-                </div>
-            </section>
-        </div>
+        <div class="content">
+            <section class="event-section">
+                <div class="event-header">
+                    <h2>SAKE MONDAY con <a href="https://scuolaitalianasake.it/" class="link-collab" target="_blank">SCUOLA ITALIANA SAKE</a> – Maggio 2025</h2>
+                </div>
+                <div class="photos">
+                    <img src="mon1.jpg" alt="Sake Monday 1">
+                    <img src="mon2.jpg" alt="Sake Monday 2">
+                    <img src="mon3.jpg" alt="Sake Monday 3">
+                    <img src="mon5.jpg" alt="Sake Monday 5">
+                    <img src="mon6.jpg" alt="Sake Monday 6">
+                    <img src="mon7.jpg" alt="Sake Monday 7">
+                </div>
+            </section>
+            <section class="event-section">
+                <div class="event-header">
+                    <h2>ABBINAMENTO BIRRA E CUCINE ASIATICHE con <a href="https://www.facebook.com/search/top?q=calice%20h%20%E6%83%A0%E6%90%96%E9%AB%98%E8%85%B3%E6%9D%AF" class="link-collab" target="_blank">CALICE H</a> – Maggio 2024</h2>
+                </div>
+                <div class="photos">
+                    <img src="asia1.jpg" alt="Cucine Asiatiche 1">
+                    <img src="asia2.jpg" alt="Cucine Asiatiche 2">
+                    <img src="asia3.jpg" alt="Cucine Asiatiche 3">
+                    <img src="asia4.jpg" alt="Cucine Asiatiche 4">
+                    <img src="asia5.jpg" alt="Cucine Asiatiche 5">
+                    <img src="asia6.jpg" alt="Cucine Asiatiche 6">
+                    <img src="asia7.jpg" alt="Cucine Asiatiche 7">
+                </div>
+            </section>
+            <section class="event-section">
+                <div class="event-header">
+                    <h2>DEGUSTAZIONE E ABBINAMENTO BIRRE presso <a href="https://www.facebook.com/profile.php?id=100002089160831" class="link-collab" target="_blank">LA DEGNA TANA</a> – Aprile 2024</h2>
+                </div>
+                <div class="photos">
+                    <img src="degna1.jpg" alt="La Degna Tana 1">
+                    <img src="degna2.jpg" alt="La Degna Tana 2">
+                    <img src="degna3.jpg" alt="La Degna Tana 3">
+                    <img src="degna4.jpg" alt="La Degna Tana 4">
+                    <img src="degna5.jpg" alt="La Degna Tana 5">
+                </div>
+            </section>
+            <section class="event-section">
+                <div class="event-header">
+                    <h2>MASTERCLASS IN 2 SERATE: LA BIRRA ARTIGIANALE GIAPPONESE con <a href="https://scuolaitalianasake.it/" class="link-collab" target="_blank">SCUOLA ITALIANA SAKE</a> – Aprile 2024</h2>
+                </div>
+                <div class="photos">
+                    <img src="mas1.jpg" alt="Masterclass Giapponese 1">
+                    <img src="mas2.jpg" alt="Masterclass Giapponese 2">
+                    <img src="mas3.jpg" alt="Masterclass Giapponese 3">
+                    <img src="mas4.jpg" alt="Masterclass Giapponese 4">
+                    <img src="mas5.jpg" alt="Masterclass Giapponese 5">
+                    <img src="mas6.jpg" alt="Masterclass Giapponese 6">
+                    <img src="mas7.jpg" alt="Masterclass Giapponese 7">
+                    <img src="mas8.jpg" alt="Masterclass Giapponese 8">
+                    <img src="mas10.jpg" alt="Masterclass Giapponese 10">
+                    <img src="mas13.jpg" alt="Masterclass Giapponese 13">
+                </div>
+            </section>
+            <section class="event-section">
+                <div class="event-header">
+                    <h2>BIRRA ARTIGIANALE ITALIANA con <a href="https://www.facebook.com/search/top?q=calice%20h%20%E6%83%A0%E6%90%96%E9%AB%98%E8%85%B3%E6%9D%AF" class="link-collab" target="_blank">CALICE H</a> – Luglio 2024</h2>
+                </div>
+                <div class="photos">
+                    <img src="to1.jpg" alt="Birra Italiana 1">
+                    <img src="to2.jpg" alt="Birra Italiana 2">
+                    <img src="to3.jpg" alt="Birra Italiana 3">
+                </div>
+            </section>
+            <section class="event-section">
+                <div class="event-header">
+                    <h2>ANEDDOTI E BIRRE TRAPPISTE con <a href="https://www.facebook.com/search/top?q=calice%20h%20%E6%83%A0%E6%90%96%E9%AB%98%E8%85%B3%E6%9D%AF" class="link-collab" target="_blank">CALICE H</a> – Luglio 2024</h2>
+                </div>
+                <div class="photos">
+                    <img src="trap1.jpg" alt="Birre Trappiste 1">
+                    <img src="trap2.jpg" alt="Birre Trappiste 2">
+                    <img src="trap3.jpg" alt="Birre Trappiste 3">
+                    <img src="trap4.jpg" alt="Birre Trappiste 4">
+                    <img src="trap5.jpg" alt="Birre Trappiste 5">
+                </div>
+            </section>
+            <section class="event-section">
+                <div class="event-header">
+                    <h2>PRESENTAZIONE DELLA BIRRA ARTIGIANALE CON IL BIRRIFICIO IL MASTRO – Giugno 2024</h2>
+                </div>
+                <div class="photos">
+                    <img src="mast1.jpg" alt="Il Maestro Birrificio 1">
+                    <img src="mast2.jpg" alt="Il Maestro Birrificio 2">
+                    <img src="mast3.jpg" alt="Il Maestro Birrificio 3">
+                    <img src="mast4.jpg" alt="Il Maestro Birrificio 4">
+                    <img src="mast5.jpg" alt="Il Maestro Birrificio 5">
+                </div>
+            </section>
+            <section class="event-section">
+                <div class="event-header">
+                    <h2>GIORNATA MONDIALE DELLA BIRRA con <a href="https://www.facebook.com/search/top?q=calice%20h%20%E6%83%A0%E6%90%96%E9%AB%98%E8%85%B3%E6%9D%AF" class="link-collab" target="_blank">CALICE H</a> – Agosto 2024</h2>
+                </div>
+                <div class="photos">
+                    <img src="gmb1.jpg" alt="Giornata Mondiale Birra 1">
+                    <img src="gmb2.jpg" alt="Giornata Mondiale Birra 2">
+                    <img src="gmb3.jpg" alt="Giornata Mondiale Birra 3">
+                    <img src="gmb4.jpg" alt="Giornata Mondiale Birra 4">
+                    <img src="gmb5.jpg" alt="Giornata Mondiale Birra 5">
+                </div>
+            </section>
+            <section class="event-section">
+                <div class="event-header">
+                    <h2>DEGUSTAZIONE DI BIRRE E FRUTTI DI MARE con <a href="https://www.facebook.com/search/top?q=calice%20h%20%E6%83%A0%E6%90%96%E9%AB%98%E8%85%B3%E6%9D%AF" class="link-collab" target="_blank">CALICE H</a> – Giugno 2024</h2>
+                </div>
+                <div class="photos">
+                    <img src="frutti1.jpg" alt="Birra e Frutti di Mare 1">
+                    <img src="frutti2.jpg" alt="Birra e Frutti di Mare 2">
+                    <img src="frutti3.jpg" alt="Birra e Frutti di Mare 3">
+                    <img src="frutti4.jpg" alt="Birra e Frutti di Mare 4">
+                </div>
+            </section>
+            <section class="event-section">
+                <div class="event-header">
+                    <h2>BIRRE DEI MONDI con <a href="https://www.facebook.com/search/top?q=calice%20h%20%E6%83%A0%E6%90%96%E9%AB%98%E8%85%B3%E6%9D%AF" class="link-collab" target="_blank">CALICE H</a> – Maggio 2024</h2>
+                </div>
+                <div class="photos">
+                    <img src="mondi1.jpg" alt="Birre dei Mondi 1">
+                    <img src="mondi2.jpg" alt="Birre dei Mondi 2">
+                    <img src="mondi3.jpg" alt="Birre dei Mondi 3">
+                    <img src="mondi4.jpg" alt="Birre dei Mondi 4">
+                    <img src="mondi5.jpg" alt="Birre dei Mondi 5">
+                    <img src="mondi6.jpg" alt="Birre dei Mondi 6">
+                </div>
+            </section>
+            <section class="event-section">
+                <div class="event-header">
+                    <h2>BIRRA E MUSICA CON <a href="https://www.facebook.com/search/top?q=calice%20h%20%E6%83%A0%E6%90%96%E9%AB%98%E8%85%B3%E6%9D%AF" class="link-collab" target="_blank">CALICE H</a> – Maggio 2024</h2>
+                </div>
+                <div class="photos">
+                    <img src="music1.jpg" alt="Birra e Musica 1">
+                    <img src="music2.jpg" alt="Birra e Musica 2">
+                    <img src="music3.jpg" alt="Birra e Musica 3">
+                    <img src="music4.jpg" alt="Birra e Musica 4">
+                </div>
+            </section>
+            <section class="event-section">
+                <div class="event-header">
+                    <h2>BIRRA E FORMAGGI con <a href="https://www.facebook.com/search/top?q=calice%20h%20%E6%83%A0%E6%90%96%E9%AB%98%E8%85%B3%E6%9D%AF" class="link-collab" target="_blank">CALICE H</a> – Aprile 2024</h2>
+                </div>
+                <div class="photos">
+                    <img src="form1.jpg" alt="Birra e Formaggi 1">
+                    <img src="form2.jpg" alt="Birra e Formaggi 2">
+                    <img src="form3.jpg" alt="Birra e Formaggi 3">
+                    <img src="form4.jpg" alt="Birra e Formaggi 4">
+                    <img src="form5.jpg" alt="Birra e Formaggi 5">
+                </div>
+            </section>
+            <section class="event-section">
+                <div class="event-header">
+                    <h2>BEER THERAPY con <a href="https://www.facebook.com/search/top?q=calice%20h%20%E6%83%A0%E6%90%96%E9%AB%98%E8%85%B3%E6%9D%AF" class="link-collab" target="_blank">CALICE H</a> – Aprile 2024</h2>
+                </div>
+                <div class="photos">
+                    <img src="therapy1.jpg" alt="Beer Therapy 1">
+                    <img src="therapy2.jpg" alt="Beer Therapy 2">
+                    <img src="therapy3.jpg" alt="Beer Therapy 3">
+                </div>
+            </section>
+        </div>
 
-        <div class="footer">
-            2025 ITALIAN BEER SCHOOL – Tutti i diritti riservati P.IVA: IT07436420488 | <a href="privacy.html">Privacy</a>
-        </div>
-    </div>
-    
-    <div id="cookie-banner" class="hidden">
-        <p>Utilizziamo i cookie per offrirti la migliore esperienza sul nostro sito web. Puoi acconsentire, rifiutare o personalizzare l'uso dei cookie. Per maggiori informazioni, leggi la nostra <a href="privacy.html" target="_blank">privacy policy</a>.</p>
-        <div id="cookie-buttons">
-            <button id="accept-cookies">Accetta</button>
-            <button id="reject-cookies">Rifiuta</button>
-            <button id="customize-cookies">Personalizza</button>
-        </div>
-    </div>
+        <div class="footer">
+            2025 ITALIAN BEER SCHOOL – Tutti i diritti riservati P.IVA: IT07436420488 | <a href="privacy.html">Privacy</a>
+        </div>
+    </div>
 
-    <script>
-        const hamburgerBtn = document.querySelector('.hamburger-menu');
-        const menuPopUp = document.querySelector('.menu-pop-up');
-        const closeMenuBtn = document.querySelector('.close-menu');
-        const cartCountEl = document.querySelector('.cart-count');
-        const cart = JSON.parse(localStorage.getItem('cart')) || [];
-        const cookieBanner = document.getElementById('cookie-banner');
-        const acceptCookiesBtn = document.getElementById('accept-cookies');
-        const rejectCookiesBtn = document.getElementById('reject-cookies');
+        <div id="cookie-banner">
+        <div class="cookie-content">
+            <p>
+                Questo sito utilizza cookie tecnici e, previo tuo consenso, cookie di profilazione e analitici di terze parti per migliorare l'esperienza utente. Per maggiori informazioni, consulta la nostra <a href="privacy.html">Privacy Policy</a>.
+            </p>
+            <div id="cookie-buttons">
+                <button id="accept-cookies">Accetta tutti</button>
+                <button id="reject-cookies">Rifiuta tutti</button>
+                <button id="customize-cookies">Personalizza le scelte</button>
+            </div>
+            <div id="cookie-settings" style="display: none;">
+                <h3>Gestisci le tue preferenze sui cookie</h3>
+                <div class="cookie-category">
+                    <input type="checkbox" id="cookie-tecnici" checked disabled>
+                    <label for="cookie-tecnici">Cookie Tecnici (Obbligatori)</label>
+                </div>
+                <div class="cookie-category">
+                    <input type="checkbox" id="cookie-analitici">
+                    <label for="cookie-analitici">Cookie Analitici</label>
+                </div>
+                <div class="cookie-category">
+                    <input type="checkbox" id="cookie-marketing">
+                    <label for="cookie-marketing">Cookie di Marketing e Profilazione</label>
+                </div>
+                <button id="save-cookies">Salva le mie scelte</button>
+            </div>
+        </div>
+    </div>
 
-        function updateCartCount() {
-            const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
-            cartCountEl.textContent = totalItems;
-        }
+    <script>
+        const hamburgerBtn = document.querySelector('.hamburger-menu');
+        const menuPopUp = document.querySelector('.menu-pop-up');
+        const closeMenuBtn = document.querySelector('.close-menu');
+        const cartCountEl = document.querySelector('.cart-count');
 
-        function toggleMenu() {
-            menuPopUp.classList.toggle('open');
-            hamburgerBtn.classList.toggle('open');
-        }
+        function toggleMenu() {
+            menuPopUp.classList.toggle('open');
+            hamburgerBtn.classList.toggle('open');
+        }
 
-        function handleCookieConsent() {
-            const consent = localStorage.getItem('cookie-consent');
-            if (!consent) {
-                cookieBanner.classList.remove('hidden');
-            }
-        }
+        hamburgerBtn.addEventListener('click', toggleMenu);
+        closeMenuBtn.addEventListener('click', toggleMenu);
 
-        function setCookieConsent(consent) {
-            localStorage.setItem('cookie-consent', consent);
-            cookieBanner.classList.add('hidden');
-        }
+        // Funzione per aggiornare il conteggio del carrello in alto
+        function updateCartCount() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            cartCountEl.textContent = totalItems;
+        }
 
-        hamburgerBtn.addEventListener('click', toggleMenu);
-        closeMenuBtn.addEventListener('click', toggleMenu);
-        acceptCookiesBtn.addEventListener('click', () => setCookieConsent('accepted'));
-        rejectCookiesBtn.addEventListener('click', () => setCookieConsent('rejected'));
+        document.addEventListener('DOMContentLoaded', () => {
+            updateCartCount();
+        });
 
-        updateCartCount();
-        handleCookieConsent();
-    </script>
+        // Cookie Banner Logic
+        const cookieBanner = document.getElementById('cookie-banner');
+        const cookieButtonsContainer = document.getElementById('cookie-buttons');
+        const cookieSettings = document.getElementById('cookie-settings');
+        const acceptBtn = document.getElementById('accept-cookies');
+        const rejectBtn = document.getElementById('reject-cookies');
+        const customizeBtn = document.getElementById('customize-cookies');
+        const saveBtn = document.getElementById('save-cookies');
+        const analyticalCheckbox = document.getElementById('cookie-analitici');
+        const marketingCheckbox = document.getElementById('cookie-marketing');
+
+        // Function to get a cookie value
+        function getCookie(name) {
+            const nameEQ = name + "=";
+            const ca = document.cookie.split(';');
+            for(let i = 0; i < ca.length; i++) {
+                let c = ca[i];
+                while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+                if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+            }
+            return null;
+        }
+
+        // Function to set a cookie
+        function setCookie(name, value, days) {
+            const d = new Date();
+            d.setTime(d.getTime() + (days * 24 * 60 * 60 * 1000));
+            const expires = `expires=${d.toUTCString()}`;
+            document.cookie = `${name}=${value};${expires};path=/`;
+        }
+
+        // Function to hide the cookie banner
+        function hideCookieBanner() {
+            cookieBanner.classList.add('hidden');
+        }
+
+        // Function to show the cookie banner
+        function showCookieBanner() {
+            if (!getCookie('cookie_consent')) {
+                cookieBanner.classList.remove('hidden');
+            }
+        }
+
+        // Event listeners for cookie buttons
+        acceptBtn.addEventListener('click', () => {
+            setCookie('cookie_consent', 'all', 365);
+            // In a real application, you would enable analytics and marketing cookies here
+            console.log('All cookies accepted.');
+            hideCookieBanner();
+        });
+
+        rejectBtn.addEventListener('click', () => {
+            setCookie('cookie_consent', 'only_technical', 365);
+            // In a real application, you would disable analytics and marketing cookies here
+            console.log('Only technical cookies accepted.');
+            hideCookieBanner();
+        });
+
+        customizeBtn.addEventListener('click', () => {
+            cookieSettings.style.display = 'block';
+            cookieButtonsContainer.style.display = 'none'; // Hide initial buttons
+        });
+
+        saveBtn.addEventListener('click', () => {
+            const consent = ['tecnici'];
+            if (analyticalCheckbox.checked) {
+                consent.push('analitici');
+                // Enable analytics cookies
+            }
+            if (marketingCheckbox.checked) {
+                consent.push('marketing');
+                // Enable marketing cookies
+            }
+            setCookie('cookie_consent', consent.join(','), 365);
+            console.log(`Cookies saved: ${consent.join(', ')}`);
+            hideCookieBanner();
+        });
+
+        // Show banner on page load if no consent is found
+        document.addEventListener('DOMContentLoaded', showCookieBanner);
+    </script>
 </body>
 </html>
