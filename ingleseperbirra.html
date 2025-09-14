@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Inglese per la Birra - Italian Beer School</title>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet" />
+    <style>
+        /* ---------------------- */
+        /* Base pagina e sfondo   */
+        /* ---------------------- */
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: 'Quicksand', sans-serif;
+            background: url('sfondobichiere.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #fff;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        a:visited {
+            color: inherit;
+            text-decoration: none;
+        }
+        .overlay {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background-color: rgba(0, 0, 0, 0.6);
+            position: relative;
+            z-index: 1;
+        }
+        /* ---------------------- */
+        /* Header / Navbar        */
+        /* ---------------------- */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 85px 20px;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 2;
+        }
+        .logo-container {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(255,255,255,0.4);
+            padding: 10px 12px;
+            border-radius: 10px;
+        }
+        .logo-container img {
+            height: 110px;
+        }
+        .hamburger-menu {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 6px;
+            width: 30px;
+            height: 30px;
+        }
+        .hamburger-menu .line {
+            width: 30px;
+            height: 3px;
+            background-color: #fff;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        .hamburger-menu.open .line:nth-child(1) { transform: translateY(9px) rotate(45deg); }
+        .hamburger-menu.open .line:nth-child(2) { opacity: 0; }
+        .hamburger-menu.open .line:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
+        .carrello-link {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-weight: bold;
+        }
+        .carrello-link svg {
+            fill: #fff;
+            width: 25px;
+            height: 25px;
+        }
+        .carrello-text {
+            display: none;
+        }
+        /* Pop-up Menu Laterale */
+        .menu-pop-up {
+            position: fixed;
+            top: 0;
+            left: -300px;
+            width: 280px;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            color: #fff;
+            padding-top: 80px;
+            transition: left 0.3s ease-in-out;
+            z-index: 4;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .menu-pop-up a {
+            padding: 15px 20px;
+            display: block;
+            font-size: 1.2em;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .menu-pop-up a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        .menu-pop-up.open {
+            left: 0;
+        }
+        .close-menu {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: #fff;
+            font-size: 2em;
+            cursor: pointer;
+        }
+
+        /* ---------------------- */
+        /* Contenuto principale   */
+        /* ---------------------- */
+        .page-content {
+            padding: 20px;
+            max-width: 900px;
+            margin: auto;
+            text-align: center;
+            flex-grow: 1;
+        }
+        .page-title {
+            font-size: 3em;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .event-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 40px;
+            margin-top: 40px;
+        }
+        .event-box {
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            border-radius: 15px;
+            max-width: 700px;
+            text-align: left;
+        }
+        .event-image {
+            width: 250px;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 50%;
+            float: right;
+            margin-left: 20px;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+        }
+        .event-box h2 {
+            font-size: 2em;
+            margin-top: 0;
+            margin-bottom: 10px;
+            clear: right;
+        }
+        .event-quote {
+            font-style: italic;
+            margin: 10px 0;
+        }
+        .event-info {
+            line-height: 1.6;
+            margin-top: 20px;
+            text-align: justify;
+        }
+        .event-info strong {
+            display: block;
+            margin-top: 10px;
+        }
+        .event-info ul {
+            list-style-type: none;
+            padding: 0;
+            margin-top: 10px;
+        }
+        .event-info ul li {
+            margin-bottom: 5px;
+            position: relative;
+            padding-left: 20px;
+        }
+        .event-info ul li::before {
+            content: '🍺';
+            position: absolute;
+            left: 0;
+        }
+        .price {
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-top: 20px;
+            text-align: center;
+            clear: both;
+        }
+        .buy-button {
+            display: inline-block;
+            background-color: #e0ac4c;
+            color: #000;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-top: 20px;
+            transition: background-color 0.3s ease;
+            cursor: pointer;
+        }
+        .buy-button:hover {
+            background-color: #c4913e;
+        }
+        
+        /* ---------------------- */
+        /* Footer                 */
+        /* ---------------------- */
+        .footer {
+            background-color: rgba(0, 0, 0, 0.8);
+            text-align: center;
+            padding: 10px;
+            font-size: 0.9em;
+            margin-top: 40px;
+        }
+        .footer a {
+            color: #fff;
+            text-decoration: underline;
+        }
+
+        /* ---------------------- */
+        /* Responsive rules       */
+        /* ---------------------- */
+        @media screen and (max-width: 1200px) {
+            .logo-container img { height: 90px; }
+        }
+        @media screen and (max-width: 800px) {
+            header { padding: 30px 10px; }
+            .logo-container img { height: 65px; }
+            .page-title { font-size: 2.2em; }
+            .event-image { float: none; margin: 0 auto 20px; display: block; }
+            .event-box { text-align: center; }
+        }
+        @media screen and (max-width: 500px) {
+            .event-image { width: 180px; height: 180px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="overlay">
+        <header>
+            <button class="hamburger-menu" aria-label="Menu">
+                <span class="line"></span>
+                <span class="line"></span>
+                <span class="line"></span>
+            </button>
+            <div class="logo-container">
+                <img src="logonew.jpg" alt="Logo ITALIAN BEER SCHOOL" />
+            </div>
+            <a href="carrello.html" class="carrello-link">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                    <path d="M0 1a1 1 0 0 1 1-1h1.5a.5.5 0 0 1 .485.379L3.89 3H14.5a.5.5 0 0 1 .49.598l-1.5 7A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.49-.402L1.61 3.607 1.11 2H1a1 1 0 0 1-1-1zm4.5 9a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm7 1.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
+                </svg>
+            </a>
+        </header>
+
+        <div class="menu-pop-up">
+            <div class="close-menu">&times;</div>
+            <a href="index.html">HOME</a>
+            <a href="prossimieventi.html">PROSSIMI EVENTI</a>
+            <a href="losapeviche.html">LO SAPEVI CHE?</a>
+            <a href="corsodibirra.html">CORSO DI BIRRA</a>
+            <a href="degustazionipassate.html">DEGUSTAZIONI PASSATE</a>
+            <a href="contatti.html">CONTATTI</a>
+        </div>
+
+        <main class="page-content">
+            <h1 class="page-title">INGLESE PER LA BIRRA</h1>
+            <div class="event-section">
+                <div class="event-box">
+                    <img src="inglesedegustazione.jpg" alt="Inglese per la Birra: La Degustazione" class="event-image" />
+                    <h2>La Degustazione</h2>
+                    <div class="event-quote">
+                        "Ogni aroma ha la sua parola: impariamo a raccontarla in inglese."
+                    </div>
+                    <div class="event-info">
+                        Una serata interamente dedicata al vocabolario inglese della degustazione: come descrivere birre dal punto di vista visivo, aromatico e gustativo, riconoscere pregi e difetti, e acquisire la terminologia utile a parlare di sensazioni organolettiche in modo corretto e naturale.
+                        <strong>📅 Giovedì 20 Febbraio 2026</strong>
+                        <strong>📍 Circolo Rigacci – Via Francesco Baracca, 56 – Firenze</strong>
+                        <strong>🕣 Orario: 20:30 – 23:30 circa</strong>
+                        <br>
+                        <strong>✨ Cosa ti aspetta</strong>
+                        <ul>
+                            <li>Degustazione guidata di 3 birre, descritte e commentate in inglese (con insegnante madrelingua)</li>
+                            <li>Lessico della degustazione: descrivere colore, aromi, gusto e difetti della bevanda</li>
+                            <li>Esercizi pratici e interattivi: individuali, a coppie e di gruppo per imparare e memorizzare i termini</li>
+                            <li>Attività divertenti: giochi per memorizzare, quiz per consolidare la conoscenza</li>
+                            <li>Materiale didattico che rimane al partecipante</li>
+                        </ul>
+                    </div>
+                    <div class="price">
+                        Quota di partecipazione: €40,00
+                    </div>
+                    <a href="shop.html" class="buy-button">Acquista</a>
+                </div>
+
+                <div class="event-box">
+                    <img src="Ingleseproduzione.jpg" alt="Inglese per la Birra: Produzione e Servizio" class="event-image" />
+                    <h2>Produzione e Servizio</h2>
+                    <div class="event-quote">
+                        "Dalla sala cottura al bicchiere: l’inglese parla la lingua della birra."
+                    </div>
+                    <div class="event-info">
+                        Una serata pratica e coinvolgente per acquisire il vocabolario tecnico in inglese legato alla produzione brassicola e al servizio: materie prime, fasi del processo, impianti e tecniche di spillatura. Un’occasione utile per chi viaggia, lavora nel settore o desidera affrontare percorsi formativi e professionali internazionali.
+                        <strong>📅 Giovedì 27 Febbraio 2026</strong>
+                        <strong>📍 Circolo Rigacci – Via Francesco Baracca, 56 – Firenze</strong>
+                        <strong>🕣 Orario: 20:30 – 23:30 circa</strong>
+                        <br>
+                        <strong>✨ Cosa ti aspetta</strong>
+                        <ul>
+                            <li>Degustazione di 3 birre, con focus sul linguaggio della produzione e del servizio</li>
+                            <li>Lessico tecnico: ingredienti, processi, impianti e servizio</li>
+                            <li>Esercizi pratici e interattivi individuali, a coppie e di gruppo per imparare e memorizzare i termini</li>
+                            <li>Attività di gruppo e giochi linguistici giochi per memorizzare, quiz per consolidare la conoscenza</li>
+                            <li>Materiale didattico che rimane al partecipante</li>
+                        </ul>
+                    </div>
+                    <div class="price">
+                        Quota di partecipazione: €40,00
+                    </div>
+                    <a href="shop.html" class="buy-button">Acquista</a>
+                </div>
+            </div>
+        </main>
+
+        <div class="footer">
+            2025 ITALIAN BEER SCHOOL – Tutti i diritti riservati P.IVA: IT07436420488 | <a href="privacy.html">Privacy</a>
+        </div>
+    </div>
+
+    <script>
+        const hamburgerBtn = document.querySelector('.hamburger-menu');
+        const menuPopUp = document.querySelector('.menu-pop-up');
+        const closeMenuBtn = document.querySelector('.close-menu');
+
+        function toggleMenu() {
+            menuPopUp.classList.toggle('open');
+            hamburgerBtn.classList.toggle('open');
+        }
+
+        hamburgerBtn.addEventListener('click', toggleMenu);
+        closeMenuBtn.addEventListener('click', toggleMenu);
+    </script>
+</body>
+</html>
