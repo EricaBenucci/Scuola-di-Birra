@@ -43,6 +43,7 @@
       background-color: rgba(0, 0, 0, 0.7);
       padding: 10px 20px;
       flex-wrap: wrap;
+      position: relative; /* ✅ aggiunta per centrare logo */
     }
     .nav-left,
     .nav-right {
@@ -51,6 +52,9 @@
       align-items: center;
     }
     .logo-container {
+      position: absolute;         /* ✅ nuovo */
+      left: 50%;                   /* ✅ nuovo */
+      transform: translateX(-50%);/* ✅ nuovo */
       background-color: rgba(255,255,255,0.1);
       padding: 8px;
       border-radius: 10px;
@@ -220,7 +224,7 @@
       </div>
 
       <div class="logo-container">
-        <img src="logo." alt="Logo Scuola di Birra" />
+        <img src="logonew." alt="Logo ITALIAN BEER SCHOOL" />
       </div>
 
       <div class="nav-right">
