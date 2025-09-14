@@ -275,7 +275,9 @@
                 <span class="line"></span>
             </button>
             <div class="logo-container">
-                <img src="logonew.png" alt="Logo ITALIAN BEER SCHOOL" />
+                <a href="index.html">
+                    <img src="logonew.png" alt="Logo ITALIAN BEER SCHOOL" />
+                </a>
             </div>
             <a href="carrello.html" class="carrello-link">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
@@ -309,7 +311,6 @@
                 Lasciati avvolgere dall’atmosfera natalizia con una serata unica dedicata alle BIRRE DI NATALE.
                 Un viaggio sensoriale tra aromi speziati, note caramellate e birre rare, con la possibilità di degustare anche la leggendaria Westvleteren 12, considerata una delle più pregiate e introvabili al mondo.
             </div>
-
             <h3 class="section-heading">✨ Programma della serata</h3>
             <ul class="program-list">
                 <li>🍺 Degustazione guidata di cinque birre natalizie e invernali</li>
@@ -317,7 +318,6 @@
                 <li>🍰 2 assaggi di dolci natalizi in abbinamento</li>
                 <li>🎁 Quiz con sorteggio finale: in palio una birra speciale!</li>
             </ul>
-
             <div class="price-box">
                 <div class="price-heading">Quota di partecipazione</div>
                 <ul class="price-list">
@@ -327,7 +327,7 @@
                         <br><span class="discount">per soci FISAR / ANAG e per chi prenota entro il 15 ottobre 2026</span>
                     </li>
                 </ul>
-                <a href="#" class="buy-button" id="addToCartBtn">Acquista</a>
+                <button class="buy-button" id="addToCartBtn">Acquista</button>
             </div>
         </main>
 
@@ -335,7 +335,6 @@
             2025 ITALIAN BEER SCHOOL – Tutti i diritti riservati P.IVA: IT07436420488 | <a href="privacy.html">Privacy</a>
         </div>
     </div>
-
     <script>
         const hamburgerBtn = document.querySelector('.hamburger-menu');
         const menuPopUp = document.querySelector('.menu-pop-up');
@@ -368,7 +367,9 @@
             updateCartCount();
         }
 
+        // Event listener per il pulsante del menu hamburger
         hamburgerBtn.addEventListener('click', toggleMenu);
+        // Event listener per il pulsante di chiusura del menu
         closeMenuBtn.addEventListener('click', toggleMenu);
 
         addToCartBtn.addEventListener('click', (e) => {
@@ -381,7 +382,7 @@
             addToCart(product);
             window.location.href = "carrello.html";
         });
-        
+
         // Sincronizza il contatore del carrello in tempo reale tra le pagine
         window.addEventListener('storage', (event) => {
             if (event.key === 'cart') {
