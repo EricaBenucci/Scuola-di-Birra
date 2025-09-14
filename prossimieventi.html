@@ -51,9 +51,9 @@
             position: absolute;
             left: 50%;
             transform: translateX(-50%);
-            background-color: rgba(255,255,255,0.4);
-            padding: 10px 12px;
-            border-radius: 10px;
+            /* Rimosso lo sfondo bianco dal logo */
+            padding: 0;
+            border-radius: 0;
         }
         .logo-container img {
             height: 110px;
@@ -92,6 +92,18 @@
             width: 25px;
             height: 25px;
         }
+        .carrello-link .cart-count {
+            display: block;
+            background-color: #e0ac4c;
+            color: #000;
+            font-size: 0.8em;
+            font-weight: bold;
+            border-radius: 50%;
+            padding: 4px 8px;
+            margin-left: -10px;
+            position: relative;
+            top: -10px;
+        }
         .carrello-text {
             display: none;
         }
@@ -102,7 +114,7 @@
             left: -300px;
             width: 280px;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.9);
+            background-color: rgba(0, 0, 0, 0.95);
             color: #fff;
             padding-top: 80px;
             transition: left 0.3s ease-in-out;
@@ -116,6 +128,7 @@
             display: block;
             font-size: 1.2em;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            color: #fff;
         }
         .menu-pop-up a:hover {
             background-color: rgba(255, 255, 255, 0.1);
@@ -131,101 +144,113 @@
             font-size: 2em;
             cursor: pointer;
         }
-
         /* ---------------------- */
-        /* Contenuto eventi        */
+        /* Contenuto Principale   */
         /* ---------------------- */
-        .content {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
+        .page-content {
+            padding: 40px 20px;
+            max-width: 1200px;
+            margin: auto;
             text-align: center;
+            flex-grow: 1;
         }
         .page-title {
             font-size: 3em;
             font-weight: bold;
             margin-bottom: 40px;
         }
-        .event-container {
-            display: flex;
-            flex-wrap: wrap;
+        .events-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 40px;
             justify-content: center;
-            align-items: center;
+        }
+        .event-card {
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 15px;
+            overflow: hidden;
             text-align: center;
+            transition: transform 0.3s ease;
         }
-        .event {
+        .event-card:hover {
+            transform: translateY(-10px);
+        }
+        .event-image-container {
+            width: 100%;
+            height: 250px;
+            overflow: hidden;
             display: flex;
-            flex-direction: column;
+            justify-content: center;
             align-items: center;
-            max-width: 600px;
         }
-        .event img {
-            width: 400px;
-            height: 400px;
+        .event-image {
+            width: 100%;
+            height: 100%;
             object-fit: cover;
-            border-radius: 50%;
-            box-shadow: 0 0 15px rgba(0,0,0,0.7);
+            transition: transform 0.3s ease;
+        }
+        .event-card:hover .event-image {
+            transform: scale(1.05);
+        }
+        .event-content {
+            padding: 20px;
         }
         .event-title {
-            margin-top: 20px;
-            font-size: 1.5em;
+            font-size: 1.8em;
             font-weight: bold;
-            color: #fff;
+            margin-bottom: 10px;
         }
         .event-date {
-            margin-top: 10px;
-            font-size: 1.1em;
-            color: #fff;
+            font-style: italic;
+            margin-bottom: 15px;
         }
-        
+        .event-description {
+            line-height: 1.6;
+        }
+        .buy-button {
+            display: inline-block;
+            background-color: #e0ac4c;
+            color: #000;
+            padding: 12px 25px;
+            border-radius: 5px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-top: 20px;
+            transition: background-color 0.3s ease;
+            cursor: pointer;
+        }
+        .buy-button:hover {
+            background-color: #bfa36c;
+        }
         /* ---------------------- */
-        /* Footer                  */
+        /* Footer                 */
         /* ---------------------- */
         .footer {
             background-color: rgba(0, 0, 0, 0.8);
             text-align: center;
             padding: 10px;
             font-size: 0.9em;
-            margin-top: auto;
+            margin-top: 40px;
         }
         .footer a {
             color: #fff;
             text-decoration: underline;
         }
-        
         /* ---------------------- */
-        /* Responsive rules        */
+        /* Responsive rules       */
         /* ---------------------- */
         @media screen and (max-width: 1200px) {
-            .event img {
-                width: 300px;
-                height: 300px;
-            }
+            .logo-container img { height: 90px; }
         }
         @media screen and (max-width: 800px) {
-            .event img {
-                width: 250px;
-                height: 250px;
-            }
-            .page-title {
-                font-size: 2.2em;
-            }
-            header {
-                padding: 30px 10px;
-            }
-            .logo-container img {
-                height: 65px;
-            }
+            header { padding: 30px 10px; }
+            .logo-container img { height: 65px; }
+            .page-title { font-size: 2.2em; }
         }
-        @media screen and (max-width: 500px) {
-            .event img {
-                width: 90%;
-                height: auto;
-                border-radius: 50%;
+        @media screen and (min-width: 801px) {
+            .carrello-link svg {
+                width: 35px;
+                height: 35px;
             }
         }
     </style>
@@ -239,12 +264,13 @@
                 <span class="line"></span>
             </button>
             <div class="logo-container">
-                <img src="logonew.jpg" alt="Logo ITALIAN BEER SCHOOL" />
+                <img src="logonew.png" alt="Logo ITALIAN BEER SCHOOL" />
             </div>
             <a href="carrello.html" class="carrello-link">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
                     <path d="M0 1a1 1 0 0 1 1-1h1.5a.5.5 0 0 1 .485.379L3.89 3H14.5a.5.5 0 0 1 .49.598l-1.5 7A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.49-.402L1.61 3.607 1.11 2H1a1 1 0 0 1-1-1zm4.5 9a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm7 1.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
                 </svg>
+                <span class="cart-count">0</span>
             </a>
         </header>
 
@@ -257,42 +283,54 @@
             <a href="degustazionipassate.html">DEGUSTAZIONI PASSATE</a>
             <a href="contatti.html">CONTATTI</a>
         </div>
-        
-        <div class="content">
+
+        <main class="page-content">
             <h1 class="page-title">Prossimi Eventi</h1>
-            <div class="event-container">
-                <a href="birrenatale.html" class="event">
-                    <img src="birrenatale.jpg" alt="Birre di Natale" />
-                    <div class="event-title">BIRRE DI NATALE</div>
-                    <div class="event-date">Venerdì 28 Novembre</div>
-                </a>
-                <a href="corsodibirra.html" class="event">
-                    <img src="corsohome.jpg" alt="Corso di Birra" />
-                    <div class="event-title">CORSO DI BIRRA</div>
-                    <div class="event-date">Gennaio/Febbraio 2026</div>
-                </a>
-                <a href="ingleseperbirra.html" class="event">
-                    <img src="bandierainglese.jpg" alt="L'inglese per la birra" />
-                    <div class="event-title">L'INGLESE PER LA BIRRA</div>
-                    <div class="event-date">Febbraio 2026</div>
-                </a>
-                <div class="event">
-                    <img src="birreacide.jpg" alt="Le birre acide" />
-                    <div class="event-title">LE BIRRE ACIDE</div>
-                    <div class="event-date">Marzo 2026 (data da confermare)</div>
+            <section class="events-grid">
+
+                <div class="event-card">
+                    <div class="event-image-container">
+                        <img src="degustazione birre acide.jpg" alt="Degustazione birre acide" class="event-image" />
+                    </div>
+                    <div class="event-content">
+                        <h2 class="event-title">Degustazione Birre Acide</h2>
+                        <p class="event-date">Data: 11 ottobre</p>
+                        <p class="event-description">
+                            Un viaggio nel mondo delle birre Sour e Wild Ale, un'esperienza sensoriale per esplorare le note aspre e complesse di stili unici. Scopri la storia di queste birre, i processi di produzione e gli abbinamenti gastronomici.
+                        </p>
+                        <a href="carrello.html?prodotto=birre_acide" class="buy-button">Acquista</a>
+                    </div>
                 </div>
-                <div class="event">
-                    <img src="birreluppolo.jpg" alt="Le birre amare" />
-                    <div class="event-title">LUPPOLO SI O LUPPOLO NO? LE BIRRE AMARE</div>
-                    <div class="event-date">Primavera 2026 (data da confermare)</div>
+
+                <div class="event-card">
+                    <div class="event-image-container">
+                        <img src="birrenatale.jpg" alt="Degustazione birre di Natale" class="event-image" />
+                    </div>
+                    <div class="event-content">
+                        <h2 class="event-title">Degustazione Birre di Natale</h2>
+                        <p class="event-date">Data: 18 dicembre</p>
+                        <p class="event-description">
+                            Assapora l'atmosfera delle feste con una degustazione dedicata alle birre natalizie. Note speziate, fruttate e calde ti accompagneranno in un'esperienza unica e irripetibile.
+                        </p>
+                        <a href="carrello.html?prodotto=birre_di_natale" class="buy-button">Acquista</a>
+                    </div>
                 </div>
-                <div class="event">
-                    <img src="birreestive.jpg" alt="Le birre estive" />
-                    <div class="event-title">LE BIRRE ESTIVE</div>
-                    <div class="event-date">Primavera 2026 (data da confermare)</div>
+
+                <div class="event-card">
+                    <div class="event-image-container">
+                        <img src="luppolo si luppolo no.jpg" alt="Luppolo Sì Luppolo No" class="event-image" />
+                    </div>
+                    <div class="event-content">
+                        <h2 class="event-title">Luppolo SÌ, Luppolo NO</h2>
+                        <p class="event-date">Data: 10 dicembre</p>
+                        <p class="event-description">
+                            Un evento dedicato agli amanti del luppolo e a chi vuole scoprire la differenza tra birre luppolate e non. Esplora stili che esaltano l'amaro e l'aroma del luppolo, e confrontali con birre dal carattere più dolce e maltato.
+                        </p>
+                        <a href="carrello.html?prodotto=luppolo_si_luppolo_no" class="buy-button">Acquista</a>
+                    </div>
                 </div>
-            </div>
-        </div>
+            </section>
+        </main>
 
         <div class="footer">
             2025 ITALIAN BEER SCHOOL – Tutti i diritti riservati P.IVA: IT07436420488 | <a href="privacy.html">Privacy</a>
@@ -311,6 +349,26 @@
 
         hamburgerBtn.addEventListener('click', toggleMenu);
         closeMenuBtn.addEventListener('click', toggleMenu);
+
+        function updateCartCount() {
+            const cartCountEl = document.querySelector('.cart-count');
+            const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+            cartCountEl.textContent = cartItems.length;
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            updateCartCount();
+        });
+
+        document.querySelectorAll('.buy-button').forEach(button => {
+            button.addEventListener('click', (event) => {
+                const product = event.target.getAttribute('href').split('?prodotto=')[1];
+                let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+                cartItems.push(product);
+                localStorage.setItem('cartItems', JSON.stringify(cartItems));
+                updateCartCount();
+            });
+        });
     </script>
 </body>
 </html>
