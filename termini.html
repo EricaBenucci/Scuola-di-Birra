@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Termini e Condizioni - Italian Beer School</title>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
+    <style>
+        /* ---------------------- */
+        /* Base pagina e sfondo   */
+        /* ---------------------- */
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: 'Quicksand', sans-serif;
+            background: url('sfondobichiere.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #fff;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        a:visited {
+            color: inherit;
+            text-decoration: none;
+        }
+        .overlay {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background-color: rgba(0, 0, 0, 0.6);
+            position: relative;
+            z-index: 1;
+        }
+        /* ---------------------- */
+        /* Header / Navbar        */
+        /* ---------------------- */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 85px 20px;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 2;
+        }
+        .logo-container {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 0;
+            border-radius: 0;
+        }
+        .logo-container img {
+            height: 110px;
+        }
+        .hamburger-menu {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 6px;
+            width: 30px;
+            height: 30px;
+        }
+        .hamburger-menu .line {
+            width: 30px;
+            height: 3px;
+            background-color: #fff;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        .hamburger-menu.open .line:nth-child(1) { transform: translateY(9px) rotate(45deg); }
+        .hamburger-menu.open .line:nth-child(2) { opacity: 0; }
+        .hamburger-menu.open .line:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
+        .carrello-link {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-weight: bold;
+        }
+        .carrello-link svg {
+            fill: #fff;
+            width: 25px;
+            height: 25px;
+        }
+        .carrello-link .cart-count {
+            display: block;
+            background-color: #e0ac4c;
+            color: #000;
+            font-size: 0.8em;
+            font-weight: bold;
+            border-radius: 50%;
+            padding: 4px 8px;
+            margin-left: -10px;
+            position: relative;
+            top: -10px;
+        }
+        .carrello-text {
+            display: none;
+        }
+        /* Pop-up Menu Laterale */
+        .menu-pop-up {
+            position: fixed;
+            top: 0;
+            left: -300px;
+            width: 280px;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.95);
+            color: #fff;
+            padding-top: 80px;
+            transition: left 0.3s ease-in-out;
+            z-index: 4;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .menu-pop-up a {
+            padding: 15px 20px;
+            display: block;
+            font-size: 1.2em;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            color: #fff;
+        }
+        .menu-pop-up a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        .menu-pop-up.open {
+            left: 0;
+        }
+        .close-menu {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: #fff;
+            font-size: 2em;
+            cursor: pointer;
+        }
+        /* ---------------------- */
+        /* Contenuto Pagina       */
+        /* ---------------------- */
+        .page-content {
+            padding: 40px 20px;
+            max-width: 900px;
+            margin: auto;
+            flex-grow: 1;
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 15px;
+            margin-top: 40px;
+            margin-bottom: 40px;
+        }
+        .page-content h1 {
+            font-size: 2.5em;
+            text-align: center;
+            margin-bottom: 20px;
+            color: #e0ac4c;
+        }
+        .page-content h2 {
+            font-size: 1.5em;
+            margin-top: 30px;
+            color: #e0ac4c;
+        }
+        .page-content p, .page-content ul, .page-content li {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        .page-content ul {
+            padding-left: 20px;
+        }
+        .page-content li {
+            margin-bottom: 5px;
+        }
+        /* ---------------------- */
+        /* Footer                 */
+        /* ---------------------- */
+        .footer {
+            background-color: rgba(0, 0, 0, 0.8);
+            text-align: center;
+            padding: 10px;
+            font-size: 0.9em;
+        }
+        .footer a {
+            color: #fff;
+            text-decoration: underline;
+        }
+        /* ---------------------- */
+        /* Responsive rules       */
+        /* ---------------------- */
+        @media screen and (max-width: 1200px) {
+            .logo-container img { height: 90px; }
+        }
+        @media screen and (max-width: 800px) {
+            header { padding: 30px 10px; }
+            .logo-container img { height: 65px; }
+            .page-content { padding: 20px; }
+            .page-content h1 { font-size: 2em; }
+        }
+        @media screen and (min-width: 801px) {
+            .carrello-link svg {
+                width: 35px;
+                height: 35px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="overlay">
+        <header>
+            <button class="hamburger-menu" aria-label="Menu">
+                <span class="line"></span>
+                <span class="line"></span>
+                <span class="line"></span>
+            </button>
+            <div class="logo-container">
+                <img src="logonew.png" alt="Logo ITALIAN BEER SCHOOL" />
+            </div>
+            <a href="carrello.html" class="carrello-link">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                    <path d="M0 1a1 1 0 0 1 1-1h1.5a.5.5 0 0 1 .485.379L3.89 3H14.5a.5.5 0 0 1 .49.598l-1.5 7A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.49-.402L1.61 3.607 1.11 2H1a1 1 0 0 1-1-1zm4.5 9a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm7 1.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
+                </svg>
+                <span class="cart-count">0</span>
+            </a>
+        </header>
+
+        <div class="menu-pop-up">
+            <div class="close-menu">&times;</div>
+            <a href="index.html">HOME</a>
+            <a href="prossimieventi.html">PROSSIMI EVENTI</a>
+            <a href="losapeviche.html">LO SAPEVI CHE?</a>
+            <a href="corsodibirra.html">CORSO DI BIRRA</a>
+            <a href="degustazionipassate.html">DEGUSTAZIONI PASSATE</a>
+            <a href="contatti.html">CONTATTI</a>
+        </div>
+
+        <main class="page-content">
+            <h1>Termini e Condizioni</h1>
+            <p>Le presenti condizioni generali di servizio ("Condizioni") regolano l'offerta e la vendita dei servizi erogati tramite il sito web italianbeerschool.it.</p>
+
+            <p>La ditta individuale **ITALIAN BEER SCHOOL** con sede legale in **[INSERIRE INDIRIZZO COMPLETO]**, Partita IVA **IT07436420488**, (di seguito "Fornitore"), gestisce il sito e i servizi in esso offerti. Per qualsiasi comunicazione, è possibile contattarci via email all'indirizzo **italianbeerschool@gmail.com** o telefonicamente al **3393418456**.</p>
+
+            <p>Accedendo al sito e acquistando uno dei servizi proposti, l'utente ("Cliente") dichiara di aver letto, compreso e accettato integralmente le presenti Condizioni.</p>
+
+            <h2>1. Oggetto del servizio</h2>
+            <p>Il Fornitore offre, tramite il sito web, la vendita di servizi formativi e di intrattenimento legati al mondo della birra. Questi servizi includono, a titolo esemplificativo ma non esaustivo: corsi, masterclass e degustazioni.</p>
+            <p>Le caratteristiche essenziali di ciascun servizio sono descritte nella relativa pagina prodotto del sito.</p>
+            
+            <h2>2. Prezzi e Pagamenti</h2>
+            <p>I prezzi dei servizi sono indicati in Euro (€) e si intendono comprensivi di IVA. Eventuali costi aggiuntivi, come commissioni per i metodi di pagamento, saranno chiaramente specificati prima della conferma dell'ordine.</p>
+            <p>Il pagamento può essere effettuato tramite i metodi di pagamento disponibili nel carrello, tra cui:</p>
+            <ul>
+                <li>**Bonifico bancario:** l'ordine sarà confermato al ricevimento del bonifico sul conto corrente del Fornitore.</li>
+                <li>**PayPal:** il pagamento sarà gestito tramite la piattaforma sicura di PayPal.</li>
+                <li>**Carta di credito/debito:** il pagamento sarà elaborato tramite i circuiti di pagamento supportati.</li>
+            </ul>
+
+            <h2>3. Procedura d'Acquisto</h2>
+            <p>L'acquisto di un servizio si perfeziona con l'inserimento del prodotto nel carrello, la compilazione del modulo di fatturazione e il completamento del pagamento.</p>
+            <p>Al termine della procedura, il Cliente riceverà una conferma d'ordine via email, contenente un riepilogo dell'acquisto e le istruzioni per usufruire del servizio (es. link per l'accesso, data e orario dell'evento online).</p>
+            
+            <h2>4. Diritto di Recesso</h2>
+            <p>Il Cliente ha il diritto di recedere dal contratto di acquisto di un servizio senza dover fornire alcuna motivazione e senza costi aggiuntivi, entro 14 giorni dalla data di conclusione del contratto (ovvero la data di acquisto).</p>
+            <p>Per esercitare il diritto di recesso, il Cliente dovrà informare il Fornitore della sua decisione tramite una comunicazione esplicita all'indirizzo email <a href="mailto:italianbeerschool@gmail.com">italianbeerschool@gmail.com</a>.</p>
+            <p>Il diritto di recesso è escluso se il servizio è stato completamente eseguito (es. il corso è già stato seguito dal Cliente) o se il Cliente ha già ricevuto il materiale digitale fornito nell'ambito del corso.</p>
+
+            <h2>5. Età minima</h2>
+            <p>I servizi offerti sono rivolti a un pubblico maggiorenne. Acquistando i servizi, il Cliente dichiara di essere maggiorenne e di avere l'età legale per il consumo di bevande alcoliche nel proprio Paese di residenza. Il Fornitore si riserva il diritto di richiedere una prova dell'età.</p>
+
+            <h2>6. Responsabilità</h2>
+            <p>Il Fornitore si impegna a fornire i servizi con la massima professionalità e diligenza. Tuttavia, non si assume responsabilità per disservizi o ritardi non imputabili a sua colpa.</p>
+            <p>Il Fornitore non è responsabile per l'uso improprio delle informazioni fornite durante i corsi e non garantisce che i risultati di tale uso siano esenti da errori o non conformi alle aspettative del Cliente.</p>
+
+            <h2>7. Privacy Policy</h2>
+            <p>Il trattamento dei dati personali del Cliente è regolato dalla nostra <a href="privacy.html">Privacy Policy</a>, disponibile a questo link. Acquistando i servizi, il Cliente accetta i termini del trattamento dei propri dati personali per le finalità di gestione dell'ordine e del servizio.</p>
+            
+        </main>
+
+        <div class="footer">
+            2025 ITALIAN BEER SCHOOL – Tutti i diritti riservati P.IVA: IT07436420488 | <a href="privacy.html">Privacy</a>
+        </div>
+    </div>
+
+    <script>
+        const hamburgerBtn = document.querySelector('.hamburger-menu');
+        const menuPopUp = document.querySelector('.menu-pop-up');
+        const closeMenuBtn = document.querySelector('.close-menu');
+        const cartCountEl = document.querySelector('.cart-count');
+
+        function toggleMenu() {
+            menuPopUp.classList.toggle('open');
+            hamburgerBtn.classList.toggle('open');
+        }
+
+        function updateCartCount() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            cartCountEl.textContent = totalItems;
+        }
+
+        hamburgerBtn.addEventListener('click', toggleMenu);
+        closeMenuBtn.addEventListener('click', toggleMenu);
+
+        document.addEventListener('DOMContentLoaded', () => {
+            updateCartCount();
+        });
+
+        window.addEventListener('storage', (event) => {
+            if (event.key === 'cart') {
+                updateCartCount();
+            }
+        });
+    </script>
+</body>
+</html>
