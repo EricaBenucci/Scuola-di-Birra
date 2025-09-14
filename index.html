@@ -32,9 +32,8 @@
       min-height: 100vh;
       background-color: rgba(0, 0, 0, 0.6);
     }
-
     /* ---------------------- */
-    /* Header / Navbar         */
+    /* Header / Navbar        */
     /* ---------------------- */
     header {
       display: flex;
@@ -43,18 +42,13 @@
       background-color: rgba(0, 0, 0, 0.7);
       padding: 55px 20px;
       flex-wrap: wrap;
-      position: relative; /* ✅ aggiunta per centrare logo */
-    }
-    .nav-left,
-    .nav-right {
-      display: flex;
-      gap: 20px;
-      align-items: center;
+      position: relative;
+      z-index: 10;
     }
     .logo-container {
-      position: absolute;         /* ✅ nuovo */
-      left: 50%;                   /* ✅ nuovo */
-      transform: translateX(-50%);/* ✅ nuovo */
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
       background-color: rgba(255,255,255,0.4);
       padding: 10px 12px;
       border-radius: 10px;
@@ -62,6 +56,37 @@
     .logo-container img {
       height: 100px;
     }
+    .hamburger-menu {
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center; /* Centra le linee verticalmente */
+      align-items: center; /* Centra le linee orizzontalmente */
+      gap: 6px;
+      width: 30px; /* Imposta una larghezza fissa */
+      height: 30px; /* Imposta un'altezza fissa */
+    }
+    .hamburger-menu .line {
+      width: 30px;
+      height: 3px;
+      background-color: #fff;
+      border-radius: 5px;
+      transition: all 0.3s ease;
+    }
+    /* Animazione hamburger -> X */
+    .hamburger-menu.open .line:nth-child(1) {
+      transform: translateY(9px) rotate(45deg);
+    }
+    .hamburger-menu.open .line:nth-child(2) {
+      opacity: 0;
+    }
+    .hamburger-menu.open .line:nth-child(3) {
+      transform: translateY(-9px) rotate(-45deg);
+    }
+
     .carrello-link {
       display: flex;
       align-items: center;
@@ -70,10 +95,52 @@
     }
     .carrello-link svg {
       fill: #fff;
-      width: 20px;
-      height: 20px;
+      width: 25px;
+      height: 25px;
+    }
+    .carrello-text {
+      display: none;
     }
 
+    /* ---------------------- */
+    /* Pop-up Menu Laterale   */
+    /* ---------------------- */
+    .menu-pop-up {
+      position: fixed;
+      top: 0;
+      left: -300px; /* Aumentato lo spazio per evitare che il menu "sbordi" */
+      width: 280px; /* Larghezza maggiore per i link */
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.9);
+      color: #fff;
+      padding-top: 80px;
+      transition: left 0.3s ease-in-out;
+      z-index: 5;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .menu-pop-up a {
+      padding: 15px 20px; /* Aumentato il padding per facilitare il tocco su mobile */
+      display: block;
+      font-size: 1.2em;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .menu-pop-up a:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+    .menu-pop-up.open {
+      left: 0;
+    }
+    .close-menu {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      color: #fff;
+      font-size: 2em;
+      cursor: pointer;
+    }
+    
     /* ---------------------- */
     /* Corso di birra box      */
     /* ---------------------- */
@@ -86,7 +153,7 @@
       color: inherit;
     }
     .main-course-box img {
-      width: 480px;     /* 20% più grande di 400px */
+      width: 480px;      
       height: 480px;
       object-fit: cover;
       border-radius: 50%;
@@ -103,9 +170,8 @@
       color: #fff;
       margin-top: 10px;
     }
-
     /* ---------------------- */
-    /* Contenuto eventi         */
+    /* Contenuto eventi        */
     /* ---------------------- */
     .content {
       flex: 1;
@@ -147,7 +213,6 @@
       font-size: 1.1em;
       color: #fff;
     }
-
     /* ---------------------- */
     /* Footer                  */
     /* ---------------------- */
@@ -161,115 +226,8 @@
       color: #fff;
       text-decoration: underline;
     }
-
     /* ---------------------- */
     /* Responsive rules        */
     /* ---------------------- */
     @media screen and (max-width: 1200px) {
       .event img {
-        width: 300px;
-        height: 300px;
-      }
-      .main-course-box img {
-        width: 360px;    /* 20% in più rispetto a 300px */
-        height: 360px;
-      }
-      .main-course-title {
-        font-size: 3em;
-      }
-      .main-course-date {
-        font-size: 1.5em;
-      }
-    }
-
-    @media screen and (max-width: 800px) {
-      .event img {
-        width: 250px;
-        height: 250px;
-      }
-      .main-course-box img {
-        width: 300px;    /* 20% in più rispetto a 250px */
-        height: 300px;
-      }
-      .main-course-title {
-        font-size: 2.2em;
-      }
-      .main-course-date {
-        font-size: 1.2em;
-      }
-    }
-
-    @media screen and (max-width: 500px) {
-      .event img {
-        width: 90%;
-        height: auto;
-        border-radius: 50%;
-      }
-      .main-course-box img {
-        width: 90%;
-        height: auto;
-        border-radius: 50%;
-      }
-    }
-  </style>
-</head>
-<body>
-  <div class="overlay">
-    <!-- HEADER / NAVBAR EQUILIBRATA -->
-    <header>
-      <div class="nav-left">
-        <a href="index.html">HOME</a>
-        <a href="prossimieventi.html">PROSSIMI EVENTI</a>
-        <a href="losapeviche.html">LO SAPEVI CHE?</a>
-      </div>
-
-      <div class="logo-container">
-        <img src="logonew.jpg" alt="Logo ITALIAN BEER SCHOOL" />
-      </div>
-
-      <div class="nav-right">
-        <a href="corsodibirra.html">CORSO DI BIRRA</a>
-        <a href="degustazionipassate.html">DEGUSTAZIONI PASSATE</a>
-        <a href="contatti.html">CONTATTI</a>
-        <a href="carrello.html" class="carrello-link">
-          <!-- Piccola icona carrello SVG -->
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
-            <path d="M0 1a1 1 0 0 1 1-1h1.5a.5.5 0 0 1 .485.379L3.89 3H14.5a.5.5 0 0 1 .49.598l-1.5 7A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.49-.402L1.61 3.607 1.11 2H1a1 1 0 0 1-1-1zm4.5 9a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm7 1.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
-          </svg>
-          CARRELLO
-        </a>
-      </div>
-    </header>
-
-    <!-- SEZIONE PRINCIPALE: IMMAGINE CORSO PIÙ GRANDE DEL 20% -->
-    <div class="main-course-box">
-      <a href="birrenatale.html">
-        <img src="birrenatale.jpg" alt="Birre di Natale" />
-        <div class="main-course-title">BIRRE DI NATALE</div>
-        <div class="main-course-date">Venerdì 28 Novembre 2025</div>
-      </a>
-    </div>
-
-    <!-- CONTENUTO: BOX EVENTI IN BASSO -->
-    <div class="content">
-      <div class="event-container">
-        <a href="prossimieventi.html" class="event">
-          <img src="corsohome.jpg" alt="Corso di Birra" />
-          <div class="event-title">CORSO DI BIRRA</div>
-          <div class="event-date">Gennaio 2026<br>Info qui</div>
-        </a>
-        <a href="prossimieventi.html" class="event">
-          <img src="bandierainglese.jpg" alt="L'inglese per la degustazione" />
-          <div class="event-title">L’INGLESE PER LA DEGUSTAZIONE</div>
-          <div class="event-date">Febbraio 2026<br>Info da confermare</div>
-        </a>
-      </div>
-    </div>
-
-    <!-- FOOTER -->
-    <div class="footer">
-      2025 SCUOLA DI BIRRA – Tutti i diritti riservati P.IVA: IT07436420488 | <a href="privacy.html">Privacy</a>
-    </div>
-  </div>
-</body>
-</html>
