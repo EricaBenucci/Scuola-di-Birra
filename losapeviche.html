@@ -7,7 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
     <style>
         /* ---------------------- */
-        /* Base pagina e sfondo   */
+        /* Base pagina e sfondo    */
         /* ---------------------- */
         html, body {
             margin: 0;
@@ -217,7 +217,7 @@
             font-weight: bold;
         }
         /* ---------------------- */
-        /* Footer                 */
+        /* Footer                */
         /* ---------------------- */
         .footer {
             background-color: rgba(0, 0, 0, 0.8);
@@ -231,7 +231,7 @@
             text-decoration: underline;
         }
         /* ---------------------- */
-        /* Responsive rules       */
+        /* Responsive rules        */
         /* ---------------------- */
         @media screen and (max-width: 1200px) {
             .logo-container img { height: 90px; }
@@ -258,6 +258,67 @@
             .container { padding: 15px 5px; gap: 10px; }
             .flip-card { height: 160px; }
         }
+
+        /* ---------------------- */
+        /* Cookie Banner CSS       */
+        /* ---------------------- */
+        .cookie-banner {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            color: #fff;
+            text-align: center;
+            padding: 15px;
+            box-sizing: border-box;
+            z-index: 1000;
+            display: none; /* Inizialmente nascosto */
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .cookie-banner-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 900px;
+            margin: auto;
+        }
+        .cookie-banner p {
+            margin: 0 0 10px 0;
+            line-height: 1.4;
+            font-size: 0.9em;
+        }
+        .cookie-banner a {
+            color: #e0ac4c;
+            text-decoration: underline;
+        }
+        .cookie-banner button {
+            background-color: #e0ac4c;
+            color: #000;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-top: 10px;
+        }
+        @media screen and (min-width: 768px) {
+            .cookie-banner-content {
+                flex-direction: row;
+                justify-content: space-between;
+                gap: 20px;
+            }
+            .cookie-banner p {
+                margin: 0;
+            }
+            .cookie-banner button {
+                margin-top: 0;
+                white-space: nowrap;
+            }
+        }
     </style>
 </head>
 <body>
@@ -269,7 +330,9 @@
                 <span class="line"></span>
             </button>
             <div class="logo-container old-logo">
-                <img src="logo.jpg" alt="Logo Scuola di Birra">
+                <a href="index.html">
+                    <img src="logo.jpg" alt="Logo Scuola di Birra">
+                </a>
             </div>
             <a href="carrello.html" class="carrello-link">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
@@ -358,12 +421,21 @@
             2025 ITALIAN BEER SCHOOL – Tutti i diritti riservati P.IVA: IT07436420488 | <a href="privacy.html">Privacy</a>
         </div>
     </div>
+    
+    <div class="cookie-banner" id="cookieBanner">
+        <div class="cookie-banner-content">
+            <p>Questo sito utilizza i cookie per offrirti un'esperienza di navigazione migliore. Cliccando su "Accetta" acconsenti all'uso dei cookie. Per maggiori informazioni, puoi consultare la nostra <a href="privacy.html">Informativa sulla Privacy</a>.</p>
+            <button id="acceptCookiesBtn">Accetta</button>
+        </div>
+    </div>
 
     <script>
         const hamburgerBtn = document.querySelector('.hamburger-menu');
         const menuPopUp = document.querySelector('.menu-pop-up');
         const closeMenuBtn = document.querySelector('.close-menu');
         const cartCountEl = document.querySelector('.cart-count');
+        const cookieBanner = document.getElementById('cookieBanner');
+        const acceptCookiesBtn = document.getElementById('acceptCookiesBtn');
 
         function toggleMenu() {
             menuPopUp.classList.toggle('open');
@@ -376,11 +448,29 @@
             cartCountEl.textContent = totalItems;
         }
 
+        // Cookie Consent Logic
+        function hasAcceptedCookies() {
+            return localStorage.getItem('cookiesAccepted') === 'true';
+        }
+
+        function showCookieBanner() {
+            if (!hasAcceptedCookies()) {
+                cookieBanner.style.display = 'flex';
+            }
+        }
+
+        function acceptCookies() {
+            localStorage.setItem('cookiesAccepted', 'true');
+            cookieBanner.style.display = 'none';
+        }
+
         hamburgerBtn.addEventListener('click', toggleMenu);
         closeMenuBtn.addEventListener('click', toggleMenu);
+        acceptCookiesBtn.addEventListener('click', acceptCookies);
 
         document.addEventListener('DOMContentLoaded', () => {
             updateCartCount();
+            showCookieBanner();
         });
 
         window.addEventListener('storage', (event) => {
