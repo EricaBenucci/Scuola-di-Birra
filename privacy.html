@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - Italian Beer School</title>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
+    <style>
+        /* Stili base e sfondo (gli stessi delle altre pagine) */
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: 'Quicksand', sans-serif;
+            background: url('sfondobichiere.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #fff;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        a:visited {
+            color: inherit;
+            text-decoration: none;
+        }
+        .overlay {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background-color: rgba(0, 0, 0, 0.6);
+            position: relative;
+            z-index: 1;
+        }
+        /* Header / Navbar (gli stessi delle altre pagine) */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 85px 20px;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 2;
+        }
+        .logo-container {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 0;
+            border-radius: 0;
+        }
+        .logo-container img {
+            height: 110px;
+        }
+        .hamburger-menu {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 6px;
+            width: 30px;
+            height: 30px;
+        }
+        .hamburger-menu .line {
+            width: 30px;
+            height: 3px;
+            background-color: #fff;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        .hamburger-menu.open .line:nth-child(1) { transform: translateY(9px) rotate(45deg); }
+        .hamburger-menu.open .line:nth-child(2) { opacity: 0; }
+        .hamburger-menu.open .line:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
+        .carrello-link {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-weight: bold;
+        }
+        .carrello-link svg {
+            fill: #fff;
+            width: 25px;
+            height: 25px;
+        }
+        .carrello-link .cart-count {
+            display: block;
+            background-color: #e0ac4c;
+            color: #000;
+            font-size: 0.8em;
+            font-weight: bold;
+            border-radius: 50%;
+            padding: 4px 8px;
+            margin-left: -10px;
+            position: relative;
+            top: -10px;
+        }
+        /* Pop-up Menu Laterale (gli stessi delle altre pagine) */
+        .menu-pop-up {
+            position: fixed;
+            top: 0;
+            left: -300px;
+            width: 280px;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.95);
+            color: #fff;
+            padding-top: 80px;
+            transition: left 0.3s ease-in-out;
+            z-index: 4;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .menu-pop-up a {
+            padding: 15px 20px;
+            display: block;
+            font-size: 1.2em;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .menu-pop-up a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        .menu-pop-up.open {
+            left: 0;
+        }
+        .close-menu {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: #fff;
+            font-size: 2em;
+            cursor: pointer;
+        }
+        /* Contenuto Pagina Privacy */
+        .page-content {
+            padding: 40px 20px;
+            max-width: 900px;
+            margin: auto;
+            flex-grow: 1;
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 15px;
+            margin-top: 40px;
+            margin-bottom: 40px;
+        }
+        .page-content h1 {
+            font-size: 2.5em;
+            text-align: center;
+            margin-bottom: 20px;
+            color: #e0ac4c;
+        }
+        .page-content h2 {
+            font-size: 1.5em;
+            margin-top: 30px;
+            color: #e0ac4c;
+        }
+        .page-content p, .page-content ul, .page-content li {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        .page-content ul {
+            padding-left: 20px;
+        }
+        .page-content li {
+            margin-bottom: 5px;
+        }
+        /* Footer (gli stessi delle altre pagine) */
+        .footer {
+            background-color: rgba(0, 0, 0, 0.8);
+            text-align: center;
+            padding: 10px;
+            font-size: 0.9em;
+        }
+        .footer a {
+            color: #fff;
+            text-decoration: underline;
+        }
+        /* Responsive rules (gli stessi delle altre pagine) */
+        @media screen and (max-width: 1200px) {
+            .logo-container img { height: 90px; }
+        }
+        @media screen and (max-width: 800px) {
+            header { padding: 30px 10px; }
+            .logo-container img { height: 65px; }
+            .page-content { padding: 20px; }
+            .page-content h1 { font-size: 2em; }
+        }
+        @media screen and (min-width: 801px) {
+            .carrello-link svg {
+                width: 35px;
+                height: 35px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="overlay">
+        <header>
+            <button class="hamburger-menu" aria-label="Menu">
+                <span class="line"></span>
+                <span class="line"></span>
+                <span class="line"></span>
+            </button>
+            <div class="logo-container">
+                <img src="logonew.png" alt="Logo ITALIAN BEER SCHOOL" />
+            </div>
+            <a href="carrello.html" class="carrello-link">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                    <path d="M0 1a1 1 0 0 1 1-1h1.5a.5.5 0 0 1 .485.379L3.89 3H14.5a.5.5 0 0 1 .49.598l-1.5 7A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.49-.402L1.61 3.607 1.11 2H1a1 1 0 0 1-1-1zm4.5 9a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm7 1.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
+                </svg>
+                <span class="cart-count">0</span>
+            </a>
+        </header>
+
+        <div class="menu-pop-up">
+            <div class="close-menu">&times;</div>
+            <a href="index.html">HOME</a>
+            <a href="prossimieventi.html">PROSSIMI EVENTI</a>
+            <a href="losapeviche.html">LO SAPEVI CHE?</a>
+            <a href="corsodibirra.html">CORSO DI BIRRA</a>
+            <a href="degustazionipassate.html">DEGUSTAZIONI PASSATE</a>
+            <a href="contatti.html">CONTATTI</a>
+        </div>
+
+        <main class="page-content">
+            <h1>Privacy Policy</h1>
+            <p>**Ultimo aggiornamento: 14 Settembre 2025**</p>
+            <p>
+                In questa pagina si descrivono le modalità di gestione del sito in riferimento al trattamento dei dati personali degli utenti che lo consultano. Il trattamento dei dati è improntato ai principi di correttezza, liceità, trasparenza e di tutela della riservatezza.
+            </p>
+
+            <h2>1. Titolare del Trattamento dei Dati</h2>
+            <p>
+                Il Titolare del Trattamento dei dati personali è **ITALIAN BEER SCHOOL**, P.IVA IT07436420488.
+                <br>Email di contatto: <a href="mailto:italianbeerschool@gmail.com">italianbeerschool@gmail.com</a>
+                <br>Telefono: 3393418456
+            </p>
+
+            <h2>2. Tipi di Dati Raccolti</h2>
+            <p>
+                Tra i dati personali raccolti da questo sito, in modo autonomo o tramite terze parti, ci sono:
+            </p>
+            <ul>
+                <li>**Dati di navigazione:** indirizzo IP, tipo di browser, orario di accesso, pagine visitate. Questi dati sono raccolti in modo automatico per il corretto funzionamento del sito.</li>
+                <li>**Dati forniti volontariamente dall'utente:** nome, cognome, indirizzo email, numero di telefono. Questi dati vengono raccolti quando l'utente si iscrive a un corso, richiede informazioni tramite il form contatti o si iscrive alla newsletter.</li>
+                <li>**Dati di pagamento:** le informazioni relative ai pagamenti (es. numero di carta di credito) non vengono trattate direttamente da noi, ma dai fornitori di servizi di pagamento (es. PayPal), che agiscono come autonomi titolari del trattamento.</li>
+            </ul>
+
+            <h2>3. Finalità del Trattamento</h2>
+            <p>
+                I dati personali sono raccolti e trattati per le seguenti finalità:
+            </p>
+            <ul>
+                <li>Gestione e evasione degli ordini di acquisto dei nostri corsi e servizi.</li>
+                <li>Fornire assistenza e rispondere alle richieste dell'utente.</li>
+                <li>Invio di comunicazioni informative e promozionali (es. newsletter), solo se l'utente ha fornito un esplicito consenso.</li>
+                <li>Statistiche e analisi del traffico per migliorare i servizi offerti.</li>
+                <li>Adempimento di obblighi legali e fiscali.</li>
+            </ul>
+
+            <h2>4. Base Giuridica del Trattamento</h2>
+            <p>
+                Trattiamo i tuoi dati personali solo se ricorre una delle seguenti condizioni:
+            </p>
+            <ul>
+                <li>Hai fornito il consenso per una o più finalità specifiche.</li>
+                <li>Il trattamento è necessario per l'esecuzione di un contratto (ad esempio, per un acquisto).</li>
+                <li>Il trattamento è necessario per adempiere a un obbligo legale.</li>
+                <li>Il trattamento è necessario per il legittimo interesse del Titolare (es. prevenzione di frodi).</li>
+            </ul>
+
+            <h2>5. Dettagli sul Trattamento dei Cookie</h2>
+            <p>
+                I cookie sono piccole porzioni di dati che il sito memorizza sul tuo dispositivo per vari scopi. Il nostro sito utilizza i seguenti tipi di cookie:
+            </p>
+            <ul>
+                <li>**Cookie Tecnici:** sono strettamente necessari per il corretto funzionamento del sito (es. gestione del carrello, login). Non richiedono il tuo consenso e non possono essere disattivati.</li>
+                <li>**Cookie Analitici:** ci permettono di raccogliere dati anonimi e aggregati sul traffico e sull'uso del sito per analizzarne l'efficacia e migliorarlo. Vengono installati solo con il tuo consenso.</li>
+                <li>**Cookie di Profilazione e Marketing:** servono per creare profili di utenti in base ai loro interessi e per mostrare annunci pubblicitari personalizzati. Vengono installati solo con il tuo consenso.</li>
+            </ul>
+            <p>
+                Puoi modificare le tue preferenze sui cookie in qualsiasi momento tramite il banner apposito che compare alla tua prima visita o tramite il link che puoi inserire nel footer della pagina.
+            </p>
+
+            <h2>6. Diritti dell'Utente</h2>
+            <p>
+                In ogni momento, l'utente ha il diritto di:
+            </p>
+            <ul>
+                <li>**Accedere** ai propri dati personali.</li>
+                <li>Richiedere la **rettifica** o la **cancellazione** dei dati.</li>
+                <li>**Opporsi** al trattamento dei dati.</li>
+                <li>Revocare il **consenso** in qualsiasi momento.</li>
+                <li>Proporre un **reclamo** all'Autorità Garante per la Protezione dei Dati Personali (<a href="https://www.gpdp.it" target="_blank">www.gpdp.it</a>).</li>
+            </ul>
+            <p>
+                Per esercitare questi diritti, l'utente può inviare una richiesta scritta a <a href="mailto:italianbeerschool@gmail.com">italianbeerschool@gmail.com</a>.
+            </p>
+
+            <h2>7. Modifiche a questa Privacy Policy</h2>
+            <p>
+                Il Titolare del Trattamento si riserva il diritto di apportare modifiche a questa Privacy Policy in qualsiasi momento, dandone comunicazione agli utenti su questa pagina. Ti invitiamo a consultare regolarmente questa pagina, prendendo come riferimento la data di ultimo aggiornamento indicata in alto.
+            </p>
+        </main>
+
+        <div class="footer">
+            2025 ITALIAN BEER SCHOOL – Tutti i diritti riservati P.IVA: IT07436420488 | <a href="privacy.html">Privacy</a>
+        </div>
+    </div>
+    
+    <script>
+        const hamburgerBtn = document.querySelector('.hamburger-menu');
+        const menuPopUp = document.querySelector('.menu-pop-up');
+        const closeMenuBtn = document.querySelector('.close-menu');
+        const cartCountEl = document.querySelector('.cart-count');
+
+        function toggleMenu() {
+            menuPopUp.classList.toggle('open');
+            hamburgerBtn.classList.toggle('open');
+        }
+
+        hamburgerBtn.addEventListener('click', toggleMenu);
+        closeMenuBtn.addEventListener('click', toggleMenu);
+
+        function updateCartCount() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            cartCountEl.textContent = totalItems;
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            updateCartCount();
+        });
+    </script>
+</body>
+</html>
