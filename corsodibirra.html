@@ -1,254 +1,355 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Corso di Birra - Scuola di Birra</title>
-  <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet" />
-  <style>
-    /* ---------------------- */
-    /* Base e sfondo pagina   */
-    /* ---------------------- */
-    body {
-      margin: 0;
-      font-family: 'Quicksand', sans-serif;
-      background: url('sfondobichiere.jpg') no-repeat center center fixed;
-      background-size: cover;
-      color: #fff;
-    }
-    .overlay {
-      background-color: rgba(0, 0, 0, 0.6);
-      min-height: 100vh;
-      padding-bottom: 40px;
-    }
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Corso di Birra - Scuola di Birra</title>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet" />
+    <style>
+        /* ---------------------- */
+        /* Stili riutilizzati */
+        /* ---------------------- */
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: 'Quicksand', sans-serif;
+            background: url('sfondobichiere.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #fff;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        a:visited {
+            color: inherit;
+            text-decoration: none;
+        }
+        .overlay {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background-color: rgba(0, 0, 0, 0.6);
+            position: relative;
+            z-index: 1;
+        }
+        /* HEADER / NAVBAR */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 85px 20px;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 2;
+        }
+        .logo-container {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(255,255,255,0.4);
+            padding: 10px 12px;
+            border-radius: 10px;
+        }
+        .logo-container img {
+            height: 110px;
+        }
+        .hamburger-menu {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 6px;
+            width: 30px;
+            height: 30px;
+        }
+        .hamburger-menu .line {
+            width: 30px;
+            height: 3px;
+            background-color: #fff;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        .hamburger-menu.open .line:nth-child(1) { transform: translateY(9px) rotate(45deg); }
+        .hamburger-menu.open .line:nth-child(2) { opacity: 0; }
+        .hamburger-menu.open .line:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
+        .carrello-link {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-weight: bold;
+        }
+        .carrello-link svg {
+            fill: #fff;
+            width: 25px;
+            height: 25px;
+        }
+        .carrello-text {
+            display: none;
+        }
+        /* Pop-up Menu Laterale */
+        .menu-pop-up {
+            position: fixed;
+            top: 0;
+            left: -300px;
+            width: 280px;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            color: #fff;
+            padding-top: 80px;
+            transition: left 0.3s ease-in-out;
+            z-index: 4;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .menu-pop-up a {
+            padding: 15px 20px;
+            display: block;
+            font-size: 1.2em;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .menu-pop-up a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        .menu-pop-up.open {
+            left: 0;
+        }
+        .close-menu {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: #fff;
+            font-size: 2em;
+            cursor: pointer;
+        }
+        
+        /* ---------------------- */
+        /* Sezione principale */
+        /* ---------------------- */
+        .section {
+            display: flex;
+            flex-wrap: wrap;
+            padding: 40px 20px;
+            gap: 20px;
+            justify-content: center;
+            align-items: flex-start;
+            max-width: 1200px;
+            margin: auto;
+        }
+        .description-container {
+            flex: 1;
+            min-width: 300px;
+            padding-right: 20px;
+            line-height: 1.6;
+            font-size: 1.1em;
+        }
+        .description-container h1 {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+        .image-container {
+            flex: 1;
+            min-width: 300px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.6);
+        }
+        /* Stili per il pulsante d'acquisto */
+        .buy-button {
+            display: inline-block;
+            background-color: #e0ac4c;
+            color: #000;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            transition: background-color 0.3s ease;
+            cursor: pointer;
+        }
+        .buy-button:hover {
+            background-color: #c4913e;
+        }
 
-    /* ---------------------- */
-    /* Header / Navbar         */
-    /* ---------------------- */
-    header {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background-color: rgba(0, 0, 0, 0.7);
-      padding: 10px 20px;
-      flex-wrap: wrap;
-    }
-    .nav-container {
-      display: flex;
-      align-items: center;
-      gap: 20px;
-      flex-wrap: wrap;
-      justify-content: center;
-      width: 100%;
-    }
-    .nav-container a {
-      color: #fff;
-      text-decoration: none;
-      font-weight: bold;
-      font-size: 1em;
-    }
-    .logo-container {
-      background-color: rgba(255,255,255,0.1);
-      padding: 8px;
-      border-radius: 10px;
-    }
-    .logo-container img {
-      height: 175px;
-    }
+        /* ---------------------- */
+        /* Box delle serate */
+        /* ---------------------- */
+        .boxes {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 40px;
+            padding: 0 20px;
+        }
+        .box {
+            width: 300px;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 2px dashed #fff;
+            border-radius: 25px 80px 25px 80px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.5);
+        }
+        .box h2 {
+            font-size: 1.3em;
+            margin-bottom: 10px;
+        }
+        .box ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .box ul li {
+            margin: 8px 0;
+        }
 
-    /* ---------------------- */
-    /* Sezione principale     */
-    /* ---------------------- */
-    .section {
-      display: flex;
-      flex-wrap: wrap;
-      padding: 40px 20px;
-      gap: 20px;
-    }
-    /* Descrizione a sinistra */
-    .description-container {
-      flex: 1;
-      min-width: 300px;
-      padding-right: 20px;
-      line-height: 1.6;
-      font-size: 1.1em;
-    }
-    .description-container h1 {
-      font-size: 2em;
-      margin-bottom: 20px;
-    }
-    /* Immagine a destra */
-    .image-container {
-      flex: 1;
-      min-width: 300px;
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
-    }
-    .image-container img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 10px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.6);
-    }
+        /* ---------------------- */
+        /* Footer */
+        /* ---------------------- */
+        .footer {
+            background-color: rgba(0, 0, 0, 0.8);
+            text-align: center;
+            padding: 10px;
+            font-size: 0.9em;
+            margin-top: auto;
+        }
+        .footer a {
+            color: #fff;
+            text-decoration: underline;
+        }
 
-    /* ---------------------- */
-    /* Box delle serate       */
-    /* ---------------------- */
-    .boxes {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 30px;
-      margin-top: 40px;
-      padding: 0 20px;
-    }
-    .box {
-      width: 300px;
-      padding: 20px;
-      background-color: rgba(255, 255, 255, 0.1);
-      border: 2px dashed #fff;
-      border-radius: 25px 80px 25px 80px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.5);
-    }
-    .box h2 {
-      font-size: 1.3em;
-      margin-bottom: 10px;
-    }
-    .box ul {
-      list-style-type: none;
-      padding: 0;
-    }
-    .box ul li {
-      margin: 8px 0;
-    }
-
-    /* ---------------------- */
-    /* Footer                 */
-    /* ---------------------- */
-    .footer {
-      background-color: rgba(0, 0, 0, 0.8);
-      color: #fff;
-      text-align: center;
-      padding: 10px;
-      font-size: 0.9em;
-    }
-    .footer a {
-      color: #fff;
-      text-decoration: underline;
-    }
-
-    /* ---------------------- */
-    /* Responsive (< 800px)   */
-    /* ---------------------- */
-    @media screen and (max-width: 800px) {
-      .section {
-        flex-direction: column;
-        padding: 20px 10px;
-      }
-      .description-container {
-        padding-right: 0;
-      }
-      .image-container {
-        margin-top: 20px;
-      }
-    }
-
-    /* ---------------------- */
-    /* Responsive (< 500px)   */
-    /* ---------------------- */
-    @media screen and (max-width: 500px) {
-      .box {
-        width: 90%;
-      }
-      .nav-container {
-        flex-direction: column;
-        gap: 10px;
-      }
-      .logo-container img {
-        height: 120px;
-      }
-    }
-  </style>
+        /* ---------------------- */
+        /* Responsive rules */
+        /* ---------------------- */
+        @media screen and (max-width: 1200px) {
+            .logo-container img { height: 90px; }
+        }
+        @media screen and (max-width: 800px) {
+            header { padding: 30px 10px; }
+            .logo-container img { height: 65px; }
+            .section { flex-direction: column; padding: 20px 10px; }
+            .description-container { padding-right: 0; text-align: center; }
+            .image-container { margin-top: 20px; }
+        }
+        @media screen and (max-width: 500px) {
+            .box { width: 90%; }
+            .logo-container img { height: 55px; }
+        }
+    </style>
 </head>
 <body>
-  <div class="overlay">
-    <!-- HEADER / NAVBAR -->
-    <header>
-      <div class="nav-container">
-        <a href="index.html">HOME</a>
-        <a href="prossimieventi.html">PROSSIMI EVENTI</a>
-        <a href="corsodibirra.html">CORSO DI BIRRA</a>
-        <div class="logo-container">
-          <img src="logo.jpg" alt="Logo Scuola di Birra" />
+    <div class="overlay">
+        <header>
+            <button class="hamburger-menu" aria-label="Menu">
+                <span class="line"></span>
+                <span class="line"></span>
+                <span class="line"></span>
+            </button>
+            <div class="logo-container">
+                <img src="logonew.jpg" alt="Logo ITALIAN BEER SCHOOL" />
+            </div>
+            <a href="carrello.html" class="carrello-link">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                    <path d="M0 1a1 1 0 0 1 1-1h1.5a.5.5 0 0 1 .485.379L3.89 3H14.5a.5.5 0 0 1 .49.598l-1.5 7A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.49-.402L1.61 3.607 1.11 2H1a1 1 0 0 1-1-1zm4.5 9a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm7 1.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
+                </svg>
+            </a>
+        </header>
+
+        <div class="menu-pop-up">
+            <div class="close-menu">&times;</div>
+            <a href="index.html">HOME</a>
+            <a href="prossimieventi.html">PROSSIMI EVENTI</a>
+            <a href="losapeviche.html">LO SAPEVI CHE?</a>
+            <a href="corsodibirra.html">CORSO DI BIRRA</a>
+            <a href="degustazionipassate.html">DEGUSTAZIONI PASSATE</a>
+            <a href="contatti.html">CONTATTI</a>
         </div>
-        <a href="degustazionipassate.html">DEGUSTAZIONI PASSATE</a>
-        <a href="losapeviche.html">LO SAPEVI CHE?</a>
-        <a href="contatti.html">CONTATTI</a>
-      </div>
-    </header>
 
-    <!-- SEZIONE PRINCIPALE -->
-    <div class="section">
-      <!-- Metà sinistra: titolo + descrizione -->
-      <div class="description-container">
-        <h1>CORSO DI BIRRA – OTTOBRE 2025</h1>
-        Quattro serate per scoprire il mondo della birra artigianale, tra tecnica, cultura e piacere della degustazione. Il corso è pensato per chi vuole approfondire le proprie conoscenze, imparare a degustare con consapevolezza e riconoscere le caratteristiche che rendono ogni birra unica.<br><br>
-        Inizieremo dalle basi della produzione per capire come, partendo da soli quattro ingredienti, nascano stili così diversi. Analizzeremo gli stili birrari di Germania, Belgio, Inghilterra e USA, esplorando le loro caratteristiche attraverso l’assaggio. Parleremo di degustazione, equilibrio, possibili difetti, servizio, conservazione e abbinamento con il cibo.<br><br>
-        Ogni serata prevede la degustazione guidata di 4 birre. Al termine del corso, è previsto un piccolo esame finale con rilascio di attestato di partecipazione.<br><br>
-        <strong>Quando:</strong> Venerdì 10, 17, 24 e 31 ottobre 2025<br>
-        <strong>Orario:</strong> 20:30 – 23.00 circa<br>
-        <strong>Dove:</strong> Novoli, Firenze (luogo da confermare)<br>
-        <strong>Costo:</strong> €120 – Sconto 5% per iscrizioni entro il 15 luglio<br>
-        <strong>Posti limitati</strong>
-      </div>
+        <main class="section">
+            <div class="description-container">
+                <h1>CORSO DI BIRRA – OTTOBRE 2025</h1>
+                Quattro serate per scoprire il mondo della birra artigianale, tra tecnica, cultura e piacere della degustazione. Il corso è pensato per chi vuole approfondire le proprie conoscenze, imparare a degustare con consapevolezza e riconoscere le caratteristiche che rendono ogni birra unica.<br><br>
+                Inizieremo dalle basi della produzione per capire come, partendo da soli quattro ingredienti, nascano stili così diversi. Analizzeremo gli stili birrari di Germania, Belgio, Inghilterra e USA, esplorando le loro caratteristiche attraverso l’assaggio. Parleremo di degustazione, equilibrio, possibili difetti, servizio, conservazione e abbinamento con il cibo.<br><br>
+                Ogni serata prevede la degustazione guidata di 4 birre. Al termine del corso, è previsto un piccolo esame finale con rilascio di attestato di partecipazione.<br><br>
+                <strong>Quando:</strong> Venerdì 10, 17, 24 e 31 ottobre 2025<br>
+                <strong>Orario:</strong> 20:30 – 23.00 circa<br>
+                <strong>Dove:</strong> Novoli, Firenze (luogo da confermare)<br>
+                <strong>Costo:</strong> €120 – Sconto 5% per iscrizioni entro il 15 luglio<br>
+                <strong>Posti limitati</strong>
+                <br>
+                <a href="shop.html" class="buy-button">Acquista</a>
+            </div>
 
-      <!-- Metà destra: immagine -->
-      <div class="image-container">
-        <img src="corsodibirra.jpg" alt="Corso di Birra" />
-      </div>
+            <div class="image-container">
+                <img src="corsodibirra.jpg" alt="Corso di Birra" />
+            </div>
+        </main>
+
+        <div class="boxes">
+            <div class="box">
+                <h2>Venerdì 10 Ottobre</h2>
+                <ul>
+                    <li>La produzione: una magia da 4 ingredienti</li>
+                    <li>Degustare correttamente</li>
+                    <li>4 birre in degustazione</li>
+                </ul>
+            </div>
+            <div class="box">
+                <h2>Venerdì 17 Ottobre</h2>
+                <ul>
+                    <li>La Germania e i suoi stili birrari</li>
+                    <li>Valutare la birra: equilibrio e difetti</li>
+                    <li>4 birre in degustazione</li>
+                </ul>
+            </div>
+            <div class="box">
+                <h2>Venerdì 24 Ottobre</h2>
+                <ul>
+                    <li>Il Belgio e i suoi stili birrari</li>
+                    <li>Servizio e conservazione</li>
+                    <li>4 birre in degustazione</li>
+                </ul>
+            </div>
+            <div class="box">
+                <h2>Venerdì 31 Ottobre</h2>
+                <ul>
+                    <li>Inghilterra e USA</li>
+                    <li>Abbinamento cibo e birra</li>
+                    <li>4 birre in degustazione</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer">
+            2025 ITALIAN BEER SCHOOL – Tutti i diritti riservati P.IVA: IT07436420488 | <a href="privacy.html">Privacy</a>
+        </div>
     </div>
 
-    <!-- BOX DELLE SERATE -->
-    <div class="boxes">
-      <div class="box">
-        <h2>Venerdì 10 Ottobre</h2>
-        <ul>
-          <li>La produzione: una magia da 4 ingredienti</li>
-          <li>Degustare correttamente</li>
-          <li>4 birre in degustazione</li>
-        </ul>
-      </div>
-      <div class="box">
-        <h2>Venerdì 17 Ottobre</h2>
-        <ul>
-          <li>La Germania e i suoi stili birrari</li>
-          <li>Valutare la birra: equilibrio e difetti</li>
-          <li>4 birre in degustazione</li>
-        </ul>
-      </div>
-      <div class="box">
-        <h2>Venerdì 24 Ottobre</h2>
-        <ul>
-          <li>Il Belgio e i suoi stili birrari</li>
-          <li>Servizio e conservazione</li>
-          <li>4 birre in degustazione</li>
-        </ul>
-      </div>
-      <div class="box">
-        <h2>Venerdì 31 Ottobre</h2>
-        <ul>
-          <li>Inghilterra e USA</li>
-          <li>Abbinamento cibo e birra</li>
-          <li>4 birre in degustazione</li>
-        </ul>
-      </div>
-    </div>
+    <script>
+        const hamburgerBtn = document.querySelector('.hamburger-menu');
+        const menuPopUp = document.querySelector('.menu-pop-up');
+        const closeMenuBtn = document.querySelector('.close-menu');
 
-    <!-- FOOTER -->
-    <div class="footer">
-      2025 SCUOLA DI BIRRA – Tutti i diritti riservati P.IVA: IT07436420488 | <a href="privacy.html">Privacy</a>
-    </div>
-  </div>
+        function toggleMenu() {
+            menuPopUp.classList.toggle('open');
+            hamburgerBtn.classList.toggle('open');
+        }
+
+        hamburgerBtn.addEventListener('click', toggleMenu);
+        closeMenuBtn.addEventListener('click', toggleMenu);
+    </script>
 </body>
 </html>
