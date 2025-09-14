@@ -51,7 +51,6 @@
             position: absolute;
             left: 50%;
             transform: translateX(-50%);
-            /* Rimosso lo sfondo bianco dal logo */
             padding: 0;
             border-radius: 0;
         }
@@ -114,7 +113,6 @@
             left: -300px;
             width: 280px;
             height: 100%;
-            /* Aumentata la leggibilità dello sfondo e del testo */
             background-color: rgba(0, 0, 0, 0.95);
             color: #fff;
             padding-top: 80px;
@@ -129,7 +127,7 @@
             display: block;
             font-size: 1.2em;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            color: #fff; /* Assicurato che il testo sia sempre bianco */
+            color: #fff;
         }
         .menu-pop-up a:hover {
             background-color: rgba(255, 255, 255, 0.1);
@@ -238,6 +236,62 @@
         .total-row {
             font-size: 1.2em;
             font-weight: bold;
+        }
+        /* Stili aggiunti per il carrello dinamico */
+        #cart-items-container {
+            min-height: 100px; /* Previene "lampeggiamento" e mantiene lo spazio */
+        }
+        .empty-cart-message {
+            text-align: center;
+            padding: 20px;
+            font-size: 1.2em;
+        }
+        .quantity-control {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .quantity-btn {
+            background-color: #e0ac4c;
+            color: #000;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        .quantity-btn:hover {
+            background-color: #c79540;
+        }
+        .remove-product-btn {
+            background: none;
+            border: none;
+            color: #e0ac4c;
+            cursor: pointer;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+        .remove-product-btn:hover {
+            text-decoration: underline;
+        }
+        .cart-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+        }
+        #clear-cart-btn {
+            background-color: #d9534f;
+            color: #fff;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        #clear-cart-btn:hover {
+            background-color: #c9302c;
         }
         .payment-section {
             background-color: rgba(0, 0, 0, 0.5);
@@ -406,19 +460,17 @@
                             <label for="paese" class="required-label">Paese/regione</label>
                             <select id="paese" name="paese" required>
                                 <option value="">Seleziona un paese / una regione…</option>
-<select id="paese" name="paese" required>
-    <option value="Italia">Italia</option>
-    <option value="San Marino">San Marino</option>
-    <option value="Città del Vaticano">Città del Vaticano</option>
-    <option value="Austria">Austria</option>
-    <option value="Svizzera">Svizzera</option>
-    <option value="Francia">Francia</option>
-    <option value="Germania">Germania</option>
-    <option value="Regno Unito">Regno Unito</option>
-    <option value="Spagna">Spagna</option>
-    <option value="Stati Uniti">Stati Uniti</option>
-    <option value="Altro">Altro (specificare nelle note)</option>
-</select>
+                                <option value="Italia">Italia</option>
+                                <option value="San Marino">San Marino</option>
+                                <option value="Città del Vaticano">Città del Vaticano</option>
+                                <option value="Austria">Austria</option>
+                                <option value="Svizzera">Svizzera</option>
+                                <option value="Francia">Francia</option>
+                                <option value="Germania">Germania</option>
+                                <option value="Regno Unito">Regno Unito</option>
+                                <option value="Spagna">Spagna</option>
+                                <option value="Stati Uniti">Stati Uniti</option>
+                                <option value="Altro">Altro (specificare nelle note)</option>
                             </select>
                         </div>
                         <div class="form-group">
@@ -566,32 +618,32 @@
 
                 <div class="order-summary">
                     <h2>Il tuo ordine</h2>
-                    <table>
+                    <table id="cart-items-table">
                         <thead>
                             <tr>
                                 <th>Prodotto</th>
+                                <th>Quantità</th>
                                 <th>Subtotale</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr id="product-row">
-                                <td class="product-info">
-                                    <img id="product-image" src="" alt="Prodotto">
-                                    <span id="product-name"></span>
-                                </td>
-                                <td id="product-price"></td>
-                            </tr>
-                            <tr>
-                                <th>Subtotale</th>
+                        <tbody id="cart-items-container">
+                            </tbody>
+                        <tfoot>
+                            <tr class="subtotal-row">
+                                <th colspan="2">Subtotale</th>
                                 <td id="subtotal-price"></td>
                             </tr>
                             <tr class="total-row">
-                                <th>Totale</th>
+                                <th colspan="2">Totale</th>
                                 <td id="total-price"></td>
                             </tr>
-                        </tbody>
+                        </tfoot>
                     </table>
-                    
+
+                    <div class="cart-actions">
+                        <button id="clear-cart-btn">Svuota carrello</button>
+                    </div>
+
                     <div class="payment-section">
                         <h2>Metodi di pagamento</h2>
                         <div class="payment-options">
@@ -638,7 +690,7 @@
                         <p>I tuoi dati personali saranno utilizzati per elaborare il tuo ordine, supportare la tua esperienza su questo sito web e per altri scopi descritti nella nostra <a href="privacy.html" target="_blank">privacy policy</a>.</p>
                     </div>
 
-                    <button type="submit" class="place-order-button">Paga</button>
+                    <button type="submit" class="place-order-button">Procedi al pagamento</button>
                 </div>
             </div>
         </main>
@@ -652,6 +704,39 @@
         const hamburgerBtn = document.querySelector('.hamburger-menu');
         const menuPopUp = document.querySelector('.menu-pop-up');
         const closeMenuBtn = document.querySelector('.close-menu');
+        const cartItemsContainer = document.getElementById('cart-items-container');
+        const subtotalPriceEl = document.getElementById('subtotal-price');
+        const totalPriceEl = document.getElementById('total-price');
+        const cartCountEl = document.querySelector('.cart-count');
+        const clearCartBtn = document.getElementById('clear-cart-btn');
+
+        // DATABASE prodotti (potrebbe essere un file JSON o un backend)
+        const PRODUCTS_DB = {
+            'corso_di_birra': {
+                id: 'corso_di_birra',
+                name: "Corso di Birra",
+                price: 120.00,
+                image: "corsohome.jpg"
+            },
+            'birre_di_natale': {
+                id: 'birre_di_natale',
+                name: "Degustazione Birre di Natale",
+                price: 40.00,
+                image: "birrenatale.jpg"
+            },
+            'inglese_per_birra_degustazione': {
+                id: 'inglese_per_birra_degustazione',
+                name: "Inglese per la Birra: La Degustazione",
+                price: 40.00,
+                image: "inglesedegustazione.jpg"
+            },
+            'inglese_per_birra_produzione': {
+                id: 'inglese_per_birra_produzione',
+                name: "Inglese per la Birra: Produzione e Servizio",
+                price: 40.00,
+                image: "Ingleseproduzione.jpg"
+            }
+        };
 
         function toggleMenu() {
             menuPopUp.classList.toggle('open');
@@ -661,57 +746,146 @@
         hamburgerBtn.addEventListener('click', toggleMenu);
         closeMenuBtn.addEventListener('click', toggleMenu);
 
-        // Funzione per mostrare i dettagli del prodotto in base all'URL
-        function displayProductDetails() {
-            const params = new URLSearchParams(window.location.search);
-            const product = params.get('prodotto');
-            
-            let productName = "Prodotto non trovato";
-            let productPrice = 0;
-            let productImage = "";
+        // Funzione per aggiornare il conteggio del carrello in alto
+        function updateCartCount() {
+            const cart = getCart();
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            cartCountEl.textContent = totalItems;
+        }
 
-            if (product === 'corso_di_birra') {
-                productName = "Corso di Birra";
-                productPrice = 120.00;
-                productImage = "corsohome.jpg";
-            } else if (product === 'birre_di_natale') {
-                productName = "Degustazione Birre di Natale";
-                productPrice = 40.00;
-                productImage = "birrenatale.jpg";
-            } else if (product === 'inglese_per_birra_degustazione') {
-                productName = "Inglese per la Birra: La Degustazione";
-                productPrice = 40.00;
-                productImage = "inglesedegustazione.jpg";
-            } else if (product === 'inglese_per_birra_produzione') {
-                productName = "Inglese per la Birra: Produzione e Servizio";
-                productPrice = 40.00;
-                productImage = "Ingleseproduzione.jpg";
-            } else {
-                 const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
-                 if (cartItems.length > 0) {
-                     const lastProduct = cartItems[cartItems.length - 1];
-                     window.location.href = `carrello.html?prodotto=${lastProduct}`;
-                     return;
-                 }
+        // Funzioni di gestione del carrello in Local Storage
+        function getCart() {
+            return JSON.parse(localStorage.getItem('cart')) || [];
+        }
+
+        function saveCart(cart) {
+            localStorage.setItem('cart', JSON.stringify(cart));
+            renderCart();
+            updateCartCount();
+        }
+
+        // Renderizza la tabella dei prodotti nel carrello
+        function renderCart() {
+            const cart = getCart();
+            cartItemsContainer.innerHTML = '';
+            let subtotal = 0;
+
+            if (cart.length === 0) {
+                cartItemsContainer.innerHTML = `<tr><td colspan="3" class="empty-cart-message">Il carrello è vuoto.</td></tr>`;
+                subtotalPriceEl.textContent = '€0.00';
+                totalPriceEl.textContent = '€0.00';
+                clearCartBtn.style.display = 'none';
+                return;
             }
 
-            document.getElementById('product-name').textContent = productName;
-            document.getElementById('product-image').src = productImage;
-            document.getElementById('product-image').alt = productName;
-            document.getElementById('product-price').textContent = `€${productPrice.toFixed(2)}`;
-            document.getElementById('subtotal-price').textContent = `€${productPrice.toFixed(2)}`;
-            document.getElementById('total-price').textContent = `€${productPrice.toFixed(2)}`;
+            clearCartBtn.style.display = 'block';
+
+            cart.forEach(item => {
+                const product = PRODUCTS_DB[item.id];
+                if (!product) return;
+
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td class="product-info">
+                        <img src="${product.image}" alt="${product.name}">
+                        <span>${product.name}</span>
+                        <button class="remove-product-btn" data-id="${item.id}">&times;</button>
+                    </td>
+                    <td>
+                        <div class="quantity-control">
+                            <button class="quantity-btn decrease-btn" data-id="${item.id}">-</button>
+                            <span>${item.quantity}</span>
+                            <button class="quantity-btn increase-btn" data-id="${item.id}">+</button>
+                        </div>
+                    </td>
+                    <td>€${(product.price * item.quantity).toFixed(2)}</td>
+                `;
+                cartItemsContainer.appendChild(row);
+                subtotal += product.price * item.quantity;
+            });
+
+            subtotalPriceEl.textContent = `€${subtotal.toFixed(2)}`;
+            totalPriceEl.textContent = `€${subtotal.toFixed(2)}`; // Se non ci sono costi di spedizione, totale = subtotale
         }
 
-        function updateCartCount() {
-            const cartCountEl = document.querySelector('.cart-count');
-            const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
-            cartCountEl.textContent = cartItems.length;
+        // Aggiunge un prodotto al carrello
+        function addToCart(productId) {
+            const cart = getCart();
+            const existingItem = cart.find(item => item.id === productId);
+
+            if (existingItem) {
+                existingItem.quantity++;
+            } else {
+                if (PRODUCTS_DB[productId]) {
+                    cart.push({ id: productId, quantity: 1 });
+                }
+            }
+            saveCart(cart);
         }
 
-        document.addEventListener('DOMContentLoaded', () => {
+        // Gestisce la modifica della quantità
+        function updateQuantity(productId, change) {
+            const cart = getCart();
+            const item = cart.find(i => i.id === productId);
+
+            if (item) {
+                item.quantity += change;
+                if (item.quantity <= 0) {
+                    removeFromCart(productId);
+                } else {
+                    saveCart(cart);
+                }
+            }
+        }
+
+        // Rimuove un prodotto dal carrello
+        function removeFromCart(productId) {
+            const cart = getCart();
+            const newCart = cart.filter(item => item.id !== productId);
+            saveCart(newCart);
+        }
+        
+        // Svuota l'intero carrello
+        function clearCart() {
+            localStorage.removeItem('cart');
+            renderCart();
             updateCartCount();
-            displayProductDetails();
+        }
+
+        // Listener per i pulsanti di quantità e rimozione
+        cartItemsContainer.addEventListener('click', (e) => {
+            const target = e.target;
+            const productId = target.dataset.id;
+            
+            if (target.classList.contains('increase-btn')) {
+                updateQuantity(productId, 1);
+            } else if (target.classList.contains('decrease-btn')) {
+                updateQuantity(productId, -1);
+            } else if (target.classList.contains('remove-product-btn')) {
+                removeFromCart(productId);
+            }
+        });
+
+        // Listener per il pulsante Svuota carrello
+        clearCartBtn.addEventListener('click', clearCart);
+
+        // Aggiunge un nuovo prodotto al carrello solo se specificato nell'URL
+        function handleProductFromURL() {
+            const params = new URLSearchParams(window.location.search);
+            const productId = params.get('prodotto');
+            
+            if (productId) {
+                addToCart(productId);
+                // Rimuove il parametro dall'URL per evitare aggiornamenti continui
+                window.history.replaceState({}, document.title, window.location.pathname);
+            }
+        }
+
+        // Inizializzazione della pagina
+        document.addEventListener('DOMContentLoaded', () => {
+            handleProductFromURL(); // Gestisce l'aggiunta iniziale
+            renderCart();
+            updateCartCount();
         });
     </script>
 </body>
