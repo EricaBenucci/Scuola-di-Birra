@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shop - Italian Beer School</title>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet" />
+    <style>
+        /* ---------------------- */
+        /* Base pagina e sfondo   */
+        /* ---------------------- */
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: 'Quicksand', sans-serif;
+            background: url('sfondobichiere.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #fff;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        a:visited {
+            color: inherit;
+            text-decoration: none;
+        }
+        .overlay {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background-color: rgba(0, 0, 0, 0.6);
+            position: relative;
+            z-index: 1;
+        }
+        /* ---------------------- */
+        /* Header / Navbar        */
+        /* ---------------------- */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 85px 20px;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 2;
+        }
+        .logo-container {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(255,255,255,0.4);
+            padding: 10px 12px;
+            border-radius: 10px;
+        }
+        .logo-container img {
+            height: 110px;
+        }
+        .hamburger-menu {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 6px;
+            width: 30px;
+            height: 30px;
+        }
+        .hamburger-menu .line {
+            width: 30px;
+            height: 3px;
+            background-color: #fff;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        .hamburger-menu.open .line:nth-child(1) { transform: translateY(9px) rotate(45deg); }
+        .hamburger-menu.open .line:nth-child(2) { opacity: 0; }
+        .hamburger-menu.open .line:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
+        .carrello-link {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-weight: bold;
+        }
+        .carrello-link svg {
+            fill: #fff;
+            width: 25px;
+            height: 25px;
+        }
+        .carrello-text {
+            display: none;
+        }
+        /* Pop-up Menu Laterale */
+        .menu-pop-up {
+            position: fixed;
+            top: 0;
+            left: -300px;
+            width: 280px;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            color: #fff;
+            padding-top: 80px;
+            transition: left 0.3s ease-in-out;
+            z-index: 4;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .menu-pop-up a {
+            padding: 15px 20px;
+            display: block;
+            font-size: 1.2em;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .menu-pop-up a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        .menu-pop-up.open {
+            left: 0;
+        }
+        .close-menu {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: #fff;
+            font-size: 2em;
+            cursor: pointer;
+        }
+
+        /* ---------------------- */
+        /* Contenuto Shop         */
+        /* ---------------------- */
+        .page-content {
+            padding: 40px 20px;
+            max-width: 1200px;
+            margin: auto;
+            text-align: center;
+            flex-grow: 1;
+        }
+        .page-title {
+            font-size: 3em;
+            font-weight: bold;
+            margin-bottom: 40px;
+        }
+        .shop-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+        }
+        .product-box {
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            border-radius: 15px;
+            max-width: 350px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .product-image {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 50%;
+            margin-bottom: 15px;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+        }
+        .product-title {
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .product-description {
+            line-height: 1.6;
+            margin-bottom: 20px;
+            font-size: 1.1em;
+        }
+        .buy-button {
+            display: inline-block;
+            background-color: #e0ac4c;
+            color: #000;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-top: auto;
+            transition: background-color 0.3s ease;
+        }
+        .buy-button:hover {
+            background-color: #c4913e;
+        }
+        .checkout-button-container {
+            margin-top: 40px;
+            text-align: center;
+        }
+        .checkout-button {
+            background-color: #4CAF50; /* Un colore che spicca per il checkout */
+            color: #fff;
+            padding: 15px 30px;
+            border-radius: 8px;
+            font-size: 1.2em;
+            font-weight: bold;
+            text-transform: uppercase;
+            transition: background-color 0.3s ease;
+        }
+        .checkout-button:hover {
+            background-color: #45a049;
+        }
+        /* ---------------------- */
+        /* Footer                 */
+        /* ---------------------- */
+        .footer {
+            background-color: rgba(0, 0, 0, 0.8);
+            text-align: center;
+            padding: 10px;
+            font-size: 0.9em;
+            margin-top: 40px;
+        }
+        .footer a {
+            color: #fff;
+            text-decoration: underline;
+        }
+
+        /* ---------------------- */
+        /* Responsive rules       */
+        /* ---------------------- */
+        @media screen and (max-width: 1200px) {
+            .logo-container img { height: 90px; }
+        }
+        @media screen and (max-width: 800px) {
+            header { padding: 30px 10px; }
+            .logo-container img { height: 65px; }
+            .page-title { font-size: 2.2em; }
+        }
+        @media screen and (max-width: 500px) {
+            .product-box { max-width: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <div class="overlay">
+        <header>
+            <button class="hamburger-menu" aria-label="Menu">
+                <span class="line"></span>
+                <span class="line"></span>
+                <span class="line"></span>
+            </button>
+            <div class="logo-container">
+                <img src="logonew.jpg" alt="Logo ITALIAN BEER SCHOOL" />
+            </div>
+            <a href="carrello.html" class="carrello-link">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                    <path d="M0 1a1 1 0 0 1 1-1h1.5a.5.5 0 0 1 .485.379L3.89 3H14.5a.5.5 0 0 1 .49.598l-1.5 7A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.49-.402L1.61 3.607 1.11 2H1a1 1 0 0 1-1-1zm4.5 9a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm7 1.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
+                </svg>
+            </a>
+        </header>
+
+        <div class="menu-pop-up">
+            <div class="close-menu">&times;</div>
+            <a href="index.html">HOME</a>
+            <a href="prossimieventi.html">PROSSIMI EVENTI</a>
+            <a href="losapeviche.html">LO SAPEVI CHE?</a>
+            <a href="corsodibirra.html">CORSO DI BIRRA</a>
+            <a href="degustazionipassate.html">DEGUSTAZIONI PASSATE</a>
+            <a href="contatti.html">CONTATTI</a>
+        </div>
+
+        <main class="page-content">
+            <h1 class="page-title">Shop Online</h1>
+            <div class="shop-container">
+                <div class="product-box">
+                    <img src="corsohome.jpg" alt="Corso di Birra" class="product-image" />
+                    <div class="product-title">Corso di Birra</div>
+                    <div class="product-description">
+                        Corso completo di 4 serate per scoprire il mondo della birra artigianale, dalla produzione alla degustazione.
+                    </div>
+                    <a href="shop.html" class="buy-button">Acquista</a>
+                </div>
+
+                <div class="product-box">
+                    <img src="birrenatale.jpg" alt="Degustazione Birre di Natale" class="product-image" />
+                    <div class="product-title">Birre di Natale</div>
+                    <div class="product-description">
+                        Partecipazione alla serata speciale di degustazione guidata di birre natalizie da tutto il mondo.
+                    </div>
+                    <a href="shop.html" class="buy-button">Acquista</a>
+                </div>
+
+                <div class="product-box">
+                    <img src="inglesedegustazione.jpg" alt="Corso Inglese per la Birra" class="product-image" />
+                    <div class="product-title">Inglese per la Birra</div>
+                    <div class="product-description">
+                        Corso di due serate per imparare il vocabolario tecnico e descrivere la birra in inglese.
+                    </div>
+                    <a href="shop.html" class="buy-button">Acquista</a>
+                </div>
+            </div>
+
+            <div class="checkout-button-container">
+                <a href="checkout.html" class="checkout-button">Vai al Pagamento</a>
+            </div>
+        </main>
+
+        <div class="footer">
+            2025 ITALIAN BEER SCHOOL – Tutti i diritti riservati P.IVA: IT07436420488 | <a href="privacy.html">Privacy</a>
+        </div>
+    </div>
+
+    <script>
+        const hamburgerBtn = document.querySelector('.hamburger-menu');
+        const menuPopUp = document.querySelector('.menu-pop-up');
+        const closeMenuBtn = document.querySelector('.close-menu');
+
+        function toggleMenu() {
+            menuPopUp.classList.toggle('open');
+            hamburgerBtn.classList.toggle('open');
+        }
+
+        hamburgerBtn.addEventListener('click', toggleMenu);
+        closeMenuBtn.addEventListener('click', toggleMenu);
+    </script>
+</body>
+</html>
