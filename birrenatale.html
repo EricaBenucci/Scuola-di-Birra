@@ -220,6 +220,23 @@
             margin: 20px 0;
         }
         
+        /* Stili per il pulsante d'acquisto */
+        .buy-button {
+            display: inline-block;
+            background-color: #e0ac4c;
+            color: #000;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-top: 20px;
+            transition: background-color 0.3s ease;
+        }
+        
+        .buy-button:hover {
+            background-color: #c4913e;
+        }
+
         /* FOOTER */
         .footer {
             background-color: rgba(0, 0, 0, 0.8);
@@ -292,70 +309,4 @@
         <div class="menu-pop-up">
             <div class="close-menu">&times;</div>
             <a href="index.html">HOME</a>
-            <a href="prossimieventi.html">PROSSIMI EVENTI</a>
-            <a href="losapeviche.html">LO SAPEVI CHE?</a>
-            <a href="corsodibirra.html">CORSO DI BIRRA</a>
-            <a href="degustazionipassate.html">DEGUSTAZIONI PASSATE</a>
-            <a href="contatti.html">CONTATTI</a>
-        </div>
-
-        <main class="page-content">
-    <h1 class="page-title">BIRRE DI NATALE</h1>
-    <div class="event-quote page-subtitle">
-        "La birra è poesia liquida, e a Natale diventa magia."
-    </div>
-    <h2 class="page-subtitle">Venerdì 28 Novembre 2026, ore 20:45</h2>
-            <img src="birrenatale.jpg" alt="Birre di Natale" class="event-image" />
-            <div class="event-info">
-                📍 Circolo Rigacci – Via Francesco Baracca, 56 – Firenze
-            </div>
-                <div class="event-info">
-                Lasciati avvolgere dall’atmosfera natalizia con una serata unica dedicata alle **Birre di Natale**.
-                Un viaggio sensoriale tra aromi speziati, note caramellate e birre rare, con la possibilità di degustare anche la leggendaria **Westvleteren 12**, considerata una delle più pregiate al mondo.
-            </div>
-
-            <h3 class="section-heading">✨ Programma della serata</h3>
-<ul class="program-list">
-    <li>🍺 Degustazione guidata di birre natalizie e invernali</li>
-    <li>🥨 2 assaggi salati in abbinamento </li>
-    <li>🍰 2 assaggi di dolci natalizi in abbinamento</li>
-    <li>🎁 Quiz con sorteggio finale: in palio una birra speciale!</li>
-</ul>
-
-<div class="price-box">
-    <div class="price-heading">Quota di partecipazione</div>
-    <ul class="price-list">
-        <li>€35,00</li>
-        <li>
-            €30,00
-            <br><span class="discount">per soci FISAR / ANAG e per chi prenota entro il 15 ottobre 2026</span>
-        </li>
-    </ul>
-    <a href="shop.html" class="buy-button">Acquista</a>
-</div>
-
-<div class="event-quote">
-    "Ogni birra racconta una storia: a Natale diventa leggenda."
-</div>
-</main>
-
-<div class="footer">
-    2025 ITALIAN BEER SCHOOL – Tutti i diritti riservati P.IVA: IT07436420488 | <a href="privacy.html">Privacy</a>
-</div>
-</div>
-
-    <script>
-        const hamburgerBtn = document.querySelector('.hamburger-menu');
-        const menuPopUp = document.querySelector('.menu-pop-up');
-        const closeMenuBtn = document.querySelector('.close-menu');
-
-        function toggleMenu() {
-            menuPopUp.classList.toggle('open');
-            hamburgerBtn.classList.toggle('open');
-        }
-
-        hamburgerBtn.addEventListener('click', toggleMenu);
-        closeMenuBtn.addEventListener('click', toggleMenu);
-    </script>
-</body>
-</html>
+            <a href="prossimieventi
