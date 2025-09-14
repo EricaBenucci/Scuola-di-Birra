@@ -32,7 +32,6 @@
             position: relative;
             z-index: 1;
         }
-
         /* HEADER / NAVBAR */
         header {
             display: flex;
@@ -42,15 +41,15 @@
             padding: 85px 20px;
             flex-wrap: wrap;
             position: relative;
-            z-index: 2; /* Abbassato z-index per il menu */
+            z-index: 2;
         }
         .logo-container {
             position: absolute;
             left: 50%;
             transform: translateX(-50%);
-            background-color: rgba(255,255,255,0.4);
-            padding: 10px 12px;
-            border-radius: 10px;
+            padding: 0;
+            border-radius: 0;
+            background-color: transparent;
         }
         .logo-container img {
             height: 110px;
@@ -75,7 +74,6 @@
             border-radius: 5px;
             transition: all 0.3s ease;
         }
-        /* Animazione hamburger -> X */
         .hamburger-menu.open .line:nth-child(1) { transform: translateY(9px) rotate(45deg); }
         .hamburger-menu.open .line:nth-child(2) { opacity: 0; }
         .hamburger-menu.open .line:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
@@ -87,11 +85,21 @@
         }
         .carrello-link svg {
             fill: #fff;
-            width: 25px;
-            height: 25px;
+            width: 35px;
+            height: 35px;
         }
-        .carrello-text { display: none; }
-
+        .carrello-link .cart-count {
+            display: block;
+            background-color: #e0ac4c;
+            color: #000;
+            font-size: 0.8em;
+            font-weight: bold;
+            border-radius: 50%;
+            padding: 4px 8px;
+            margin-left: -10px;
+            position: relative;
+            top: -10px;
+        }
         /* Pop-up Menu Laterale */
         .menu-pop-up {
             position: fixed;
@@ -99,11 +107,11 @@
             left: -300px;
             width: 280px;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.9);
+            background-color: rgba(0, 0, 0, 0.95);
             color: #fff;
             padding-top: 80px;
             transition: left 0.3s ease-in-out;
-            z-index: 4; /* Aumentato z-index per il menu */
+            z-index: 4;
             display: flex;
             flex-direction: column;
             gap: 20px;
@@ -124,7 +132,6 @@
             font-size: 2em;
             cursor: pointer;
         }
-
         /* ---------------------- */
         /* Contenuto Pagina       */
         /* ---------------------- */
@@ -202,8 +209,6 @@
             font-size: 1em;
             font-weight: normal;
         }
-        
-        /* Immagine dell'evento */
         .event-image {
             width: 100%;
             max-width: 600px;
@@ -212,8 +217,6 @@
             box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
             margin: 20px 0;
         }
-        
-        /* Stili per il pulsante d'acquisto */
         .buy-button {
             display: inline-block;
             background-color: #e0ac4c;
@@ -226,11 +229,9 @@
             transition: background-color 0.3s ease;
             cursor: pointer;
         }
-        
         .buy-button:hover {
             background-color: #c4913e;
         }
-
         /* FOOTER */
         .footer {
             background-color: rgba(0, 0, 0, 0.8);
@@ -243,7 +244,6 @@
             color: #fff;
             text-decoration: underline;
         }
-
         /* ---------------------- */
         /* Responsive rules       */
         /* ---------------------- */
@@ -275,12 +275,13 @@
                 <span class="line"></span>
             </button>
             <div class="logo-container">
-                <img src="logonew.jpg" alt="Logo ITALIAN BEER SCHOOL" />
+                <img src="logonew_trasp.png" alt="Logo ITALIAN BEER SCHOOL" />
             </div>
             <a href="carrello.html" class="carrello-link">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
                     <path d="M0 1a1 1 0 0 1 1-1h1.5a.5.5 0 0 1 .485.379L3.89 3H14.5a.5.5 0 0 1 .49.598l-1.5 7A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.49-.402L1.61 3.607 1.11 2H1a1 1 0 0 1-1-1zm4.5 9a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm7 1.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
                 </svg>
+                <span class="cart-count">0</span>
             </a>
         </header>
 
@@ -326,7 +327,7 @@
                         <br><span class="discount">per soci FISAR / ANAG e per chi prenota entro il 15 ottobre 2026</span>
                     </li>
                 </ul>
-                <a href="shop.html" class="buy-button">Acquista</a>
+                <a href="#" class="buy-button" id="addToCartBtn">Acquista</a>
             </div>
         </main>
 
@@ -339,14 +340,52 @@
         const hamburgerBtn = document.querySelector('.hamburger-menu');
         const menuPopUp = document.querySelector('.menu-pop-up');
         const closeMenuBtn = document.querySelector('.close-menu');
+        const cartCountEl = document.querySelector('.cart-count');
+        const addToCartBtn = document.getElementById('addToCartBtn');
 
         function toggleMenu() {
             menuPopUp.classList.toggle('open');
             hamburgerBtn.classList.toggle('open');
         }
 
+        function updateCartCount() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            cartCountEl.textContent = totalItems;
+        }
+
+        function addToCart(product) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const existingProductIndex = cart.findIndex(item => item.id === product.id);
+
+            if (existingProductIndex > -1) {
+                cart[existingProductIndex].quantity += 1;
+            } else {
+                cart.push({ ...product, quantity: 1 });
+            }
+
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateCartCount();
+        }
+
         hamburgerBtn.addEventListener('click', toggleMenu);
         closeMenuBtn.addEventListener('click', toggleMenu);
+
+        addToCartBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            const product = {
+                id: 'birre-natale',
+                name: 'BIRRE DI NATALE',
+                price: 35.00
+            };
+            addToCart(product);
+            alert('Prodotto aggiunto al carrello!');
+            window.location.href = "carrello.html";
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            updateCartCount();
+        });
     </script>
 </body>
 </html>
