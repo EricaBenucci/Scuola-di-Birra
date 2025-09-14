@@ -419,7 +419,7 @@
         </div>
     </div>
     
-    <div id="cookie-banner" style="display: none;">
+    <div id="cookie-banner">
         <div class="cookie-content">
             <p>
                 Questo sito utilizza cookie tecnici e, previo tuo consenso, cookie di profilazione e analitici di terze parti per migliorare l'esperienza utente. Per maggiori informazioni, consulta la nostra <a href="privacy.html">Privacy Policy</a>.
@@ -468,12 +468,16 @@
         }
 
         function addToCart(product) {
+            // Inizializza il carrello se non esiste nel localStorage
             let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            
             const existingProductIndex = cart.findIndex(item => item.id === product.id);
 
             if (existingProductIndex > -1) {
+                // Incrementa la quantità se il prodotto è già nel carrello
                 cart[existingProductIndex].quantity += 1;
             } else {
+                // Aggiunge il nuovo prodotto al carrello con quantità 1
                 cart.push({ ...product, quantity: 1 });
             }
 
@@ -485,13 +489,14 @@
         closeMenuBtn.addEventListener('click', toggleMenu);
 
         addToCartBtn.addEventListener('click', (e) => {
-            e.preventDefault();
+            e.preventDefault(); // Previene il comportamento predefinito del link
             const product = {
-                id: 'corso-birra',
+                id: 'corso-birra', // Identificativo univoco del prodotto
                 name: 'Corso di Birra Gennaio/Febbraio 2026',
                 price: 120.00
             };
             addToCart(product);
+            // Reindirizza alla pagina del carrello dopo l'aggiunta
             window.location.href = "carrello.html";
         });
 
@@ -554,22 +559,23 @@
 
         manageBtn.addEventListener('click', () => {
             cookieSettings.style.display = 'block';
-            manageBtn.style.display = 'none';
-            acceptBtn.style.display = 'none';
-            rejectBtn.style.display = 'none';
+            // Nasconde i pulsanti originali una volta aperte le impostazioni
+            document.querySelector('.cookie-buttons').style.display = 'none'; 
         });
 
         saveBtn.addEventListener('click', () => {
             const consent = [];
-            consent.push('tecnici');
+            consent.push('tecnici'); // I cookie tecnici sono sempre inclusi
             if (analyticalCheckbox.checked) {
                 consent.push('analitici');
+                console.log('Cookie analitici attivati.');
             }
             if (marketingCheckbox.checked) {
                 consent.push('marketing');
+                console.log('Cookie di marketing attivati.');
             }
             setCookie('cookie_consent', consent.join(','), 365);
-            console.log(`Cookie salvati: ${consent.join(', ')}`);
+            console.log(`Preferenze cookie salvate: ${consent.join(', ')}`);
             hideBanner();
         });
     </script>
