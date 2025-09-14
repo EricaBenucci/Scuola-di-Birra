@@ -275,7 +275,7 @@
                 <span class="line"></span>
             </button>
             <div class="logo-container">
-                <img src="logonew.png" alt="Logo ITALIAN BEER SCHOOL" />
+                <img src="logonew_trasp.png" alt="Logo ITALIAN BEER SCHOOL" />
             </div>
             <a href="carrello.html" class="carrello-link">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
@@ -379,8 +379,14 @@
                 price: 35.00
             };
             addToCart(product);
-            alert('Prodotto aggiunto al carrello!');
             window.location.href = "carrello.html";
+        });
+        
+        // Sincronizza il contatore del carrello in tempo reale tra le pagine
+        window.addEventListener('storage', (event) => {
+            if (event.key === 'cart') {
+                updateCartCount();
+            }
         });
 
         document.addEventListener('DOMContentLoaded', () => {
