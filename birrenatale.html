@@ -6,15 +6,15 @@
     <title>Birre di Natale - Scuola di Birra</title>
     <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet" />
     <style>
-        /* Stili base */
+        /* Stili di base */
         html, body {
             margin: 0;
             padding: 0;
             font-family: 'Quicksand', sans-serif;
             background: url('sfondobichiere.jpg') no-repeat center center fixed;
-            background-size: cover; /* This covers the viewport */
+            background-size: cover;
             color: #fff;
-            height: 100%; /* Ensure html and body take full height */
+            height: 100%;
         }
         a {
             text-decoration: none;
@@ -27,8 +27,8 @@
         .overlay {
             display: flex;
             flex-direction: column;
-            min-height: 100vh; /* Ensures overlay takes at least the full viewport height */
-            background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent overlay for readability */
+            min-height: 100vh;
+            background-color: rgba(0, 0, 0, 0.6);
             position: relative;
             z-index: 1;
         }
@@ -40,9 +40,9 @@
             align-items: center;
             background-color: rgba(0, 0, 0, 0.7);
             padding: 85px 20px;
-            flex-wrap: wrap; /* Allows items to wrap on smaller screens */
+            flex-wrap: wrap;
             position: relative;
-            z-index: 3; /* Ensure header is above the overlay */
+            z-index: 2; /* Abbassato z-index per il menu */
         }
         .logo-container {
             position: absolute;
@@ -53,7 +53,7 @@
             border-radius: 10px;
         }
         .logo-container img {
-            height: 110px; /* Adjust logo size if needed */
+            height: 110px;
         }
         .hamburger-menu {
             background: none;
@@ -96,14 +96,14 @@
         .menu-pop-up {
             position: fixed;
             top: 0;
-            left: -300px; /* Hidden by default */
+            left: -300px;
             width: 280px;
             height: 100%;
             background-color: rgba(0, 0, 0, 0.9);
             color: #fff;
             padding-top: 80px;
             transition: left 0.3s ease-in-out;
-            z-index: 2; /* Above overlay */
+            z-index: 4; /* Aumentato z-index per il menu */
             display: flex;
             flex-direction: column;
             gap: 20px;
@@ -115,7 +115,7 @@
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
         .menu-pop-up a:hover { background-color: rgba(255, 255, 255, 0.1); }
-        .menu-pop-up.open { left: 0; } /* Visible when open */
+        .menu-pop-up.open { left: 0; }
         .close-menu {
             position: absolute;
             top: 20px;
@@ -131,9 +131,9 @@
         .page-content {
             padding: 20px;
             max-width: 800px;
-            margin: auto; /* Centers the content block */
+            margin: auto;
             text-align: center;
-            flex-grow: 1; /* Allows main content to take available space, pushing footer down */
+            flex-grow: 1;
         }
         .page-title {
             font-size: 3em;
@@ -180,7 +180,7 @@
             padding: 20px;
             border-radius: 10px;
             margin-top: 30px;
-            display: inline-block; /* Makes price-box only as wide as its content */
+            display: inline-block;
             text-align: center;
         }
         .price-heading {
@@ -216,7 +216,7 @@
         /* Stili per il pulsante d'acquisto */
         .buy-button {
             display: inline-block;
-            background-color: #e0ac4c; /* Gold color */
+            background-color: #e0ac4c;
             color: #000;
             padding: 10px 20px;
             border-radius: 5px;
@@ -224,11 +224,11 @@
             text-transform: uppercase;
             margin-top: 20px;
             transition: background-color 0.3s ease;
-            cursor: pointer; /* Indicates it's clickable */
+            cursor: pointer;
         }
         
         .buy-button:hover {
-            background-color: #c4913e; /* Darker gold on hover */
+            background-color: #c4913e;
         }
 
         /* FOOTER */
@@ -237,7 +237,7 @@
             text-align: center;
             padding: 10px;
             font-size: 0.9em;
-            margin-top: 40px; /* Pushes footer down, away from content */
+            margin-top: 40px;
         }
         .footer a {
             color: #fff;
@@ -250,11 +250,11 @@
         @media screen and (max-width: 1200px) {
             .page-title { font-size: 2.5em; }
             .page-subtitle { font-size: 1.2em; }
-            .logo-container img { height: 90px; } /* Slightly smaller logo on larger screens */
+            .logo-container img { height: 90px; }
         }
         @media screen and (max-width: 800px) {
             header { padding: 30px 10px; }
-            .logo-container img { height: 65px; } /* Smaller logo on medium screens */
+            .logo-container img { height: 65px; }
             .page-title { font-size: 2em; }
             .page-subtitle { font-size: 1em; }
             .program-list { max-width: 90%; }
@@ -262,7 +262,7 @@
         @media screen and (max-width: 500px) {
             .page-content { padding: 10px; }
             .event-image { width: 90%; }
-            .logo-container img { height: 55px; } /* Smallest logo on small screens */
+            .logo-container img { height: 55px; }
         }
     </style>
 </head>
