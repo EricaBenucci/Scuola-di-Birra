@@ -195,6 +195,16 @@
             color: #fff;
             box-sizing: border-box;
         }
+        /* Stili per rendere i menu a tendina leggibili */
+        .form-group select {
+            color: #000 !important; /* Testo sempre nero */
+            background-color: rgba(255, 255, 255, 0.9); /* Sfondo semi-trasparente bianco per il menu a tendina */
+        }
+        /* Stili per le opzioni dei menu a tendina */
+        .form-group select option {
+            background-color: #fff; /* Sfondo bianco per le opzioni */
+            color: #000; /* Testo nero per le opzioni */
+        }
         .form-group input:focus, .form-group select:focus {
             outline: none;
             border-color: #e0ac4c;
@@ -363,10 +373,21 @@
             text-transform: uppercase;
             cursor: pointer;
             margin-top: 30px;
-            transition: background-color 0.3s ease;
+            transition: background-color 0.3s ease, opacity 0.3s ease;
         }
-        .place-order-button:hover {
+        .place-order-button:hover:not(:disabled) {
             background-color: #45a049;
+        }
+        .place-order-button:disabled {
+            background-color: #6a6a6a;
+            cursor: not-allowed;
+        }
+        .paypal-link {
+            pointer-events: none; /* Disabilita i click */
+            opacity: 0.5; /* Rende il link meno visibile */
+        }
+        .paypal-link:hover {
+            text-decoration: none; /* Rimuove la sottolineatura al passaggio del mouse */
         }
         /* ---------------------- */
         /* Footer                 */
@@ -672,7 +693,7 @@
                             <div class="paypal-info">
                                 <h3>PayPal</h3>
                                 <p>Puoi pagare in modo sicuro con il tuo account PayPal.</p>
-                                <a href="https://www.paypal.com/it/webapps/mpp/home" class="buy-button" target="_blank">Paga con PayPal</a>
+                                <a href="https://www.paypal.com/it/webapps/mpp/home" class="buy-button paypal-link" id="paypal-link" target="_blank">Paga con PayPal</a>
                             </div>
                             <div class="bank-transfer">
                                 <h3>Bonifico Bancario</h3>
@@ -690,7 +711,7 @@
                         <p>I tuoi dati personali saranno utilizzati per elaborare il tuo ordine, supportare la tua esperienza su questo sito web e per altri scopi descritti nella nostra <a href="privacy.html" target="_blank">privacy policy</a>.</p>
                     </div>
 
-                    <button type="submit" class="place-order-button">Procedi al pagamento</button>
+                    <button type="submit" class="place-order-button" disabled>Procedi al pagamento</button>
                 </div>
             </div>
         </main>
@@ -709,6 +730,12 @@
         const totalPriceEl = document.getElementById('total-price');
         const cartCountEl = document.querySelector('.cart-count');
         const clearCartBtn = document.getElementById('clear-cart-btn');
+
+        // Selezione degli elementi per l'abilitazione del pagamento
+        const termsCheckbox = document.getElementById('terms-conditions');
+        const maggiorenneCheckbox = document.getElementById('maggiorenne');
+        const placeOrderBtn = document.querySelector('.place-order-button');
+        const paypalLink = document.getElementById('paypal-link');
 
         // DATABASE prodotti (potrebbe essere un file JSON o un backend)
         const PRODUCTS_DB = {
@@ -881,11 +908,34 @@
             }
         }
 
+        // Funzione per abilitare/disabilitare i pulsanti di pagamento
+        function checkPaymentConditions() {
+            const isMaggiorenne = maggiorenneCheckbox.checked;
+            const isTermsAccepted = termsCheckbox.checked;
+            
+            if (isMaggiorenne && isTermsAccepted) {
+                placeOrderBtn.disabled = false;
+                paypalLink.classList.remove('paypal-link'); // Rimuove la classe che disabilita il link
+                paypalLink.style.pointerEvents = 'auto'; // Abilita il click
+                paypalLink.style.opacity = '1';
+            } else {
+                placeOrderBtn.disabled = true;
+                paypalLink.classList.add('paypal-link'); // Aggiunge la classe per disabilitare il link
+                paypalLink.style.pointerEvents = 'none'; // Disabilita il click
+                paypalLink.style.opacity = '0.5';
+            }
+        }
+
+        // Listener per i checkbox che attivano il pagamento
+        maggiorenneCheckbox.addEventListener('change', checkPaymentConditions);
+        termsCheckbox.addEventListener('change', checkPaymentConditions);
+
         // Inizializzazione della pagina
         document.addEventListener('DOMContentLoaded', () => {
             handleProductFromURL(); // Gestisce l'aggiunta iniziale
             renderCart();
             updateCartCount();
+            checkPaymentConditions(); // Controlla lo stato iniziale dei checkbox
         });
     </script>
 </body>
