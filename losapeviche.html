@@ -7,7 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
     <style>
         /* ---------------------- */
-        /* Base pagina e sfondo    */
+        /* Base pagina e sfondo   */
         /* ---------------------- */
         html, body {
             margin: 0;
@@ -161,14 +161,10 @@
         .container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
+            gap: 40px; /* Aumento il gap per un migliore spazio tra i box */
             padding: 40px 20px;
-            justify-items: center;
-        }
-        @media screen and (min-width: 900px) {
-            .container {
-                grid-template-columns: repeat(3, 1fr);
-            }
+            max-width: 1200px; /* Imposto una larghezza massima per centrare su schermi grandi */
+            margin: 0 auto;
         }
         .flip-card {
             width: 100%;
@@ -176,6 +172,7 @@
             height: 200px;
             perspective: 1000px;
             cursor: pointer;
+            justify-self: center; /* Centra ogni elemento all'interno della griglia */
         }
         .flip-card-inner {
             position: relative;
@@ -201,7 +198,7 @@
             justify-content: center;
             align-items: center;
             color: #000;
-            opacity: 0.75; /* Aggiunta leggermente più velata per migliorare la leggibilità */
+            opacity: 0.75;
         }
         .flip-card-front {
             background: url('sfondoschiuma.jpg') no-repeat center top;
@@ -217,7 +214,7 @@
             font-weight: bold;
         }
         /* ---------------------- */
-        /* Footer                */
+        /* Footer                 */
         /* ---------------------- */
         .footer {
             background-color: rgba(0, 0, 0, 0.8);
@@ -231,7 +228,7 @@
             text-decoration: underline;
         }
         /* ---------------------- */
-        /* Responsive rules        */
+        /* Responsive rules       */
         /* ---------------------- */
         @media screen and (max-width: 1200px) {
             .logo-container img { height: 90px; }
@@ -245,8 +242,18 @@
             }
             .logo-container img { height: 65px; }
             .logo-container.old-logo img { height: 100px; }
-            .container { padding: 20px 10px; gap: 15px; }
+            .container { 
+                padding: 20px; 
+                gap: 20px; /* Aggiusto il gap per mobile */
+            }
             .flip-card { height: 180px; }
+        }
+        @media screen and (max-width: 500px) {
+            .container { 
+                padding: 15px; 
+                gap: 15px; /* Aggiusto il gap per schermi piccolissimi */
+            }
+            .flip-card { height: 160px; }
         }
         @media screen and (min-width: 801px) {
             .carrello-link svg {
@@ -254,13 +261,8 @@
                 height: 35px;
             }
         }
-        @media screen and (max-width: 500px) {
-            .container { padding: 15px 5px; gap: 10px; }
-            .flip-card { height: 160px; }
-        }
-
         /* ---------------------- */
-        /* Cookie Banner CSS       */
+        /* Cookie Banner CSS      */
         /* ---------------------- */
         .cookie-banner {
             position: fixed;
