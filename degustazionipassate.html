@@ -1,212 +1,510 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Degustazioni Passate - Scuola di Birra</title>
-  <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Quicksand', sans-serif;
-      background: url('sfondobichiere.jpg') no-repeat center center fixed;
-      background-size: cover;
-      color: #fff;
-    }
-    .overlay {
-      background-color: rgba(0, 0, 0, 0.6);
-      min-height: 100vh;
-    }
-    header {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-wrap: wrap;
-      background-color: rgba(0, 0, 0, 0.7);
-      padding: 10px 20px;
-    }
-    .nav-container {
-      display: flex;
-      align-items: center;
-      gap: 20px;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-    .nav-container a {
-      color: #fff;
-      text-decoration: none;
-      font-weight: bold;
-    }
-    .logo-container {
-      background-color: rgba(255,255,255,0.1);
-      padding: 8px;
-      border-radius: 10px;
-    }
-    .logo-container img {
-      height: 175px; /* logo aumentato di 25% */
-    }
-    .content {
-      padding: 20px;
-    }
-    section.event-section {
-      margin-bottom: 60px;
-      text-align: center;
-    }
-    .event-header {
-      background-color: rgba(255,255,255,0.1);
-      display: inline-block;
-      padding: 10px 20px;
-      border-radius: 10px;
-      margin-bottom: 15px;
-    }
-    .event-header h2 {
-      font-size: 1.8em;
-      margin: 0;
-      color: #fff;
-    }
-    .photos {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      justify-content: center;
-    }
-    .photos img {
-      width: calc((100% - 70px) / 8); /* otto per riga */
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.5);
-    }
-    @media screen and (max-width: 800px) {
-      .photos img {
-        width: calc(50% - 10px);
-      }
-    }
-    @media screen and (max-width: 500px) {
-      .photos img {
-        width: 100%;
-      }
-    }
-    a.link-collab {
-      color: #3399ff;
-      text-decoration: underline;
-    }
-    .footer {
-      background-color: rgba(0, 0, 0, 0.8);
-      color: #fff;
-      text-align: center;
-      padding: 10px;
-      font-size: 0.9em;
-      margin-top: 40px;
-    }
-    .footer a {
-      color: #fff;
-      text-decoration: underline;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lo sapevi che? - Italian Beer School</title>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
+    <style>
+        /* ---------------------- */
+        /* Base pagina e sfondo   */
+        /* ---------------------- */
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: 'Quicksand', sans-serif;
+            background: url('sfondobichiere.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #fff;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        a:visited {
+            color: inherit;
+            text-decoration: none;
+        }
+        .overlay {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background-color: rgba(0, 0, 0, 0.6);
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ---------------------- */
+        /* Header / Navbar        */
+        /* ---------------------- */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #000;
+            padding: 10px 20px;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+        .logo-container {
+            display: flex;
+            justify-content: center;
+            flex-grow: 1;
+        }
+        .logo-container img {
+            height: 50px;
+        }
+        .header-left, .header-right {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .hamburger-menu {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 6px;
+            width: 30px;
+            height: 30px;
+        }
+        .hamburger-menu .line {
+            width: 30px;
+            height: 3px;
+            background-color: #e0ac4c;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        .hamburger-menu.open .line:nth-child(1) { transform: translateY(9px) rotate(45deg); }
+        .hamburger-menu.open .line:nth-child(2) { opacity: 0; }
+        .hamburger-menu.open .line:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
+        .carrello-link {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-weight: bold;
+            color: #fff;
+        }
+        .carrello-link svg {
+            fill: #e0ac4c;
+            width: 25px;
+            height: 25px;
+        }
+        .carrello-link .cart-count {
+            display: block;
+            background-color: #e0ac4c;
+            color: #000;
+            font-size: 0.8em;
+            font-weight: bold;
+            border-radius: 50%;
+            padding: 4px 8px;
+            margin-left: -10px;
+            position: relative;
+            top: -10px;
+        }
+        .carrello-text {
+            display: none;
+        }
+
+        /* Pop-up Menu Laterale */
+        .menu-pop-up {
+            position: fixed;
+            top: 0;
+            left: -300px;
+            width: 280px;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.95);
+            color: #fff;
+            padding-top: 80px;
+            transition: left 0.3s ease-in-out;
+            z-index: 11;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .menu-pop-up a {
+            padding: 15px 20px;
+            display: block;
+            font-size: 1.2em;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            color: #fff;
+        }
+        .menu-pop-up a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        .menu-pop-up.open {
+            left: 0;
+        }
+        .close-menu {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: #e0ac4c;
+            font-size: 2em;
+            cursor: pointer;
+        }
+
+        /* ---------------------- */
+        /* Contenuto Lo Sapevi Che? */
+        /* ---------------------- */
+        .page-content {
+            flex-grow: 1;
+        }
+        .container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            padding: 40px 20px;
+            justify-items: center;
+        }
+        @media screen and (min-width: 900px) {
+            .container {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        .flip-card {
+            width: 100%;
+            max-width: 300px;
+            height: 200px;
+            perspective: 1000px;
+            cursor: pointer;
+        }
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+        .flip-card.flipped .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+        .flip-card-front,
+        .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border: 1px solid #fff;
+            border-radius: 10px;
+            padding: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #000;
+            opacity: 0.75;
+        }
+        .flip-card-front {
+            background: url('sfondoschiuma.jpg') no-repeat center top;
+            background-size: 100% 400%;
+            font-weight: bold;
+            font-size: 1.3em;
+        }
+        .flip-card-back {
+            transform: rotateY(180deg);
+            background: url('sfondoschiuma.jpg') no-repeat center bottom;
+            background-size: 100% 200%;
+            font-size: 1.1em;
+            font-weight: bold;
+        }
+        .flip-card-front > * {
+            max-width: 90%;
+        }
+
+        /* ---------------------- */
+        /* Footer                 */
+        /* ---------------------- */
+        footer {
+            background-color: #000;
+            text-align: center;
+            padding: 15px 10px;
+            font-size: 0.9em;
+            border-top: 1px solid #333;
+            color: #e0ac4c;
+        }
+        footer .footer-content {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        footer a {
+            color: #e0ac4c;
+            text-decoration: none;
+            margin: 0 5px;
+        }
+        footer .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+        footer .social-icons img {
+            height: 24px;
+            width: 24px;
+        }
+
+        /* ---------------------- */
+        /* Responsive rules       */
+        /* ---------------------- */
+        @media screen and (min-width: 801px) {
+            .carrello-text {
+                display: inline;
+            }
+            .logo-container img { height: 60px; }
+        }
+        @media screen and (max-width: 800px) {
+            .logo-container img { height: 40px; }
+            .container { padding: 20px 10px; gap: 15px; }
+            .flip-card { height: 180px; }
+            footer .footer-content {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+        @media screen and (max-width: 500px) {
+            .container { padding: 15px 5px; gap: 10px; }
+            .flip-card { height: 160px; }
+        }
+
+        /* ---------------------- */
+        /* Cookie Banner CSS      */
+        /* ---------------------- */
+        .cookie-banner {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            color: #fff;
+            text-align: center;
+            padding: 15px;
+            box-sizing: border-box;
+            z-index: 1000;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .cookie-banner-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 900px;
+            margin: auto;
+        }
+        .cookie-banner p {
+            margin: 0 0 10px 0;
+            line-height: 1.4;
+            font-size: 0.9em;
+        }
+        .cookie-banner a {
+            color: #e0ac4c;
+            text-decoration: underline;
+        }
+        .cookie-banner button {
+            background-color: #e0ac4c;
+            color: #000;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-top: 10px;
+        }
+        @media screen and (min-width: 768px) {
+            .cookie-banner-content {
+                flex-direction: row;
+                justify-content: space-between;
+                gap: 20px;
+            }
+            .cookie-banner p {
+                margin: 0;
+            }
+            .cookie-banner button {
+                margin-top: 0;
+                white-space: nowrap;
+            }
+        }
+    </style>
 </head>
 <body>
-  <div class="overlay">
-    <header>
-      <div class="nav-container">
-        <a href="index.html">HOME</a>
-        <a href="prossimieventi.html">PROSSIMI EVENTI</a>
-        <a href="corsodibirra.html">CORSO DI BIRRA</a>
-        <div class="logo-container">
-          <img src="logo.jpg" alt="Logo Scuola di Birra">
+    <div class="overlay">
+        <header>
+            <div class="header-left">
+                <button class="hamburger-menu" aria-label="Menu">
+                    <span class="line"></span>
+                    <span class="line"></span>
+                    <span class="line"></span>
+                </button>
+            </div>
+            <div class="logo-container">
+                <a href="index.html">
+                    <img src="logo_bianco.png" alt="Logo Italian Beer School">
+                </a>
+            </div>
+            <div class="header-right">
+                <a href="carrello.html" class="carrello-link">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                        <path d="M0 1a1 1 0 0 1 1-1h1.5a.5.5 0 0 1 .485.379L3.89 3H14.5a.5.5 0 0 1 .49.598l-1.5 7A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.49-.402L1.61 3.607 1.11 2H1a1 1 0 0 1-1-1zm4.5 9a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm7 1.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
+                    </svg>
+                    <span class="cart-count">0</span>
+                    <span class="carrello-text">Carrello</span>
+                </a>
+            </div>
+        </header>
+
+        <div class="menu-pop-up">
+            <div class="close-menu">&times;</div>
+            <a href="index.html">HOME</a>
+            <a href="prossimieventi.html">PROSSIMI EVENTI</a>
+            <a href="losapeviche.html">LO SAPEVI CHE?</a>
+            <a href="corsodibirra.html">CORSO DI BIRRA</a>
+            <a href="degustazionipassate.html">DEGUSTAZIONI PASSATE</a>
+            <a href="contatti.html">CONTATTI</a>
         </div>
-        <a href="degustazionipassate.html">DEGUSTAZIONI PASSATE</a>
-        <a href="losapeviche.html">LO SAPEVI CHE?</a>
-        <a href="contatti.html">CONTATTI</a>
-      </div>
-    </header>
-    <div class="content">
-      <!-- SAKE MONDAY -->
-      <section class="event-section">
-        <div class="event-header">
-          <h2>SAKE MONDAY con <a href="https://scuolaitalianasake.it/" class="link-collab" target="_blank">SCUOLA ITALIANA SAKE</a> – Maggio 2025</h2>
-        </div>
-        <div class="photos">
-          <img src="mon1.jpg" alt="Sake Monday 1">
-          <img src="mon2.jpg" alt="Sake Monday 2">
-          <img src="mon3.jpg" alt="Sake Monday 3">
-          <img src="mon5.jpg" alt="Sake Monday 5">
-          <img src="mon6.jpg" alt="Sake Monday 6">
-          <img src="mon7.jpg" alt="Sake Monday 7">
-        </div>
-      </section>
-      <!-- ABBINAMENTO BIRRA E CUCINE ASIATICHE -->
-      <section class="event-section">
-        <div class="event-header">
-          <h2>ABBINAMENTO BIRRA E CUCINE ASIATICHE con <a href="https://www.facebook.com/search/top?q=calice%20h%20%E6%83%A0%E6%90%96%E9%AB%98%E8%85%B3%E6%9D%AF" class="link-collab" target="_blank">CALICE H</a> – Maggio 2024</h2>
-        </div>
-        <div class="photos">
-          <img src="asia1.jpg" alt="Cucine Asiatiche 1">
-          <img src="asia2.jpg" alt="Cucine Asiatiche 2">
-          <img src="asia3.jpg" alt="Cucine Asiatiche 3">
-          <img src="asia4.jpg" alt="Cucine Asiatiche 4">
-          <img src="asia5.jpg" alt="Cucine Asiatiche 5">
-          <img src="asia6.jpg" alt="Cucine Asiatiche 6">
-          <img src="asia7.jpg" alt="Cucine Asiatiche 7">
-        </div>
-      </section>
-      <!-- DEGUSTAZIONE E ABBINAMENTO BIRRE -->
-      <section class="event-section">
-        <div class="event-header">
-          <h2>DEGUSTAZIONE E ABBINAMENTO BIRRE presso <a href="https://www.facebook.com/profile.php?id=100002089160831" class="link-collab" target="_blank">LA DEGNA TANA</a> – Aprile 2024</h2>
-        </div>
-        <div class="photos">
-          <img src="degna1.jpg" alt="La Degna Tana 1">
-          <img src="degna2.jpg" alt="La Degna Tana 2">
-          <img src="degna3.jpg" alt="La Degna Tana 3">
-          <img src="degna4.jpg" alt="La Degna Tana 4">
-          <img src="degna5.jpg" alt="La Degna Tana 5">
-        </div>
-      </section>
-      <!-- MASTERCLASS GIAPPONESE -->
-      <section class="event-section">
-        <div class="event-header">
-          <h2>MASTERCLASS IN 2 SERATE: LA BIRRA ARTIGIANALE GIAPPONESE con <a href="https://scuolaitalianasake.it/" class="link-collab" target="_blank">SCUOLA ITALIANA SAKE</a> – Aprile 2024</h2>
-        </div>
-        <div class="photos">
-          <img src="mas1.jpg" alt="Masterclass Giapponese 1">
-          <img src="mas2.jpg" alt="Masterclass Giapponese 2">
-          <img src="mas3.jpg" alt="Masterclass Giapponese 3">
-          <img src="mas4.jpg" alt="Masterclass Giapponese 4">
-          <img src="mas5.jpg" alt="Masterclass Giapponese 5">
-          <img src="mas6.jpg" alt="Masterclass Giapponese 6">
-          <img src="mas7.jpg" alt="Masterclass Giapponese 7">
-          <img src="mas8.jpg" alt="Masterclass Giapponese 8">
-          <img src="mas10.jpg" alt="Masterclass Giapponese 10">
-          <img src="mas13.jpg" alt="Masterclass Giapponese 13">
-        </div>
-      </section>
-      <!-- BIRRA ARTIGIANALE ITALIANA -->
-      <section class="event-section">
-        <div class="event-header">
-          <h2>BIRRA ARTIGIANALE ITALIANA con <a href="https://www.facebook.com/search/top?q=calice%20h%20%E6%83%A0%E6%90%96%E9%AB%98%E8%85%B3%E6%9D%AF" class="link-collab" target="_blank">CALICE H</a> – Luglio 2024</h2>
-        </div>
-        <div class="photos">
-          <img src="to1.jpg" alt="Birra Italiana 1">
-          <img src="to2.jpg" alt="Birra Italiana 2">
-          <img src="to3.jpg" alt="Birra Italiana 3">
-        </div>
-      </section>
-      <!-- ANEDDOTI E BIRRE TRAPPISTE -->
-      <section class="event-section">
-        <div class="event-header">
-          <h2>ANEDDOTI E BIRRE TRAPPISTE con <a href="https://www.facebook.com/search/top?q=calice%20h%20%E6%83%A0%E6%90%96%E9%AB%98%E8%85%B3%E6%9D%AF" class="link-collab" target="_blank">CALICE H</a> – Anno 2021</h2>
-        </div>
-        <div class="photos">
-          <img src="tr2.jpg" alt="Trappiste 2">
-          <img src="tr3.jpg" alt="Trappiste 3">
-          <img src="tr4.jpg" alt="Trappiste 4">
-          <img src="tr5.jpg" alt="Trappiste 5">
-          <img src="tr1.jpg" alt="Trappiste 1">
-        </div>
-      </section>
+
+        <main class="page-content">
+            <div class="container">
+                <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            Esiste una fobia della birra vuota
+                        </div>
+                        <div class="flip-card-back">
+                            Si chiama **"Cenosillicaphobia"** ed è la paura di un bicchiere di birra vuoto. È più una curiosità che una fobia clinicamente riconosciuta, ma è un termine divertente che circola tra gli appassionati di birra!
+                        </div>
+                    </div>
+                </div>
+                <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            La birra può essere un buon fertilizzante per il giardino
+                        </div>
+                        <div class="flip-card-back">
+                            Non pensare di versare la tua pinta sul prato! Ma i resti della sua produzione, lieviti e nutrienti residui, possono arricchire il terreno. Alcuni giardinieri la usano anche per attirare le lumache.
+                        </div>
+                    </div>
+                </div>
+                <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            Il record mondiale per la collezione di birre
+                        </div>
+                        <div class="flip-card-back">
+                            Il record per la più grande collezione di bottiglie di birra non aperte appartiene a **Ron Werner (USA)**, ottenuto nel 2012 con oltre 25.866 bottiglie diverse.
+                        </div>
+                    </div>
+                </div>
+                <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            Il Paese con più grande consumo di birra pro capite?
+                        </div>
+                        <div class="flip-card-back">
+                            È la **Repubblica Ceca**, che detiene da anni il primato con una media di oltre 130 litri all'anno per persona. La birra è parte fondamentale della loro cultura.
+                        </div>
+                    </div>
+                </div>
+                <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            La birra come medicina?
+                        </div>
+                        <div class="flip-card-back">
+                            Un tempo la birra era considerata più sicura dell'acqua in alcune aree. Bollita e alcolica, era usata anche come tonico o per aiutare la digestione.
+                        </div>
+                    </div>
+                </div>
+                <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            Un’inondazione di birra?
+                        </div>
+                        <div class="flip-card-back">
+                            Sì, accadde a Londra nel **1814** quando una cisterna si ruppe riversando oltre 1,4 milioni di litri di Porter. L'ondata causò 8 vittime: fu la “Grande Inondazione di Birra”.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <div class="footer-content">
+                <span>2025 ITALIAN BEER SCHOOL – Tutti i diritti riservati P.IVA: IT07436420488</span>
+                <div class="footer-links">
+                    <a href="privacy.html">Privacy</a> | <a href="termini.html">Termini e Condizioni</a>
+                </div>
+                <div class="social-icons">
+                    <a href="https://www.facebook.com" target="_blank"><img src="facebook_icon.png" alt="Facebook"></a>
+                    <a href="https://www.instagram.com" target="_blank"><img src="instagram_icon.png" alt="Instagram"></a>
+                    <a href="https://www.linkedin.com" target="_blank"><img src="linkedin_icon.png" alt="LinkedIn"></a>
+                </div>
+            </div>
+        </footer>
     </div>
-    <div class="footer">
-      2025 SCUOLA DI BIRRA – Tutti i diritti riservati P.IVA: IT07436420488 | <a href="privacy.html">Privacy</a>
+    
+    <div class="cookie-banner" id="cookieBanner">
+        <div class="cookie-banner-content">
+            <p>Questo sito utilizza i cookie per offrirti un'esperienza di navigazione migliore. Cliccando su "Accetta" acconsenti all'uso dei cookie. Per maggiori informazioni, puoi consultare la nostra <a href="privacy.html">Informativa sulla Privacy</a>.</p>
+            <button id="acceptCookiesBtn">Accetta</button>
+        </div>
     </div>
-  </div>
+
+    <script>
+        const hamburgerBtn = document.querySelector('.hamburger-menu');
+        const menuPopUp = document.querySelector('.menu-pop-up');
+        const closeMenuBtn = document.querySelector('.close-menu');
+        const cartCountEl = document.querySelector('.cart-count');
+        const cookieBanner = document.getElementById('cookieBanner');
+        const acceptCookiesBtn = document.getElementById('acceptCookiesBtn');
+
+        function toggleMenu() {
+            menuPopUp.classList.toggle('open');
+            hamburgerBtn.classList.toggle('open');
+        }
+
+        function updateCartCount() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            cartCountEl.textContent = totalItems;
+        }
+
+        function hasAcceptedCookies() {
+            return localStorage.getItem('cookiesAccepted') === 'true';
+        }
+
+        function showCookieBanner() {
+            if (!hasAcceptedCookies()) {
+                cookieBanner.style.display = 'flex';
+            }
+        }
+
+        function acceptCookies() {
+            localStorage.setItem('cookiesAccepted', 'true');
+            cookieBanner.style.display = 'none';
+        }
+
+        hamburgerBtn.addEventListener('click', toggleMenu);
+        closeMenuBtn.addEventListener('click', toggleMenu);
+        acceptCookiesBtn.addEventListener('click', acceptCookies);
+
+        document.addEventListener('DOMContentLoaded', () => {
+            updateCartCount();
+            showCookieBanner();
+        });
+
+        window.addEventListener('storage', (event) => {
+            if (event.key === 'cart') {
+                updateCartCount();
+            }
+        });
+    </script>
 </body>
 </html>
