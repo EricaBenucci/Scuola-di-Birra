@@ -7,7 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet" />
     <style>
         /* ---------------------- */
-        /* Base pagina e sfondo  */
+        /* Base pagina e sfondo   */
         /* ---------------------- */
         html, body {
             margin: 0;
@@ -460,7 +460,7 @@
             <div class="checkout-container">
                 <div class="billing-details">
                     <h2>Dettagli di fatturazione</h2>
-                    <form id="billing-form">
+                    <form>
                         <div class="form-group">
                             <label for="nome" class="required-label">Nome</label>
                             <input type="text" id="nome" name="nome" required>
@@ -652,11 +652,11 @@
                         <tfoot>
                             <tr class="subtotal-row">
                                 <th colspan="2">Subtotale</th>
-                                <td id="subtotal-price">€ 0.00</td>
+                                <td id="subtotal-price"></td>
                             </tr>
                             <tr class="total-row">
                                 <th colspan="2">Totale</th>
-                                <td id="total-price">€ 0.00</td>
+                                <td id="total-price"></td>
                             </tr>
                         </tfoot>
                     </table>
@@ -731,173 +731,140 @@
         const cartCountEl = document.querySelector('.cart-count');
         const clearCartBtn = document.getElementById('clear-cart-btn');
 
-        // Selezione degli elementi per l'abilitazione del pagamento
         const termsCheckbox = document.getElementById('terms-conditions');
         const maggiorenneCheckbox = document.getElementById('maggiorenne');
         const placeOrderBtn = document.querySelector('.place-order-button');
-        const billingForm = document.getElementById('billing-form'); // Riferimento al form di fatturazione
+        const billingForm = document.querySelector('.billing-details form');
+        const allRequiredInputs = document.querySelectorAll('.billing-details input[required], .billing-details select[required]');
 
-        // Funzione per aggiornare il contatore del carrello nell'header
-        function updateCartCountDisplay() {
+        function toggleMenu() {
+            menuPopUp.classList.toggle('open');
+            hamburgerBtn.classList.toggle('open');
+        }
+
+        function updateCartCount() {
             const cart = JSON.parse(localStorage.getItem('cart')) || [];
             const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
             cartCountEl.textContent = totalItems;
         }
 
-        // Funzione per visualizzare i prodotti nel carrello
+        // --- Modifica qui ---
         function renderCartItems() {
             const cart = JSON.parse(localStorage.getItem('cart')) || [];
-            cartItemsContainer.innerHTML = ''; // Pulisce il contenuto attuale
+            cartItemsContainer.innerHTML = ''; // Svuota il contenuto attuale
+            let total = 0;
 
             if (cart.length === 0) {
                 cartItemsContainer.innerHTML = '<tr><td colspan="3" class="empty-cart-message">Il tuo carrello è vuoto.</td></tr>';
-                clearCartBtn.disabled = true; // Disabilita il pulsante se il carrello è vuoto
+                clearCartBtn.style.display = 'none';
             } else {
-                clearCartBtn.disabled = false; // Abilita il pulsante se ci sono articoli
                 cart.forEach(item => {
+                    const itemTotal = item.price * item.quantity;
+                    total += itemTotal;
+
                     const row = document.createElement('tr');
                     row.innerHTML = `
-                        <td class="product-info">
-                            <img src="${item.image || 'placeholder.png'}" alt="${item.name}"> <div>
-                                <strong>${item.name}</strong>
-                                <p>Prezzo unitario: € ${item.price.toFixed(2)}</p>
+                        <td>
+                            <div class="product-info">
+                                <span>${item.name}</span>
                             </div>
                         </td>
                         <td>
                             <div class="quantity-control">
-                                <button class="quantity-btn minus-btn" data-id="${item.id}">-</button>
-                                <span>${item.quantity}</span>
-                                <button class="quantity-btn plus-btn" data-id="${item.id}">+</button>
+                                <button class="quantity-btn decrease-btn" data-id="${item.id}" ${item.quantity <= 1 ? 'disabled' : ''}>-</button>
+                                <span class="quantity">${item.quantity}</span>
+                                <button class="quantity-btn increase-btn" data-id="${item.id}">+</button>
+                                <button class="remove-product-btn" data-id="${item.id}">&times;</button>
                             </div>
                         </td>
-                        <td>€ ${(item.price * item.quantity).toFixed(2)}</td>
-                        <td><button class="remove-product-btn" data-id="${item.id}">Rimuovi</button></td>
+                        <td>${itemTotal.toFixed(2)}€</td>
                     `;
                     cartItemsContainer.appendChild(row);
                 });
+                clearCartBtn.style.display = 'block';
             }
-            updateCartTotals();
+
+            subtotalPriceEl.textContent = `${total.toFixed(2)}€`;
+            totalPriceEl.textContent = `${total.toFixed(2)}€`; // Il totale è uguale al subtotale se non ci sono spese di spedizione
+            updatePlaceOrderButton();
         }
 
-        // Funzione per aggiornare subtotale e totale
-        function updateCartTotals() {
-            const cart = JSON.parse(localStorage.getItem('cart')) || [];
-            let subtotal = 0;
-            cart.forEach(item => {
-                subtotal += item.price * item.quantity;
-            });
-            const shippingCost = 0; // Costo di spedizione (se presente)
-            const total = subtotal + shippingCost;
-
-            subtotalPriceEl.textContent = `€ ${subtotal.toFixed(2)}`;
-            totalPriceEl.textContent = `€ ${total.toFixed(2)}`;
-        }
-
-        // Funzione per modificare la quantità di un prodotto
-        function updateItemQuantity(id, change) {
+        function updateQuantity(id, change) {
             let cart = JSON.parse(localStorage.getItem('cart')) || [];
             const itemIndex = cart.findIndex(item => item.id === id);
 
             if (itemIndex > -1) {
                 cart[itemIndex].quantity += change;
                 if (cart[itemIndex].quantity <= 0) {
-                    // Rimuovi l'elemento se la quantità è 0 o meno
                     cart.splice(itemIndex, 1);
                 }
                 localStorage.setItem('cart', JSON.stringify(cart));
-                renderCartItems(); // Ricarica la visualizzazione del carrello
-                updateCartCountDisplay(); // Aggiorna il contatore globale
+                renderCartItems();
+                updateCartCount();
             }
         }
 
-        // Funzione per rimuovere un prodotto dal carrello
-        function removeItemFromCart(id) {
-            let cart = JSON.parse(localStorage.getItem('cart')) || [];
-            cart = cart.filter(item => item.id !== id);
-            localStorage.setItem('cart', JSON.stringify(cart));
-            renderCartItems();
-            updateCartCountDisplay();
+        function handleCartActions(e) {
+            const target = e.target;
+            if (target.classList.contains('increase-btn')) {
+                const id = target.dataset.id;
+                updateQuantity(id, 1);
+            } else if (target.classList.contains('decrease-btn')) {
+                const id = target.dataset.id;
+                updateQuantity(id, -1);
+            } else if (target.classList.contains('remove-product-btn')) {
+                const id = target.dataset.id;
+                let cart = JSON.parse(localStorage.getItem('cart')) || [];
+                const itemIndex = cart.findIndex(item => item.id === id);
+                if (itemIndex > -1) {
+                    cart.splice(itemIndex, 1);
+                    localStorage.setItem('cart', JSON.stringify(cart));
+                    renderCartItems();
+                    updateCartCount();
+                }
+            }
         }
 
-        // Funzione per svuotare completamente il carrello
         function clearCart() {
             localStorage.removeItem('cart');
             renderCartItems();
-            updateCartCountDisplay();
+            updateCartCount();
         }
 
-        // Gestione apertura/chiusura menu hamburger
-        function toggleMenu() {
-            menuPopUp.classList.toggle('open');
-            hamburgerBtn.classList.toggle('open');
+        function validateForm() {
+            const isFormValid = Array.from(allRequiredInputs).every(input => input.checkValidity());
+            const isTermsChecked = termsCheckbox.checked;
+            const isMaggiorenneChecked = maggiorenneCheckbox.checked;
+            const isCartNotEmpty = (JSON.parse(localStorage.getItem('cart')) || []).length > 0;
+            
+            placeOrderBtn.disabled = !(isFormValid && isTermsChecked && isMaggiorenneChecked && isCartNotEmpty);
         }
 
-        // Abilita/Disabilita il pulsante "Procedi al pagamento"
-        function checkFormCompletion() {
-            const isFormValid = billingForm.checkValidity();
-            const areTermsAccepted = termsCheckbox.checked;
-            const isAdult = maggiorenneCheckbox.checked;
-
-            if (isFormValid && areTermsAccepted && isAdult && JSON.parse(localStorage.getItem('cart')).length > 0) {
-                placeOrderBtn.disabled = false;
-            } else {
-                placeOrderBtn.disabled = true;
-            }
+        function updatePlaceOrderButton() {
+            const isCartNotEmpty = (JSON.parse(localStorage.getItem('cart')) || []).length > 0;
+            placeOrderBtn.disabled = !isCartNotEmpty || !termsCheckbox.checked || !maggiorenneCheckbox.checked;
         }
 
-        // Event Listener per il menu hamburger
         hamburgerBtn.addEventListener('click', toggleMenu);
         closeMenuBtn.addEventListener('click', toggleMenu);
-
-        // Event Listener per i pulsanti di aggiunta/rimozione quantità e rimozione prodotto
-        cartItemsContainer.addEventListener('click', (e) => {
-            const target = e.target;
-            const itemId = target.dataset.id;
-
-            if (target.classList.contains('minus-btn')) {
-                updateItemQuantity(itemId, -1);
-            } else if (target.classList.contains('plus-btn')) {
-                updateItemQuantity(itemId, 1);
-            } else if (target.classList.contains('remove-product-btn')) {
-                removeItemFromCart(itemId);
-            }
-        });
-
-        // Event Listener per il pulsante "Svuota carrello"
+        cartItemsContainer.addEventListener('click', handleCartActions);
         clearCartBtn.addEventListener('click', clearCart);
+        
+        termsCheckbox.addEventListener('change', updatePlaceOrderButton);
+        maggiorenneCheckbox.addEventListener('change', updatePlaceOrderButton);
+        billingForm.addEventListener('input', updatePlaceOrderButton);
 
-        // Event Listener per i campi del form di fatturazione
-        billingForm.addEventListener('input', checkFormCompletion); // Controlla ad ogni input nel form
-        termsCheckbox.addEventListener('change', checkFormCompletion);
-        maggiorenneCheckbox.addEventListener('change', checkFormCompletion);
-
-        // Event Listener per il pulsante "Procedi al pagamento" (simulazione)
-        placeOrderBtn.addEventListener('click', (e) => {
-            if (!placeOrderBtn.disabled) {
-                // Qui andrà la logica per procedere al pagamento effettivo
-                // Per ora, mostriamo un messaggio e svuotiamo il carrello
-                alert('Ordine completato! Grazie per il tuo acquisto.');
-                clearCart(); // Svuota il carrello dopo l'ordine simulato
-                // Reindirizza a una pagina di conferma ordine, se presente
-                // window.location.href = 'conferma-ordine.html';
-            }
-        });
-
-        // Carica gli elementi del carrello quando la pagina è pronta
         document.addEventListener('DOMContentLoaded', () => {
             renderCartItems();
-            updateCartCountDisplay();
-            checkFormCompletion(); // Verifica lo stato iniziale dei checkbox e del carrello
+            updateCartCount();
         });
 
-        // Aggiorna il contatore del carrello se il localStorage cambia in un'altra scheda
         window.addEventListener('storage', (event) => {
             if (event.key === 'cart') {
                 renderCartItems();
-                updateCartCountDisplay();
+                updateCartCount();
             }
         });
-
     </script>
 </body>
 </html>
