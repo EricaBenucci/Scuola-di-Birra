@@ -239,6 +239,111 @@
             color: #fff;
             text-decoration: underline;
         }
+        
+        /* ---------------------- */
+        /* CODICE CSS AGGIUNTO PER IL COOKIE BANNER */
+        /* ---------------------- */
+        #cookie-banner {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.85);
+            color: #fff;
+            padding: 20px;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            font-size: 0.9em;
+        }
+        .cookie-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 800px;
+            width: 100%;
+        }
+        .cookie-content p {
+            margin: 0 0 15px;
+        }
+        .cookie-buttons button {
+            background-color: #e0ac4c;
+            color: #000;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1em;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+            font-family: 'Quicksand', sans-serif;
+        }
+        .cookie-buttons button:hover {
+            background-color: #dddddd;
+        }
+        #cookie-settings {
+            margin-top: 20px;
+            max-width: 800px;
+            width: 100%;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            text-align: left;
+        }
+        #cookie-settings h3 {
+            margin: 0 0 10px;
+            text-align: center;
+        }
+        .cookie-category {
+            margin-bottom: 10px;
+        }
+        .cookie-category input[type="checkbox"] {
+            margin-right: 10px;
+        }
+        #save-cookies {
+            width: 100%;
+            margin-top: 15px;
+            background-color: #4CAF50;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        /* Stile per il pop-up "Un attimo..." */
+        .loading-popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0, 0, 0, 0.8);
+            color: #fff;
+            padding: 20px 40px;
+            border-radius: 10px;
+            font-size: 1.5em;
+            z-index: 9999;
+            display: flex; /* Utilizza flexbox per allineare testo e spinner */
+            align-items: center; /* Centra verticalmente */
+            justify-content: center; /* Centra orizzontalmente */
+            gap: 15px; /* Spazio tra testo e spinner */
+            white-space: nowrap; /* Impedisce al testo di andare a capo */
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+            display: none; /* Nascondi per impostazione predefinita */
+        }
+
+        /* Stile per lo spinner */
+        .spinner {
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-top: 4px solid #e0ac4c; /* Colore dell'animazione */
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 0.8s linear infinite; /* Animazione di rotazione */
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
 
         /* ---------------------- */
         /* Responsive rules */
@@ -268,7 +373,9 @@
                 <span class="line"></span>
             </button>
             <div class="logo-container">
-                <img src="logonew.png" alt="Logo ITALIAN BEER SCHOOL" />
+                <a href="index.html">
+                    <img src="logonew.png" alt="Logo ITALIAN BEER SCHOOL" />
+                </a>
             </div>
             <a href="carrello.html" class="carrello-link">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
@@ -347,6 +454,40 @@
             2025 ITALIAN BEER SCHOOL – Tutti i diritti riservati P.IVA: IT07436420488 | <a href="privacy.html">Privacy</a>
         </div>
     </div>
+    
+    <div id="cookie-banner" style="display: none;">
+        <div class="cookie-content">
+            <p>
+                Questo sito utilizza cookie tecnici e, previo tuo consenso, cookie di profilazione e analitici di terze parti per migliorare l'esperienza utente. Per maggiori informazioni, consulta la nostra <a href="privacy.html">Privacy Policy</a>.
+            </p>
+            <div class="cookie-buttons">
+                <button id="accept-cookies">Accetta tutti</button>
+                <button id="reject-cookies">Rifiuta tutti</button>
+                <button id="manage-cookies">Personalizza le scelte</button>
+            </div>
+        </div>
+        <div id="cookie-settings" style="display: none;">
+            <h3>Gestisci le tue preferenze sui cookie</h3>
+            <p>Scegli quali categorie di cookie desideri accettare:</p>
+            <div class="cookie-category">
+                <input type="checkbox" id="cookie-tecnici" checked disabled>
+                <label for="cookie-tecnici">Cookie Tecnici (Obbligatori)</label>
+            </div>
+            <div class="cookie-category">
+                <input type="checkbox" id="cookie-analitici">
+                <label for="cookie-analitici">Cookie Analitici</label>
+            </div>
+            <div class="cookie-category">
+                <input type="checkbox" id="cookie-marketing">
+                <label for="cookie-marketing">Cookie di Marketing e Profilazione</label>
+            </div>
+            <button id="save-cookies">Salva le mie scelte</button>
+        </div>
+    </div>
+    
+    <div id="loading-popup" class="loading-popup">
+        <span class="spinner"></span> Un attimo...
+    </div>
 
     <script>
         const hamburgerBtn = document.querySelector('.hamburger-menu');
@@ -354,12 +495,18 @@
         const closeMenuBtn = document.querySelector('.close-menu');
         const cartCountEl = document.querySelector('.cart-count');
         const addToCartBtn = document.getElementById('addToCartBtn');
+        const loadingPopup = document.getElementById('loading-popup');
 
+        // Funzione per il menu hamburger
         function toggleMenu() {
             menuPopUp.classList.toggle('open');
             hamburgerBtn.classList.toggle('open');
         }
 
+        hamburgerBtn.addEventListener('click', toggleMenu);
+        closeMenuBtn.addEventListener('click', toggleMenu);
+
+        // Funzioni per la gestione del carrello
         function updateCartCount() {
             const cart = JSON.parse(localStorage.getItem('cart')) || [];
             const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
@@ -377,32 +524,102 @@
             }
 
             localStorage.setItem('cart', JSON.stringify(cart));
-            updateCartCount();
         }
 
-        hamburgerBtn.addEventListener('click', toggleMenu);
-        closeMenuBtn.addEventListener('click', toggleMenu);
-
+        // Event listener per il pulsante "Acquista"
         addToCartBtn.addEventListener('click', (e) => {
             e.preventDefault();
+            
+            // Mostra il pop-up di caricamento
+            loadingPopup.style.display = 'flex'; // Cambiato a 'flex' per lo spinner
+
             const product = {
-                id: 'corso-birra',
+                id: 'corso-birra-gennaio-2026',
                 name: 'Corso di Birra Gennaio/Febbraio 2026',
                 price: 120.00
             };
             addToCart(product);
-            window.location.href = "carrello.html";
+            
+            // Reindirizza alla pagina del carrello dopo un piccolo ritardo
+            setTimeout(() => {
+                loadingPopup.style.display = 'none'; // Nasconde il pop-up
+                window.location.href = "carrello.html";
+            }, 50); // Ritardo di 50 millisecondi (sufficiente per l'aggiornamento)
         });
 
-        // Sincronizza il contatore del carrello in tempo reale tra le pagine
+        // Sincronizza il contatore del carrello in tempo reale
         window.addEventListener('storage', (event) => {
             if (event.key === 'cart') {
                 updateCartCount();
             }
         });
 
+        // Funzioni per la gestione dei cookie
+        function getCookie(name) {
+            const value = `; ${document.cookie}`;
+            const parts = value.split(`; ${name}=`);
+            if (parts.length === 2) return parts.pop().split(';').shift();
+        }
+
+        function setCookie(name, value, days) {
+            const d = new Date();
+            d.setTime(d.getTime() + (days * 24 * 60 * 60 * 1000));
+            const expires = `expires=${d.toUTCString()}`;
+            document.cookie = `${name}=${value};${expires};path=/;samesite=Lax`;
+        }
+
+        function showBanner() {
+            const cookieConsent = getCookie('cookie_consent');
+            if (!cookieConsent) {
+                document.getElementById('cookie-banner').style.display = 'flex';
+            }
+        }
+
+        function hideBanner() {
+            document.getElementById('cookie-banner').style.display = 'none';
+        }
+
+        // Event listener per i pulsanti del cookie banner
+        const acceptBtn = document.getElementById('accept-cookies');
+        const rejectBtn = document.getElementById('reject-cookies');
+        const manageBtn = document.getElementById('manage-cookies');
+        const saveBtn = document.getElementById('save-cookies');
+        const cookieSettings = document.getElementById('cookie-settings');
+        const analyticalCheckbox = document.getElementById('cookie-analitici');
+        const marketingCheckbox = document.getElementById('cookie-marketing');
+
+        acceptBtn.addEventListener('click', () => {
+            setCookie('cookie_consent', 'all', 365);
+            hideBanner();
+        });
+
+        rejectBtn.addEventListener('click', () => {
+            setCookie('cookie_consent', 'only_technical', 365);
+            hideBanner();
+        });
+
+        manageBtn.addEventListener('click', () => {
+            cookieSettings.style.display = 'block';
+            document.querySelector('.cookie-buttons').style.display = 'none';
+        });
+
+        saveBtn.addEventListener('click', () => {
+            const consent = [];
+            consent.push('tecnici');
+            if (analyticalCheckbox.checked) {
+                consent.push('analitici');
+            }
+            if (marketingCheckbox.checked) {
+                consent.push('marketing');
+            }
+            setCookie('cookie_consent', consent.join(','), 365);
+            hideBanner();
+        });
+
+        // Inizializza tutto all'avvio della pagina
         document.addEventListener('DOMContentLoaded', () => {
             updateCartCount();
+            showBanner();
         });
     </script>
 </body>
