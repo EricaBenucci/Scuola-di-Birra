@@ -7,7 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet" />
     <style>
         /* ---------------------- */
-        /* Base pagina e sfondo  */
+        /* Base pagina e sfondo   */
         /* ---------------------- */
         html, body {
             margin: 0;
@@ -308,39 +308,52 @@
             margin-bottom: 20px;
         }
         .payment-options {
-            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
         }
-        .payment-options h3 {
-            font-size: 1.2em;
-            margin-top: 10px;
-        }
-        .payment-details {
-            border: 1px solid #e0ac4c;
-            padding: 15px;
+        .payment-method {
+            padding: 20px;
             border-radius: 8px;
-            margin-top: 15px;
-        }
-        .payment-details label {
-            display: block;
-            margin-bottom: 10px;
-        }
-        .payment-details input {
-            width: 100%;
-            padding: 8px;
-            border-radius: 4px;
-            border: 1px solid #ccc;
             background-color: rgba(255, 255, 255, 0.1);
+        }
+        .payment-method h3 {
+            font-size: 1.2em;
+            margin: 0 0 10px 0;
+        }
+        .payment-method p {
+            margin: 0 0 15px 0;
+        }
+        .payment-method .payment-button {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.2em;
+            font-weight: bold;
+            text-align: center;
+            cursor: pointer;
+            transition: background-color 0.3s, opacity 0.3s;
+        }
+        .payment-button.paypal-btn {
+            background-color: #007bff;
             color: #fff;
         }
-        .card-details {
-            display: flex;
-            gap: 10px;
+        .payment-button.paypal-btn:hover {
+            background-color: #0056b3;
         }
-        .card-details > div {
-            flex: 1;
+        .payment-button.stripe-btn {
+            background-color: #6772E5;
+            color: #fff;
         }
-        .paypal-info, .bank-transfer {
-            margin-top: 20px;
+        .payment-button.stripe-btn:hover {
+            background-color: #545cb5;
+        }
+        .stripe-text {
+            text-align: center;
+            font-size: 0.9em;
+            margin-bottom: 10px;
         }
         .terms-checkbox {
             margin-top: 20px;
@@ -374,44 +387,6 @@
         .place-order-button:disabled {
             background-color: #6a6a6a;
             cursor: not-allowed;
-        }
-        /* Bottoni aggiuntivi per metodi di pagamento */
-        .payment-button {
-            display: inline-block;
-            padding: 10px 20px;
-            background-color: #e0ac4c;
-            color: #000;
-            border: none;
-            border-radius: 5px;
-            font-weight: bold;
-            text-align: center;
-            cursor: pointer;
-            margin-top: 10px;
-            transition: background-color 0.3s ease;
-        }
-        .payment-button:hover {
-            background-color: #c79540;
-        }
-        .paypal-button {
-            background-color: #007bff;
-            color: #fff;
-        }
-        .paypal-button:hover {
-            background-color: #0056b3;
-        }
-        .stripe-button {
-            background-color: #6772e5;
-            color: #fff;
-        }
-        .stripe-button:hover {
-            background-color: #5469d4;
-        }
-        .paypal-link, .stripe-link {
-            pointer-events: auto; /* Rende i link cliccabili */
-            opacity: 1; /* Assicura la piena visibilità */
-            text-decoration: none; /* Rimuove la sottolineatura di default */
-            margin-top: 10px; /* Spazio sopra i pulsanti */
-            display: inline-block; /* Permette di applicare margin */
         }
         /* ---------------------- */
         /* Footer                 */
@@ -692,35 +667,35 @@
                     <div class="payment-section">
                         <h2>Metodi di pagamento</h2>
                         <div class="payment-options">
-                            <div class="bank-transfer">
+                            <div class="payment-method">
                                 <h3>Bonifico Bancario</h3>
-                                <p>Paga tramite bonifico bancario. <strong>Indica nome e cognome di chi partecipa al corso o serata</strong>. L'IBAN è:</p>
+                                <p>Paga tramite bonifico bancario. L'IBAN è:</p>
                                 <p><strong>IT 123456789</strong></p>
+                                <p>Nella causale scrivi **nome e cognome di chi partecipa al corso o serata**</p>
                             </div>
-                            <div class="paypal-info">
+                            <div class="payment-method">
                                 <h3>PayPal</h3>
                                 <p>Puoi pagare in modo sicuro con il tuo account PayPal.</p>
-                                <a href="#" class="payment-button paypal-button paypal-link" id="paypal-link">Paga con PayPal</a>
+                                <button class="payment-button paypal-btn" id="paypal-btn" disabled>Paga con PayPal</button>
                             </div>
-                            <div>
-                                <h3>Carta di credito</h3>
-                                <p>Paga con la tua carta di credito tramite Stripe.</p>
-                                <a href="#" class="payment-button stripe-button stripe-link" id="stripe-link">PAGA CON CARTA DI CREDITO SU STRIPE</a>
+                            <div class="payment-method">
+                                <p class="stripe-text">PAGA CON CARTA DI CREDITO SU STRIPE</p>
+                                <button class="payment-button stripe-btn" id="stripe-btn" disabled>Paga con Carta di Credito</button>
                             </div>
                         </div>
                     </div>
+
+                    <div class="terms-checkbox">
+                        <label>
+                            <input type="checkbox" id="terms-conditions" required>
+                            Ho letto e accetto <a href="termini.html" target="_blank">termini e condizioni</a> del sito web *
+                        </label>
+                        <p>I tuoi dati personali saranno utilizzati per elaborare il tuo ordine, supportare la tua esperienza su questo sito web e per altri scopi descritti nella nostra <a href="privacy.html" target="_blank">privacy policy</a>.</p>
+                    </div>
+
+                    <button type="submit" class="place-order-button" disabled>Procedi al pagamento</button>
                 </div>
             </div>
-
-            <div class="terms-checkbox">
-                <label>
-                    <input type="checkbox" id="terms-conditions" required>
-                    Ho letto e accetto <a href="termini.html" target="_blank">termini e condizioni</a> del sito web *
-                </label>
-                <p>I tuoi dati personali saranno utilizzati per elaborare il tuo ordine, supportare la tua esperienza su questo sito web e per altri scopi descritti nella nostra <a href="privacy.html" target="_blank">privacy policy</a>.</p>
-            </div>
-
-            <button type="submit" class="place-order-button" disabled>Procedi al pagamento</button>
         </main>
 
         <div class="footer">
@@ -737,77 +712,158 @@
         const totalPriceEl = document.getElementById('total-price');
         const cartCountEl = document.querySelector('.cart-count');
         const clearCartBtn = document.getElementById('clear-cart-btn');
-        const paypalLink = document.getElementById('paypal-link');
-        const stripeLink = document.getElementById('stripe-link'); // Aggiunto per Stripe
-        const checkoutForm = document.getElementById('checkout-form');
-
+        const paypalBtn = document.getElementById('paypal-btn');
+        const stripeBtn = document.getElementById('stripe-btn');
         const termsCheckbox = document.getElementById('terms-conditions');
         const maggiorenneCheckbox = document.getElementById('maggiorenne');
         const placeOrderBtn = document.querySelector('.place-order-button');
-        const billingForm = document.querySelector('.billing-details');
+        const billingForm = document.querySelector('.billing-details form');
 
-        // Funzione per aprire/chiudere il menu laterale
+        // Funzionalità per il menu hamburger
         hamburgerBtn.addEventListener('click', () => {
             menuPopUp.classList.toggle('open');
+            hamburgerBtn.classList.toggle('open');
         });
 
         closeMenuBtn.addEventListener('click', () => {
             menuPopUp.classList.remove('open');
+            hamburgerBtn.classList.remove('open');
         });
 
-        // Chiusura del menu cliccando fuori da esso
-        document.addEventListener('click', (event) => {
-            if (!menuPopUp.contains(event.target) && !hamburgerBtn.contains(event.target)) {
-                menuPopUp.classList.remove('open');
-            }
-        });
+        // Simula il carrello con localStorage
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-        // Funzione per aggiornare il contatore del carrello (placeholder)
-        function updateCartCount(count) {
-            cartCountEl.textContent = count;
-        }
+        // Funzione per aggiornare il carrello
+        function updateCart() {
+            cartItemsContainer.innerHTML = '';
+            let subtotal = 0;
+            let totalItems = 0;
 
-        // Funzione per svuotare il carrello (placeholder)
-        clearCartBtn.addEventListener('click', () => {
-            cartItemsContainer.innerHTML = ''; // Svuota la tabella degli articoli
-            subtotalPriceEl.textContent = '';
-            totalPriceEl.textContent = '';
-            updateCartCount(0);
-            // Qui andrebbe aggiunta la logica per svuotare effettivamente il carrello (es. da localStorage)
-        });
-
-        // Abilitare/disabilitare il pulsante "Procedi al pagamento"
-        function togglePlaceOrderButton() {
-            if (termsCheckbox.checked && maggiorenneCheckbox.checked) {
-                placeOrderBtn.disabled = false;
-            } else {
+            if (cart.length === 0) {
+                cartItemsContainer.innerHTML = '<tr><td colspan="3" class="empty-cart-message">Il tuo carrello è vuoto.</td></tr>';
+                subtotalPriceEl.textContent = '€ 0,00';
+                totalPriceEl.textContent = '€ 0,00';
                 placeOrderBtn.disabled = true;
+                paypalBtn.disabled = true;
+                stripeBtn.disabled = true;
+                clearCartBtn.disabled = true;
+            } else {
+                cart.forEach(item => {
+                    const itemTotal = item.price * item.quantity;
+                    subtotal += itemTotal;
+                    totalItems += item.quantity;
+
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td class="product-info">${item.name}<button class="remove-product-btn" data-id="${item.id}">Rimuovi</button></td>
+                        <td>
+                            <div class="quantity-control">
+                                ${item.quantity}
+                            </div>
+                        </td>
+                        <td>€ ${itemTotal.toFixed(2).replace('.', ',')}</td>
+                    `;
+                    cartItemsContainer.appendChild(row);
+                });
+
+                subtotalPriceEl.textContent = `€ ${subtotal.toFixed(2).replace('.', ',')}`;
+                totalPriceEl.textContent = `€ ${subtotal.toFixed(2).replace('.', ',')}`;
+                cartCountEl.textContent = totalItems;
+                placeOrderBtn.disabled = false;
+                paypalBtn.disabled = false;
+                stripeBtn.disabled = false;
+                clearCartBtn.disabled = false;
             }
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateOrderButtonState();
         }
 
-        termsCheckbox.addEventListener('change', togglePlaceOrderButton);
-        maggiorenneCheckbox.addEventListener('change', togglePlaceOrderButton);
+        // Simula aggiunta di un prodotto (per test)
+        // Aggiungi un evento 'click' a un pulsante per aggiungere un prodotto al carrello.
+        // Ad esempio:
+        // const addProductBtn = document.getElementById('add-product');
+        // addProductBtn.addEventListener('click', () => {
+        //     const newItem = {
+        //         id: Date.now(),
+        //         name: 'Corso di Degustazione',
+        //         price: 50,
+        //         quantity: 1
+        //     };
+        //     const existingItem = cart.find(item => item.name === newItem.name);
+        //     if (existingItem) {
+        //         existingItem.quantity++;
+        //     } else {
+        //         cart.push(newItem);
+        //     }
+        //     updateCart();
+        // });
 
-        // Placeholder per la gestione dei pagamenti
-        paypalLink.addEventListener('click', (e) => {
-            e.preventDefault(); // Previene il comportamento predefinito del link
-            alert("Verrai reindirizzato a PayPal. Inserisci qui il tuo link PayPal.");
-            // Qui dovrai inserire la logica per il reindirizzamento a PayPal
-            // window.location.href = 'TUO_LINK_PAYPAL';
+        // Funzione per rimuovere un prodotto
+        cartItemsContainer.addEventListener('click', (e) => {
+            if (e.target.classList.contains('remove-product-btn')) {
+                const id = parseInt(e.target.dataset.id);
+                cart = cart.filter(item => item.id !== id);
+                updateCart();
+            }
         });
 
-        stripeLink.addEventListener('click', (e) => {
-            e.preventDefault(); // Previene il comportamento predefinito del link
-            alert("Verrai reindirizzato a Stripe. Inserisci qui il tuo link Stripe.");
-            // Qui dovrai inserire la logica per il reindirizzamento a Stripe
-            // window.location.href = 'TUO_LINK_STRIPE';
+        // Funzione per svuotare il carrello
+        clearCartBtn.addEventListener('click', () => {
+            if (confirm("Sei sicuro di voler svuotare il carrello?")) {
+                cart = [];
+                updateCart();
+            }
+        });
+        
+        // Funzione per abilitare/disabilitare i pulsanti
+        function updateOrderButtonState() {
+            const isFormValid = billingForm.checkValidity() && termsCheckbox.checked && maggiorenneCheckbox.checked && cart.length > 0;
+            placeOrderBtn.disabled = !isFormValid;
+            paypalBtn.disabled = !isFormValid;
+            stripeBtn.disabled = !isFormValid;
+        }
+
+        // Aggiungi listener per la validazione del form e le checkbox
+        billingForm.addEventListener('input', updateOrderButtonState);
+        termsCheckbox.addEventListener('change', updateOrderButtonState);
+        maggiorenneCheckbox.addEventListener('change', updateOrderButtonState);
+
+        // Aggiungi un listener per il pulsante di "Procedi al pagamento"
+        placeOrderBtn.addEventListener('click', () => {
+            if (billingForm.checkValidity() && termsCheckbox.checked && maggiorenneCheckbox.checked) {
+                alert('Dati inviati per il pagamento. Procedi con Bonifico Bancario.');
+            } else {
+                alert('Per favore, compila tutti i campi obbligatori e accetta i termini e le condizioni.');
+            }
         });
 
-        // Inizializza lo stato del pulsante di pagamento al caricamento della pagina
-        togglePlaceOrderButton();
+        // Aggiungi un listener per il pulsante PayPal
+        paypalBtn.addEventListener('click', () => {
+            if (billingForm.checkValidity() && termsCheckbox.checked && maggiorenneCheckbox.checked) {
+                alert('Reindirizzamento a PayPal...');
+                // Inserisci qui la logica di reindirizzamento o chiamata API per PayPal
+                // Esempio: window.location.href = "il_tuo_link_paypal_generato_dinamicamente";
+            } else {
+                alert('Per favore, compila tutti i campi obbligatori e accetta i termini e le condizioni.');
+            }
+        });
 
-        // Inizializza il contatore del carrello (placeholder)
-        updateCartCount(0); // Assumi che il carrello sia vuoto all'inizio
+        // Aggiungi un listener per il pulsante Stripe
+        stripeBtn.addEventListener('click', () => {
+            if (billingForm.checkValidity() && termsCheckbox.checked && maggiorenneCheckbox.checked) {
+                alert('Reindirizzamento a Stripe per il pagamento con carta...');
+                // Inserisci qui la logica di reindirizzamento o chiamata API per Stripe
+                // Esempio: window.location.href = "il_tuo_link_stripe_generato_dinamicamente";
+            } else {
+                alert('Per favore, compila tutti i campi obbligatori e accetta i termini e le condizioni.');
+            }
+        });
+
+        // Inizializza il carrello all'avvio
+        document.addEventListener('DOMContentLoaded', () => {
+            updateCart();
+            updateOrderButtonState();
+        });
     </script>
 </body>
 </html>
