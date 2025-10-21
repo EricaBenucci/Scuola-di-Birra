@@ -55,6 +55,10 @@
             padding: 0;
             border-radius: 0;
         }
+        /* AGGIUNTA: Rendi il contenitore un blocco inline-block per il link */
+        .logo-container a {
+            display: inline-block;
+        }
         .logo-container img {
             height: 110px;
         }
@@ -216,12 +220,14 @@
             color: #e0ac4c;
             font-weight: bold;
         }
+        /* MODIFICA RICHIESTA: Riduci la dimensione del riquadro del prezzo */
         .price-box {
             background-color: #5d0000; /* Rosso scuro per evidenziare */
-            padding: 20px;
+            padding: 15px 25px; /* Riduci il padding verticale */
             border-radius: 10px;
             text-align: center;
-            margin-top: 20px;
+            margin: 20px auto; /* Centra il blocco e gli permette di restringersi */
+            display: inline-block; /* Permette al div di restringersi al contenuto */
         }
         .price-box p {
             font-size: 1.2em;
@@ -327,7 +333,9 @@
                 <span class="line"></span>
             </button>
             <div class="logo-container">
-                <img src="logonew.png" alt="Logo ITALIAN BEER SCHOOL" />
+                <a href="index.html">
+                    <img src="logonew.png" alt="Logo ITALIAN BEER SCHOOL" />
+                </a>
             </div>
             <a href="carrello.html" class="carrello-link">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
@@ -442,7 +450,7 @@
         });
         
         window.addEventListener('storage', () => {
-             updateCartCount();
+              updateCartCount();
         });
     </script>
 </body>
