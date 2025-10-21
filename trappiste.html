@@ -40,7 +40,7 @@
         /* ---------------------- */
         header {
             display: flex;
-            justify-content: space-between;
+            justify-content: space-between; /* Mantenuto per centrare il logo e mettere il menu a sinistra, anche senza carrello a destra */
             align-items: center;
             background-color: rgba(0, 0, 0, 0.7);
             padding: 85px 20px;
@@ -84,30 +84,8 @@
         .hamburger-menu.open .line:nth-child(1) { transform: translateY(9px) rotate(45deg); }
         .hamburger-menu.open .line:nth-child(2) { opacity: 0; }
         .hamburger-menu.open .line:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
-        /* Stili Carrello (mantenuti per coerenza di navigazione, anche se l'evento è prenotabile via email) */
-        .carrello-link {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            font-weight: bold;
-        }
-        .carrello-link svg {
-            fill: #fff;
-            width: 25px;
-            height: 25px;
-        }
-        .carrello-link .cart-count {
-            display: block;
-            background-color: #e0ac4c;
-            color: #000;
-            font-size: 0.8em;
-            font-weight: bold;
-            border-radius: 50%;
-            padding: 4px 8px;
-            margin-left: -10px;
-            position: relative;
-            top: -10px;
-        }
+        /* Rimosso: Stili Carrello (.carrello-link, svg e .cart-count) */
+        
         /* Pop-up Menu Laterale (Come le altre pagine) */
         .menu-pop-up {
             position: fixed;
@@ -326,12 +304,7 @@
             .cookie-banner p { text-align: center; }
             .cookie-banner { flex-direction: column; }
         }
-        @media screen and (min-width: 801px) {
-            .carrello-link svg {
-                width: 35px;
-                height: 35px;
-            }
-        }
+        /* Rimosso: Regola responsive per .carrello-link svg */
     </style>
 </head>
 <body>
@@ -347,13 +320,7 @@
                     <img src="logonew.png" alt="Logo ITALIAN BEER SCHOOL" />
                 </a>
             </div>
-            <a href="carrello.html" class="carrello-link">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
-                    <path d="M0 1a1 1 0 0 1 1-1h1.5a.5.5 0 0 1 .485.379L3.89 3H14.5a.5.5 0 0 1 .49.598l-1.5 7A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.49-.402L1.61 3.607 1.11 2H1a1 1 0 0 1-1-1zm4.5 9a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm7 1.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
-                </svg>
-                <span class="cart-count">0</span>
-            </a>
-        </header>
+            </header>
 
         <div class="menu-pop-up">
             <div class="close-menu">&times;</div>
@@ -394,8 +361,8 @@
 
             <div class="reservation-box">
                 <p>Contattaci per prenotare:</p>
-                <a href="mailto:italianbeerschool @ gmail.com" class="email-button">
-                    italianbeerschool@gmail.com
+                <a href="mailto:italianbeerschool @g mail.com" class="email-button">
+                    italianbeerschool @ gmail.com
                 </a>
             </div>
 
@@ -421,7 +388,7 @@
         const hamburgerBtn = document.querySelector('.hamburger-menu');
         const menuPopUp = document.querySelector('.menu-pop-up');
         const closeMenuBtn = document.querySelector('.close-menu');
-        const cartCountEl = document.querySelector('.cart-count');
+        // Rimosso: const cartCountEl = document.querySelector('.cart-count');
         const cookieBanner = document.getElementById('cookie-banner');
 
         function toggleMenu() {
@@ -432,11 +399,7 @@
         hamburgerBtn.addEventListener('click', toggleMenu);
         closeMenuBtn.addEventListener('click', toggleMenu);
 
-        function updateCartCount() {
-            const cart = JSON.parse(localStorage.getItem('cart')) || [];
-            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-            cartCountEl.textContent = totalItems;
-        }
+        // Rimosso: function updateCartCount()
 
         // Funzione per mostrare/nascondere il banner dei cookie
         function checkCookieConsent() {
@@ -455,13 +418,11 @@
         }
 
         document.addEventListener('DOMContentLoaded', () => {
-            updateCartCount();
+            // Rimosso: updateCartCount();
             checkCookieConsent();
         });
         
-        window.addEventListener('storage', () => {
-              updateCartCount();
-        });
+        // Rimosso: window.addEventListener('storage')
     </script>
 </body>
 </html>
