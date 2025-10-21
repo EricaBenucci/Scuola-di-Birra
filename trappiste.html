@@ -55,7 +55,6 @@
             padding: 0;
             border-radius: 0;
         }
-        /* AGGIUNTA: Rendi il contenitore un blocco inline-block per il link */
         .logo-container a {
             display: inline-block;
         }
@@ -220,25 +219,36 @@
             color: #e0ac4c;
             font-weight: bold;
         }
-        /* MODIFICA RICHIESTA: Riduci la dimensione del riquadro del prezzo */
-        .price-box {
-            background-color: #5d0000; /* Rosso scuro per evidenziare */
-            padding: 15px 25px; /* Riduci il padding verticale */
+
+        /* NUOVI STILI PER IL BOX DI PRENOTAZIONE (SOSTITUISCE .price-box) */
+        .reservation-box {
+            background-color: rgba(255, 255, 255, 0.1); /* Sfondo neutro, se vuoi mantenere lo stesso colore di prima usa #5d0000 */
+            padding: 20px;
             border-radius: 10px;
             text-align: center;
-            margin: 20px auto; /* Centra il blocco e gli permette di restringersi */
-            display: inline-block; /* Permette al div di restringersi al contenuto */
+            margin: 30px auto;
+            max-width: 400px; /* Limita la larghezza */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
         }
-        .price-box p {
+        .reservation-box p {
             font-size: 1.2em;
-            margin: 5px 0;
+            margin: 5px 0 15px 0;
         }
-        .price-box strong {
-            font-size: 2em;
-            color: #e0ac4c;
-            display: block;
-            margin-top: 5px;
+        .reservation-box a.email-button {
+            display: inline-block;
+            background-color: #e0ac4c; /* Colore richiesto (stesso del carrello/cookie) */
+            color: #000;
+            font-size: 1.1em;
+            font-weight: bold;
+            padding: 12px 25px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+            word-break: break-all; /* Per evitare overflow su schermi piccoli */
         }
+        .reservation-box a.email-button:hover {
+            background-color: #d19e44;
+        }
+        /* Vecchi stili per coerenza di navigazione non pertinenti */
         .contact-info {
             text-align: center;
             margin-top: 30px;
@@ -382,15 +392,15 @@
                 </ul>
             </div>
 
-            <div class="price-box">
-                <p>Quota di partecipazione</p>
-                <strong>€35,00</strong>
+            <div class="reservation-box">
+                <p>Contattaci per prenotare:</p>
+                <a href="mailto:italianbeerschool@gmail.com" class="email-button">
+                    italianbeerschool@gmail.com
+                </a>
             </div>
 
             <div class="contact-info">
-                <p>Per prenotazioni e informazioni (Posti limitati):</p>
-                <p>Contattaci via email:</p>
-                <p>📧 **italianbeerschool @ gmail . com**</p>
+                <p>Quota di partecipazione: **€35,00** (Posti limitati)</p>
             </div>
 
         </main>
