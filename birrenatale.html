@@ -77,29 +77,8 @@
         .hamburger-menu.open .line:nth-child(1) { transform: translateY(9px) rotate(45deg); }
         .hamburger-menu.open .line:nth-child(2) { opacity: 0; }
         .hamburger-menu.open .line:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
-        .carrello-link {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            font-weight: bold;
-        }
-        .carrello-link svg {
-            fill: #fff;
-            width: 35px;
-            height: 35px;
-        }
-        .carrello-link .cart-count {
-            display: block;
-            background-color: #e0ac4c;
-            color: #000;
-            font-size: 0.8em;
-            font-weight: bold;
-            border-radius: 50%;
-            padding: 4px 8px;
-            margin-left: -10px;
-            position: relative;
-            top: -10px;
-        }
+        /* STILI CARRELLO RIMOSSI */
+        
         /* Pop-up Menu Laterale */
         .menu-pop-up {
             position: fixed;
@@ -133,7 +112,7 @@
             cursor: pointer;
         }
         /* ---------------------- */
-        /* Contenuto Pagina       */
+        /* Contenuto Pagina       */
         /* ---------------------- */
         .page-content {
             padding: 20px;
@@ -245,7 +224,7 @@
             text-decoration: underline;
         }
         /* ---------------------- */
-        /* Responsive rules       */
+        /* Responsive rules       */
         /* ---------------------- */
         @media screen and (max-width: 1200px) {
             .page-title { font-size: 2.5em; }
@@ -279,13 +258,8 @@
                     <img src="logonew.png" alt="Logo ITALIAN BEER SCHOOL" />
                 </a>
             </div>
-            <a href="carrello.html" class="carrello-link">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
-                    <path d="M0 1a1 1 0 0 1 1-1h1.5a.5.5 0 0 1 .485.379L3.89 3H14.5a.5.5 0 0 1 .49.598l-1.5 7A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.49-.402L1.61 3.607 1.11 2H1a1 1 0 0 1-1-1zm4.5 9a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm7 1.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
-                </svg>
-                <span class="cart-count">0</span>
-            </a>
-        </header>
+            <div style="width: 35px;"></div>
+            </header>
 
         <div class="menu-pop-up">
             <div class="close-menu">&times;</div>
@@ -305,7 +279,7 @@
             <h2 class="page-subtitle">Venerdì 28 Novembre 2025, ore 20:30 - 23:00 </h2>
             <img src="birrenatale.jpg" alt="Birre di Natale" class="event-image" />
             <div class="event-info">
-                📍 Circolo Rigacci – Via Francesco Baracca, 56 – Firenze  
+                📍 Circolo Rigacci – Via Francesco Baracca, 56 – Firenze  
             </div>
             <div class="event-info">
                 Lasciati avvolgere dall’atmosfera natalizia con una serata unica dedicata alle BIRRE DI NATALE.
@@ -325,7 +299,7 @@
                     <li>
                     </li>
                 </ul>
-                <button class="buy-button" id="addToCartBtn">Contattami per prenotare: italianbeerschool @ gmail.com</button>
+                <button class="buy-button" id="addToCartBtn">contattami per prenotare:<br>italianbeerschool@gmail.com</button>
             </div>
         </main>
 
@@ -337,7 +311,7 @@
         const hamburgerBtn = document.querySelector('.hamburger-menu');
         const menuPopUp = document.querySelector('.menu-pop-up');
         const closeMenuBtn = document.querySelector('.close-menu');
-        const cartCountEl = document.querySelector('.cart-count');
+        // VARIABILI CARRELLO RIMOSSE
         const addToCartBtn = document.getElementById('addToCartBtn');
 
         function toggleMenu() {
@@ -345,51 +319,24 @@
             hamburgerBtn.classList.toggle('open');
         }
 
-        function updateCartCount() {
-            const cart = JSON.parse(localStorage.getItem('cart')) || [];
-            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-            cartCountEl.textContent = totalItems;
-        }
-
-        function addToCart(product) {
-            let cart = JSON.parse(localStorage.getItem('cart')) || [];
-            const existingProductIndex = cart.findIndex(item => item.id === product.id);
-
-            if (existingProductIndex > -1) {
-                cart[existingProductIndex].quantity += 1;
-            } else {
-                cart.push({ ...product, quantity: 1 });
-            }
-
-            localStorage.setItem('cart', JSON.stringify(cart));
-            updateCartCount();
-        }
+        // FUNZIONI CARRELLO RIMOSSE
 
         // Event listener per il pulsante del menu hamburger
         hamburgerBtn.addEventListener('click', toggleMenu);
         // Event listener per il pulsante di chiusura del menu
         closeMenuBtn.addEventListener('click', toggleMenu);
 
+        // L'event listener del pulsante di prenotazione è stato modificato per non reindirizzare e non usare la funzione carrello
         addToCartBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            const product = {
-                id: 'birre-natale',
-                name: 'BIRRE DI NATALE',
-                price: 35.00
-            };
-            addToCart(product);
-            window.location.href = "carrello.html";
+            // Rimuovi il codice JavaScript precedentemente associato alla logica del carrello
+            // Puoi lasciare il blocco vuoto o aggiungere un'azione alternativa se necessario (es. mostrare un messaggio)
+            // e.preventDefault() non è più strettamente necessario se non reindirizzi
         });
 
-        // Sincronizza il contatore del carrello in tempo reale tra le pagine
-        window.addEventListener('storage', (event) => {
-            if (event.key === 'cart') {
-                updateCartCount();
-            }
-        });
-
+        // Event listeners relativi al carrello rimossi
+        
         document.addEventListener('DOMContentLoaded', () => {
-            updateCartCount();
+            // updateCartCount rimosso
         });
     </script>
 </body>
