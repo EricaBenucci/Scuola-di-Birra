@@ -7,7 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet" />
     <style>
         /* ---------------------- */
-        /* Base pagina e sfondo    */
+        /* Base pagina e sfondo   */
         /* ---------------------- */
         html, body {
             margin: 0;
@@ -80,7 +80,6 @@
         .hamburger-menu.open .line:nth-child(1) { transform: translateY(9px) rotate(45deg); }
         .hamburger-menu.open .line:nth-child(2) { opacity: 0; }
         .hamburger-menu.open .line:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
-        /* Il CSS per .carrello-link è stato rimosso */
         
         /* Pop-up Menu Laterale */
         .menu-pop-up {
@@ -120,7 +119,7 @@
             cursor: pointer;
         }
         /* ---------------------- */
-        /* Contenuto Principale    */
+        /* Contenuto Principale   */
         /* ---------------------- */
         .page-content {
             padding: 40px 20px;
@@ -185,7 +184,7 @@
             margin-bottom: 15px;
         }
         /* ---------------------- */
-        /* Footer                */
+        /* Footer                 */
         /* ---------------------- */
         .footer {
             background-color: rgba(0, 0, 0, 0.8);
@@ -199,7 +198,7 @@
             text-decoration: underline;
         }
         /* ---------------------- */
-        /* Responsive rules        */
+        /* Responsive rules       */
         /* ---------------------- */
         @media screen and (max-width: 1200px) {
             .logo-container img { height: 90px; }
@@ -209,12 +208,9 @@
             .logo-container img { height: 65px; }
             .page-title { font-size: 2.2em; }
         }
-        @media screen and (min-width: 801px) {
-            /* Rimosso il blocco .carrello-link svg */
-        }
 
         /* ---------------------- */
-        /* Cookie Banner CSS       */
+        /* Cookie Banner CSS      */
         /* ---------------------- */
         .cookie-banner {
             position: fixed;
@@ -310,19 +306,20 @@
                     </div>
                     <div class="event-content">
                         <h2 class="event-title">BIRRE DI NATALE</h2>
-                        <p class="event-date">Venerdì 28 Novembre</p>
+                        <p class="event-date">Venerdì 28 Novembre 2025</p>
                     </div>
                 </a>
 
-                <a href="#" class="event-card event-link">
+                <a href="trappiste.html" class="event-card event-link">
                     <div class="event-image-container">
                         <img src="trappiste.jpg" alt="Birre dei monaci trappisti" class="event-image" />
                     </div>
                     <div class="event-content">
-                        <h2 class="event-title">BIRRE DEI MONACI TRAPPISTI</h2>
-                        <p class="event-date">Venerdì 30 Gennaio</p>
+                        <h2 class="event-title">BIRRE TRAPPISTE</h2>
+                        <p class="event-date">Gennaio 2026</p>
                     </div>
                 </a>
+
                 <a href="corsodibirra.html" class="event-card event-link">
                     <div class="event-image-container">
                         <img src="corsohome.jpg" alt="Corso di Birra" class="event-image" />
@@ -391,7 +388,6 @@
         const hamburgerBtn = document.querySelector('.hamburger-menu');
         const menuPopUp = document.querySelector('.menu-pop-up');
         const closeMenuBtn = document.querySelector('.close-menu');
-        /* Rimosso: const cartCountEl = document.querySelector('.cart-count'); */
         const cookieBanner = document.getElementById('cookieBanner');
         const acceptCookiesBtn = document.getElementById('acceptCookiesBtn');
 
@@ -405,9 +401,7 @@
 
         // Funzione per aggiornare il conteggio del carrello in alto (Mantenuta ma non usata nell'HTML)
         function updateCartCount() {
-            /* Rimosso: const cart = JSON.parse(localStorage.getItem('cart')) || [];
-            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-            cartCountEl.textContent = totalItems; */
+            // Logica del carrello rimosso, la funzione è solo un placeholder
         }
 
         // Cookie Consent Logic
