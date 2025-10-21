@@ -42,7 +42,8 @@
             justify-content: space-between;
             align-items: center;
             background-color: rgba(0, 0, 0, 0.7);
-            padding: 85px 20px;
+            /* Aumentato il padding per contenere il logo ingrandito (85px * 2 = 170px) */
+            padding: 170px 20px; 
             flex-wrap: wrap;
             position: relative;
             z-index: 2;
@@ -56,7 +57,8 @@
             background-color: transparent;
         }
         .logo-container img {
-            height: 110px;
+            /* Logo ingrandito del doppio (110px * 2 = 220px) */
+            height: 220px; 
         }
         .hamburger-menu {
             background: none;
@@ -147,22 +149,25 @@
             padding: 20px;
             border-radius: 15px;
             max-width: 700px;
-            text-align: left;
+            /* Rimosso: text-align: left; per centrare gli elementi */
+            text-align: center;
         }
         .event-image {
-            width: 250px;
-            height: 250px;
+            /* Immagine ingrandita del doppio (250px * 2 = 500px) e centrata */
+            width: 500px; 
+            height: 500px; 
             object-fit: cover;
             border-radius: 50%;
-            float: right;
-            margin-left: 20px;
+            float: none; /* Rimosso l'allineamento a destra */
+            margin: 0 auto 20px; /* Centrata orizzontalmente */
+            display: block; /* Necessario per il margin: auto */
             box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
         }
         .event-box h2 {
             font-size: 2em;
             margin-top: 0;
             margin-bottom: 10px;
-            clear: right;
+            /* Rimosso: clear: right; */
         }
         .event-quote {
             font-style: italic;
@@ -171,7 +176,8 @@
         .event-info {
             line-height: 1.6;
             margin-top: 20px;
-            text-align: justify;
+            /* Modificato per centrare il testo delle info: */
+            text-align: center; 
         }
         .event-info strong {
             display: block;
@@ -181,6 +187,9 @@
             list-style-type: none;
             padding: 0;
             margin-top: 10px;
+            /* Aggiunto per centrare la lista */
+            display: inline-block; 
+            text-align: left; 
         }
         .event-info ul li {
             margin-bottom: 5px;
@@ -200,17 +209,20 @@
             clear: both;
         }
         .buy-button {
-            display: block; /* Modificato */
+            display: block; 
             background-color: #e0ac4c;
             color: #000;
             padding: 10px 20px;
             border-radius: 5px;
             font-weight: bold;
-            /* text-transform: uppercase; rimosso */
             margin-top: 20px;
             transition: background-color 0.3s ease;
             cursor: pointer;
-            white-space: pre-wrap; /* Aggiunto */
+            white-space: pre-wrap;
+            /* Aggiunto per centrare il pulsante nel box */
+            width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
         }
         .buy-button:hover {
             background-color: #c4913e;
@@ -235,17 +247,24 @@
         /* Responsive rules        */
         /* ---------------------- */
         @media screen and (max-width: 1200px) {
-            .logo-container img { height: 90px; }
+            /* Logo ricalibrato per schermi più piccoli, mantenendo il rapporto */
+            .logo-container img { height: 160px; } 
+            header { padding: 100px 10px; }
+            .event-image { width: 400px; height: 400px; }
         }
         @media screen and (max-width: 800px) {
-            header { padding: 30px 10px; }
-            .logo-container img { height: 65px; }
+            /* Logo ricalibrato */
+            header { padding: 80px 10px; }
+            .logo-container img { height: 120px; }
             .page-title { font-size: 2.2em; }
-            .event-image { float: none; margin: 0 auto 20px; display: block; }
-            .event-box { text-align: center; }
+            /* Immagine ricalibrata */
+            .event-image { width: 300px; height: 300px; margin: 0 auto 20px; display: block; }
+            /* Il box è già centrato, ma rimettiamo in caso di override */
+            .event-box { text-align: center; } 
         }
         @media screen and (max-width: 500px) {
-            .event-image { width: 180px; height: 180px; }
+            /* Immagine ricalibrata */
+            .event-image { width: 180px; height: 180px; } 
         }
 
         /* ---------------------- */
