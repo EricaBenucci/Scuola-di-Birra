@@ -80,29 +80,8 @@
         .hamburger-menu.open .line:nth-child(1) { transform: translateY(9px) rotate(45deg); }
         .hamburger-menu.open .line:nth-child(2) { opacity: 0; }
         .hamburger-menu.open .line:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
-        .carrello-link {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            font-weight: bold;
-        }
-        .carrello-link svg {
-            fill: #fff;
-            width: 25px;
-            height: 25px;
-        }
-        .carrello-link .cart-count {
-            display: block;
-            background-color: #e0ac4c;
-            color: #000;
-            font-size: 0.8em;
-            font-weight: bold;
-            border-radius: 50%;
-            padding: 4px 8px;
-            margin-left: -10px;
-            position: relative;
-            top: -10px;
-        }
+        /* Il CSS per .carrello-link è stato rimosso */
+        
         /* Pop-up Menu Laterale */
         .menu-pop-up {
             position: fixed;
@@ -231,10 +210,7 @@
             .page-title { font-size: 2.2em; }
         }
         @media screen and (min-width: 801px) {
-            .carrello-link svg {
-                width: 35px;
-                height: 35px;
-            }
+            /* Rimosso il blocco .carrello-link svg */
         }
 
         /* ---------------------- */
@@ -312,13 +288,7 @@
                     <img src="logonew.png" alt="Logo ITALIAN BEER SCHOOL" />
                 </a>
             </div>
-            <a href="carrello.html" class="carrello-link">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
-                    <path d="M0 1a1 1 0 0 1 1-1h1.5a.5.5 0 0 1 .485.379L3.89 3H14.5a.5.5 0 0 1 .49.598l-1.5 7A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.49-.402L1.61 3.607 1.11 2H1a1 1 0 0 1-1-1zm4.5 9a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm7 1.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
-                </svg>
-                <span class="cart-count">0</span>
-            </a>
-        </header>
+            </header>
 
         <div class="menu-pop-up">
             <div class="close-menu">&times;</div>
@@ -344,6 +314,15 @@
                     </div>
                 </a>
 
+                <a href="#" class="event-card event-link">
+                    <div class="event-image-container">
+                        <img src="trappiste.jpg" alt="Birre dei monaci trappisti" class="event-image" />
+                    </div>
+                    <div class="event-content">
+                        <h2 class="event-title">BIRRE DEI MONACI TRAPPISTI</h2>
+                        <p class="event-date">Venerdì 30 Gennaio</p>
+                    </div>
+                </a>
                 <a href="corsodibirra.html" class="event-card event-link">
                     <div class="event-image-container">
                         <img src="corsohome.jpg" alt="Corso di Birra" class="event-image" />
@@ -412,7 +391,7 @@
         const hamburgerBtn = document.querySelector('.hamburger-menu');
         const menuPopUp = document.querySelector('.menu-pop-up');
         const closeMenuBtn = document.querySelector('.close-menu');
-        const cartCountEl = document.querySelector('.cart-count');
+        /* Rimosso: const cartCountEl = document.querySelector('.cart-count'); */
         const cookieBanner = document.getElementById('cookieBanner');
         const acceptCookiesBtn = document.getElementById('acceptCookiesBtn');
 
@@ -424,11 +403,11 @@
         hamburgerBtn.addEventListener('click', toggleMenu);
         closeMenuBtn.addEventListener('click', toggleMenu);
 
-        // Funzione per aggiornare il conteggio del carrello in alto
+        // Funzione per aggiornare il conteggio del carrello in alto (Mantenuta ma non usata nell'HTML)
         function updateCartCount() {
-            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            /* Rimosso: const cart = JSON.parse(localStorage.getItem('cart')) || [];
             const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-            cartCountEl.textContent = totalItems;
+            cartCountEl.textContent = totalItems; */
         }
 
         // Cookie Consent Logic
@@ -449,7 +428,7 @@
 
         acceptCookiesBtn.addEventListener('click', acceptCookies);
         
-        // Sincronizza il contatore del carrello in tempo reale tra le pagine
+        // Sincronizza il contatore del carrello in tempo reale tra le pagine (Mantenuto ma non operativo)
         window.addEventListener('storage', (event) => {
             if (event.key === 'cart') {
                 updateCartCount();
