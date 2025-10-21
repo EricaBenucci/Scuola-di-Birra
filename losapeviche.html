@@ -7,7 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
     <style>
         /* ---------------------- */
-        /* Base pagina e sfondo   */
+        /* Base pagina e sfondo   */
         /* ---------------------- */
         html, body {
             margin: 0;
@@ -35,7 +35,7 @@
             z-index: 1;
         }
         /* ---------------------- */
-        /* Header / Navbar        */
+        /* Header / Navbar        */
         /* ---------------------- */
         header {
             display: flex;
@@ -53,19 +53,12 @@
             transform: translateX(-50%);
             padding: 0;
             border-radius: 0;
+            background-color: transparent; /* Aggiunto per coerenza con l'altro logo */
         }
         .logo-container img {
-            height: 110px;
+            height: 110px; /* Altezza standard per il nuovo logo */
         }
-        /* Stili per il logo vecchio */
-        .logo-container.old-logo {
-            background-color: rgba(255,255,255,0.1);
-            padding: 8px;
-            border-radius: 10px;
-        }
-        .logo-container.old-logo img {
-            height: 175px;
-        }
+        /* STILI LOGO VECCHIO RIMOSSI */
         .hamburger-menu {
             background: none;
             border: none;
@@ -89,32 +82,8 @@
         .hamburger-menu.open .line:nth-child(1) { transform: translateY(9px) rotate(45deg); }
         .hamburger-menu.open .line:nth-child(2) { opacity: 0; }
         .hamburger-menu.open .line:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
-        .carrello-link {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            font-weight: bold;
-        }
-        .carrello-link svg {
-            fill: #fff;
-            width: 25px;
-            height: 25px;
-        }
-        .carrello-link .cart-count {
-            display: block;
-            background-color: #e0ac4c;
-            color: #000;
-            font-size: 0.8em;
-            font-weight: bold;
-            border-radius: 50%;
-            padding: 4px 8px;
-            margin-left: -10px;
-            position: relative;
-            top: -10px;
-        }
-        .carrello-text {
-            display: none;
-        }
+        /* STILI CARRELLO RIMOSSI */
+        
         /* Pop-up Menu Laterale */
         .menu-pop-up {
             position: fixed;
@@ -161,9 +130,9 @@
         .container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 40px; /* Aumento il gap per un migliore spazio tra i box */
+            gap: 40px;
             padding: 40px 20px;
-            max-width: 1200px; /* Imposto una larghezza massima per centrare su schermi grandi */
+            max-width: 1200px;
             margin: 0 auto;
         }
         .flip-card {
@@ -172,7 +141,7 @@
             height: 200px;
             perspective: 1000px;
             cursor: pointer;
-            justify-self: center; /* Centra ogni elemento all'interno della griglia */
+            justify-self: center;
         }
         .flip-card-inner {
             position: relative;
@@ -214,7 +183,7 @@
             font-weight: bold;
         }
         /* ---------------------- */
-        /* Footer                 */
+        /* Footer                 */
         /* ---------------------- */
         .footer {
             background-color: rgba(0, 0, 0, 0.8);
@@ -228,41 +197,36 @@
             text-decoration: underline;
         }
         /* ---------------------- */
-        /* Responsive rules       */
+        /* Responsive rules       */
         /* ---------------------- */
         @media screen and (max-width: 1200px) {
             .logo-container img { height: 90px; }
-            .logo-container.old-logo img { height: 130px; }
         }
         @media screen and (max-width: 800px) {
             header { padding: 30px 10px; }
+            /* Rimuove le classi per centrare il logo in modalità mobile per un layout standard */
             .logo-container {
                 position: static;
                 transform: none;
             }
             .logo-container img { height: 65px; }
-            .logo-container.old-logo img { height: 100px; }
-            .container { 
-                padding: 20px; 
-                gap: 20px; /* Aggiusto il gap per mobile */
+            /* Stile old-logo rimosso */
+            .container { 
+                padding: 20px; 
+                gap: 20px;
             }
             .flip-card { height: 180px; }
         }
         @media screen and (max-width: 500px) {
-            .container { 
-                padding: 15px; 
-                gap: 15px; /* Aggiusto il gap per schermi piccolissimi */
+            .container { 
+                padding: 15px; 
+                gap: 15px;
             }
             .flip-card { height: 160px; }
         }
-        @media screen and (min-width: 801px) {
-            .carrello-link svg {
-                width: 35px;
-                height: 35px;
-            }
-        }
+        /* Regola carrello rimossa, non più necessaria */
         /* ---------------------- */
-        /* Cookie Banner CSS      */
+        /* Cookie Banner CSS      */
         /* ---------------------- */
         .cookie-banner {
             position: fixed;
@@ -275,7 +239,7 @@
             padding: 15px;
             box-sizing: border-box;
             z-index: 1000;
-            display: none; /* Inizialmente nascosto */
+            display: none;
             flex-direction: column;
             align-items: center;
             justify-content: center;
@@ -331,18 +295,11 @@
                 <span class="line"></span>
                 <span class="line"></span>
             </button>
-            <div class="logo-container old-logo">
+            <div class="logo-container">
                 <a href="index.html">
-                    <img src="logo.jpg" alt="Logo Scuola di Birra">
-                </a>
+                    <img src="logonew.png" alt="Logo ITALIAN BEER SCHOOL"> </a>
             </div>
-            <a href="carrello.html" class="carrello-link">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
-                    <path d="M0 1a1 1 0 0 1 1-1h1.5a.5.5 0 0 1 .485.379L3.89 3H14.5a.5.5 0 0 1 .49.598l-1.5 7A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.49-.402L1.61 3.607 1.11 2H1a1 1 0 0 1-1-1zm4.5 9a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm7 1.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
-                </svg>
-                <span class="cart-count">0</span>
-            </a>
-        </header>
+            <div style="width: 30px; height: 30px;"></div> </header>
 
         <div class="menu-pop-up">
             <div class="close-menu">&times;</div>
@@ -435,7 +392,7 @@
         const hamburgerBtn = document.querySelector('.hamburger-menu');
         const menuPopUp = document.querySelector('.menu-pop-up');
         const closeMenuBtn = document.querySelector('.close-menu');
-        const cartCountEl = document.querySelector('.cart-count');
+        // cartCountEl Rimosso
         const cookieBanner = document.getElementById('cookieBanner');
         const acceptCookiesBtn = document.getElementById('acceptCookiesBtn');
 
@@ -444,11 +401,7 @@
             hamburgerBtn.classList.toggle('open');
         }
 
-        function updateCartCount() {
-            const cart = JSON.parse(localStorage.getItem('cart')) || [];
-            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-            cartCountEl.textContent = totalItems;
-        }
+        // Funzione updateCartCount Rimosso
 
         // Cookie Consent Logic
         function hasAcceptedCookies() {
@@ -471,15 +424,11 @@
         acceptCookiesBtn.addEventListener('click', acceptCookies);
 
         document.addEventListener('DOMContentLoaded', () => {
-            updateCartCount();
+            // updateCartCount Rimosso
             showCookieBanner();
         });
 
-        window.addEventListener('storage', (event) => {
-            if (event.key === 'cart') {
-                updateCartCount();
-            }
-        });
+        // Event listener 'storage' per il carrello Rimosso
     </script>
 </body>
 </html>
