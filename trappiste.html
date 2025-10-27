@@ -1,21 +1,21 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Contatti - Italian Beer School</title>
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLMDJd4Vf8kL61J6o7jM0/A+x6wA2I330G8vS+K1L+R1J75r1Xf8Wk+Y0B1n5Q==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evento: Birre Trappiste - Italian Beer School</title>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
     <style>
         /* ---------------------- */
-        /* Base pagina e sfondo   */
+        /* Stili Base e Sfondo - Adattato per Trappiste.jpg */
         /* ---------------------- */
         html, body {
             margin: 0;
             padding: 0;
             height: 100%;
             font-family: 'Quicksand', sans-serif;
-            background: url('sfondobichiere.jpg') no-repeat center center fixed;
+            /* Sfondo specifico per l'evento Trappiste */
+            background: url('trappiste.jpg') no-repeat center center fixed;
             background-size: cover;
             color: #fff;
         }
@@ -36,11 +36,11 @@
             z-index: 1;
         }
         /* ---------------------- */
-        /* Header / Navbar        */
+        /* Header / Navbar (Come le altre pagine) */
         /* ---------------------- */
         header {
             display: flex;
-            justify-content: space-between;
+            justify-content: space-between; /* Mantenuto per centrare il logo e mettere il menu a sinistra, anche senza carrello a destra */
             align-items: center;
             background-color: rgba(0, 0, 0, 0.7);
             padding: 85px 20px;
@@ -54,7 +54,9 @@
             transform: translateX(-50%);
             padding: 0;
             border-radius: 0;
-            background-color: transparent;
+        }
+        .logo-container a {
+            display: inline-block;
         }
         .logo-container img {
             height: 110px;
@@ -79,16 +81,12 @@
             border-radius: 5px;
             transition: all 0.3s ease;
         }
-        .hamburger-menu.open .line:nth-child(1) {
-            transform: translateY(9px) rotate(45deg);
-        }
-        .hamburger-menu.open .line:nth-child(2) {
-            opacity: 0;
-        }
-        .hamburger-menu.open .line:nth-child(3) {
-            transform: translateY(-9px) rotate(-45deg);
-        }
-        /* Pop-up Menu Laterale */
+        .hamburger-menu.open .line:nth-child(1) { transform: translateY(9px) rotate(45deg); }
+        .hamburger-menu.open .line:nth-child(2) { opacity: 0; }
+        .hamburger-menu.open .line:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
+        /* Rimosso: Stili Carrello (.carrello-link, svg e .cart-count) */
+        
+        /* Pop-up Menu Laterale (Come le altre pagine) */
         .menu-pop-up {
             position: fixed;
             top: 0;
@@ -125,36 +123,118 @@
             cursor: pointer;
         }
         /* ---------------------- */
-        /* Contenuto Principale   */
+        /* Stili Contenuto Evento */
         /* ---------------------- */
-        .page-content {
+        .event-content {
             padding: 40px 20px;
-            max-width: 1200px;
-            margin: auto;
-            text-align: center;
+            max-width: 700px;
+            margin: 40px auto;
             flex-grow: 1;
-        }
-        .page-title {
-            font-size: 3em;
-            font-weight: bold;
-            margin-bottom: 40px;
-        }
-        /* Stili specifici per il contenuto Contatti */
-        .contact-info {
-            font-size: 1.8em;
-            max-width: 800px;
-            margin: 80px auto; 
+            background-color: rgba(0, 0, 0, 0.75); /* Sfondo scuro per il contenuto */
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
             line-height: 1.6;
-            padding: 20px;
-            background-color: rgba(0, 0, 0, 0.5); 
-            border-radius: 10px;
         }
-        .contact-info a {
-             color: #e0ac4c;
-             font-weight: bold;
+        .event-content h1 {
+            font-size: 2.8em;
+            text-align: center;
+            color: #e0ac4c; /* Colore oro/ambra */
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+        .event-content h2.subtitle {
+            font-size: 1.4em;
+            text-align: center;
+            color: #fff;
+            margin-bottom: 30px;
+            font-weight: normal;
+        }
+        .event-details {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 1.1em;
+            color: #f0f0f0;
+        }
+        .event-details p {
+            margin: 5px 0;
+        }
+        .event-image {
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+        .event-description {
+            font-size: 1.1em;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .program-section h3 {
+            font-size: 1.8em;
+            color: #e0ac4c;
+            margin-bottom: 15px;
+            border-left: 4px solid #e0ac4c;
+            padding-left: 10px;
+        }
+        .program-section ul {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 30px 0;
+        }
+        .program-section li {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 10px 15px;
+            margin-bottom: 8px;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .program-section li strong {
+            color: #e0ac4c;
+            font-weight: bold;
+        }
+
+        /* NUOVI STILI PER IL BOX DI PRENOTAZIONE (SOSTITUISCE .price-box) */
+        .reservation-box {
+            background-color: rgba(255, 255, 255, 0.1); /* Sfondo neutro, se vuoi mantenere lo stesso colore di prima usa #5d0000 */
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            margin: 30px auto;
+            max-width: 400px; /* Limita la larghezza */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+        .reservation-box p {
+            font-size: 1.2em;
+            margin: 5px 0 15px 0;
+        }
+        .reservation-box a.email-button {
+            display: inline-block;
+            background-color: #e0ac4c; /* Colore richiesto (stesso del carrello/cookie) */
+            color: #000;
+            font-size: 1.1em;
+            font-weight: bold;
+            padding: 12px 25px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+            word-break: break-all; /* Per evitare overflow su schermi piccoli */
+        }
+        .reservation-box a.email-button:hover {
+            background-color: #d19e44;
+        }
+        /* Vecchi stili per coerenza di navigazione non pertinenti */
+        .contact-info {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 1.1em;
+            color: #f0f0f0;
         }
         /* ---------------------- */
-        /* Footer                 */
+        /* Footer (Come le altre pagine) */
         /* ---------------------- */
         .footer {
             background-color: rgba(0, 0, 0, 0.8);
@@ -166,15 +246,51 @@
             color: #fff;
             text-decoration: underline;
         }
-        .footer a:first-child { 
-            text-decoration: none; 
+        /* ---------------------- */
+        /* Cookie Banner */
+        /* ---------------------- */
+        .cookie-banner {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            color: #fff;
+            padding: 15px 20px;
+            text-align: center;
+            font-size: 0.9em;
+            z-index: 1000;
+            border-top: 1px solid #e0ac4c;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
         }
-        .footer i {
-            color: #fff; 
-            vertical-align: middle;
+        .cookie-banner p {
+            margin: 0;
+            flex-grow: 1;
+            text-align: left;
+        }
+        .cookie-banner a {
+            color: #e0ac4c;
+            text-decoration: underline;
+        }
+        .cookie-banner button {
+            background-color: #e0ac4c;
+            color: #000;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+        .cookie-banner button:hover {
+            background-color: #d19e44;
         }
         /* ---------------------- */
-        /* Responsive rules       */
+        /* Responsive rules (Come le altre pagine) */
         /* ---------------------- */
         @media screen and (max-width: 1200px) {
             .logo-container img { height: 90px; }
@@ -182,79 +298,13 @@
         @media screen and (max-width: 800px) {
             header { padding: 30px 10px; }
             .logo-container img { height: 65px; }
-            .page-title { font-size: 2.2em; }
-            .contact-info { font-size: 1.4em; margin: 40px auto; }
+            .event-content { padding: 20px; margin: 20px auto; }
+            .event-content h1 { font-size: 2.2em; }
+            .event-content h2.subtitle { font-size: 1.2em; }
+            .cookie-banner p { text-align: center; }
+            .cookie-banner { flex-direction: column; }
         }
-        @media screen and (max-width: 500px) {
-            .contact-info { font-size: 1.1em; }
-        }
-
-        /* CODICE CSS AGGIUNTO PER IL COOKIE BANNER */
-        #cookie-banner {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background-color: rgba(0, 0, 0, 0.85);
-            color: #fff;
-            padding: 20px;
-            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.5);
-            z-index: 1000;
-            display: none; 
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            font-size: 0.9em;
-        }
-        .cookie-content {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            max-width: 800px;
-            width: 100%;
-        }
-        .cookie-content p {
-            margin: 0 0 15px;
-        }
-        .cookie-buttons button {
-            background-color: #e0ac4c;
-            color: #000;
-            border: none;
-            padding: 10px 20px;
-            font-size: 1em;
-            border-radius: 5px;
-            cursor: pointer;
-            margin: 5px;
-            font-family: 'Quicksand', sans-serif;
-        }
-        .cookie-buttons button:hover {
-            background-color: #dddddd;
-        }
-        #cookie-settings {
-            margin-top: 20px;
-            max-width: 800px;
-            width: 100%;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.2);
-            text-align: left;
-        }
-        #cookie-settings h3 {
-            margin: 0 0 10px;
-            text-align: center;
-        }
-        .cookie-category {
-            margin-bottom: 10px;
-        }
-        .cookie-category input[type="checkbox"] {
-            margin-right: 10px;
-        }
-        #save-cookies {
-            width: 100%;
-            margin-top: 15px;
-            background-color: #4CAF50;
-            color: #fff;
-            font-weight: bold;
-        }
+        /* Rimosso: Regola responsive per .carrello-link svg */
     </style>
 </head>
 <body>
@@ -270,7 +320,7 @@
                     <img src="logonew.png" alt="Logo ITALIAN BEER SCHOOL" />
                 </a>
             </div>
-        </header>
+            </header>
 
         <div class="menu-pop-up">
             <div class="close-menu">&times;</div>
@@ -282,59 +332,64 @@
             <a href="contatti.html">CONTATTI</a>
         </div>
 
-        <main class="page-content">
-            <h1 class="page-title">Contatti</h1>
+        <main class="event-content">
+            <h1>BIRRE TRAPPISTE</h1>
+            <h2 class="subtitle">Alla Scoperta degli Stili Originali e dei Segreti dei Monaci trappisti.</h2>
             
-            <div class="contact-info">
-                Per qualsiasi informazione scrivete a<br>
-                italianbeerschool @ gmail.com
+            <div class="event-details">
+                <p>🗓️ Venerdì 30 Gennaio 2026</p>
+                <p>⏰ Ore 20:30 - 23:00</p>
+                <p>📍 Circolo Rigacci – Via Francesco Baracca, 56 – Firenze</p>
             </div>
-            
+
+            <img src="trappiste.jpg" alt="Birre Trappiste" class="event-image">
+
+            <div class="event-description">
+                <p>
+                    Origini antiche e qualità eccelsa: birre sempre più introvabili, monasteri che chiudono uno dopo l’altro. Quali sono i miti, le leggende e le caratteristiche di queste birre iconiche?
+                </p>
+            </div>
+
+            <div class="program-section">
+                <h3>Programma della serata</h3>
+                <ul>
+                    <li>🍺 Degustazione guidata di cinque birre trappiste di vari Paesi.</li>
+                    <li>🥨🧀 Assaggi in abbinamento: selezioni gastronomiche per esaltare ogni birra.</li>
+                    <li>⭐ Quiz con sorteggio finale: in palio una birra speciale! 🎁</li>
+                </ul>
+            </div>
+
+            <div class="reservation-box">
+                <p>Contattaci per prenotare:</p>
+                <a href="mailto:italianbeerschool @g mail.com" class="email-button">
+                    italianbeerschool @ gmail.com
+                </a>
+            </div>
+
+            <div class="contact-info">
+                <p>Quota di partecipazione: €35,00 (Posti limitati)</p>
+            </div>
+
         </main>
 
         <div class="footer">
-            <a href="https://www.instagram.com/italianbeerschool/" target="_blank" aria-label="Seguici su Instagram" style="margin-right: 15px;">
-                <i class="fa-brands fa-instagram fa-2x"></i>
-            </a>
-            
             2025 ITALIAN BEER SCHOOL – Tutti i diritti riservati P.IVA: IT07436420488 | <a href="privacy.html">Privacy</a>
         </div>
     </div>
 
-    <div id="cookie-banner" style="display: none;">
-        <div class="cookie-content">
-            <p>
-                Questo sito utilizza cookie tecnici e, previo tuo consenso, cookie di profilazione e analitici di terze parti per migliorare l'esperienza utente. Per maggiori informazioni, consulta la nostra <a href="privacy.html">Privacy Policy</a>.
-            </p>
-            <div class="cookie-buttons">
-                <button id="accept-cookies">Accetta tutti</button>
-                <button id="reject-cookies">Rifiuta tutti</button>
-                <button id="manage-cookies">Personalizza le scelte</button>
-            </div>
-        </div>
-        <div id="cookie-settings" style="display: none;">
-            <h3>Gestisci le tue preferenze sui cookie</h3>
-            <p>Scegli quali categorie di cookie desideri accettare:</p>
-            <div class="cookie-category">
-                <input type="checkbox" id="cookie-tecnici" checked disabled>
-                <label for="cookie-tecnici">Cookie Tecnici (Obbligatori)</label>
-            </div>
-            <div class="cookie-category">
-                <input type="checkbox" id="cookie-analitici">
-                <label for="cookie-analitici">Cookie Analitici</label>
-            </div>
-            <div class="cookie-category">
-                <input type="checkbox" id="cookie-marketing">
-                <label for="cookie-marketing">Cookie di Marketing e Profilazione</label>
-            </div>
-            <button id="save-cookies">Salva le mie scelte</button>
-        </div>
+    <div class="cookie-banner" id="cookie-banner">
+        <p>
+            Utilizziamo cookie tecnici per il corretto funzionamento del sito e, previo tuo consenso, cookie di profilazione e analitici per fini statistici. Clicca "Accetto" per proseguire o consulta l'<a href="privacy.html">informativa privacy</a> per maggiori dettagli.
+        </p>
+        <button onclick="acceptCookies()">Accetto</button>
     </div>
 
     <script>
         const hamburgerBtn = document.querySelector('.hamburger-menu');
         const menuPopUp = document.querySelector('.menu-pop-up');
         const closeMenuBtn = document.querySelector('.close-menu');
+        // Rimosso: const cartCountEl = document.querySelector('.cart-count');
+        const cookieBanner = document.getElementById('cookie-banner');
 
         function toggleMenu() {
             menuPopUp.classList.toggle('open');
@@ -344,68 +399,30 @@
         hamburgerBtn.addEventListener('click', toggleMenu);
         closeMenuBtn.addEventListener('click', toggleMenu);
 
-        // Funzioni per la gestione dei cookie
-        const cookieBanner = document.getElementById('cookie-banner');
-        const cookieSettings = document.getElementById('cookie-settings');
-        const acceptBtn = document.getElementById('accept-cookies');
-        const rejectBtn = document.getElementById('reject-cookies');
-        const manageBtn = document.getElementById('manage-cookies');
-        const saveBtn = document.getElementById('save-cookies');
-        const analyticalCheckbox = document.getElementById('cookie-analitici');
-        const marketingCheckbox = document.getElementById('cookie-marketing');
+        // Rimosso: function updateCartCount()
 
-        function getCookie(name) {
-            const value = `; ${document.cookie}`;
-            const parts = value.split(`; ${name}=`);
-            if (parts.length === 2) return parts.pop().split(';').shift();
-        }
-
-        function setCookie(name, value, days) {
-            const d = new Date();
-            d.setTime(d.getTime() + (days * 24 * 60 * 60 * 1000));
-            const expires = `expires=${d.toUTCString()}`;
-            document.cookie = `${name}=${value};${expires};path=/;samesite=Lax`;
-        }
-
-        function showBanner() {
-            if (!getCookie('cookie_consent')) {
+        // Funzione per mostrare/nascondere il banner dei cookie
+        function checkCookieConsent() {
+            if (!localStorage.getItem('cookie_consent')) {
                 cookieBanner.style.display = 'flex';
+            } else {
+                cookieBanner.style.display = 'none';
             }
         }
 
-        function hideBanner() {
+        // Funzione per accettare i cookie
+        function acceptCookies() {
+            localStorage.setItem('cookie_consent', 'accepted');
             cookieBanner.style.display = 'none';
+            // Qui si potrebbe implementare l'attivazione dei cookie analitici/profilazione
         }
 
-        acceptBtn.addEventListener('click', () => {
-            setCookie('cookie_consent', 'all', 365);
-            hideBanner();
+        document.addEventListener('DOMContentLoaded', () => {
+            // Rimosso: updateCartCount();
+            checkCookieConsent();
         });
-
-        rejectBtn.addEventListener('click', () => {
-            setCookie('cookie_consent', 'only_technical', 365);
-            hideBanner();
-        });
-
-        manageBtn.addEventListener('click', () => {
-            cookieSettings.style.display = 'block';
-            document.querySelector('.cookie-buttons').style.display = 'none';
-        });
-
-        saveBtn.addEventListener('click', () => {
-            const consent = [];
-            consent.push('tecnici');
-            if (analyticalCheckbox.checked) {
-                consent.push('analitici');
-            }
-            if (marketingCheckbox.checked) {
-                consent.push('marketing');
-            }
-            setCookie('cookie_consent', consent.join(','), 365);
-            hideBanner();
-        });
-
-        document.addEventListener('DOMContentLoaded', showBanner);
+        
+        // Rimosso: window.addEventListener('storage')
     </script>
 </body>
 </html>
