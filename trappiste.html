@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Evento: Birre Trappiste - Italian Beer School</title>
     <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLMDJd4Vf8kL61J6o7jM0/A+x6wA2I330G8vS+K1L+R1J75r1Xf8Wk+Y0B1n5Q==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
         /* ---------------------- */
         /* Stili Base e Sfondo - Adattato per Trappiste.jpg */
@@ -40,7 +41,7 @@
         /* ---------------------- */
         header {
             display: flex;
-            justify-content: space-between; /* Mantenuto per centrare il logo e mettere il menu a sinistra, anche senza carrello a destra */
+            justify-content: space-between; 
             align-items: center;
             background-color: rgba(0, 0, 0, 0.7);
             padding: 85px 20px;
@@ -84,8 +85,22 @@
         .hamburger-menu.open .line:nth-child(1) { transform: translateY(9px) rotate(45deg); }
         .hamburger-menu.open .line:nth-child(2) { opacity: 0; }
         .hamburger-menu.open .line:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
-        /* Rimosso: Stili Carrello (.carrello-link, svg e .cart-count) */
         
+        /* STILI AGGIUNTI PER ICONA INSTAGRAM NELL'HEADER */
+        .social-icons-header {
+            /* Per posizionare a destra */
+            margin-left: auto; 
+            display: flex;
+            align-items: center;
+            position: relative; /* Per posizionamento */
+            right: 20px; /* Spazio dal bordo */
+        }
+        .social-icons-header a {
+            color: #fff;
+            font-size: 1.5em; /* Dimensione icona */
+        }
+        /* Fine Stili Aggiunti */
+
         /* Pop-up Menu Laterale (Come le altre pagine) */
         .menu-pop-up {
             position: fixed;
@@ -198,14 +213,14 @@
             font-weight: bold;
         }
 
-        /* NUOVI STILI PER IL BOX DI PRENOTAZIONE (SOSTITUISCE .price-box) */
+        /* BOX DI PRENOTAZIONE CON LINK EVENTBRITE */
         .reservation-box {
-            background-color: rgba(255, 255, 255, 0.1); /* Sfondo neutro, se vuoi mantenere lo stesso colore di prima usa #5d0000 */
+            background-color: rgba(255, 255, 255, 0.1); 
             padding: 20px;
             border-radius: 10px;
             text-align: center;
             margin: 30px auto;
-            max-width: 400px; /* Limita la larghezza */
+            max-width: 400px; 
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
         }
         .reservation-box p {
@@ -214,14 +229,14 @@
         }
         .reservation-box a.email-button {
             display: inline-block;
-            background-color: #e0ac4c; /* Colore richiesto (stesso del carrello/cookie) */
+            background-color: #e0ac4c; 
             color: #000;
             font-size: 1.1em;
             font-weight: bold;
             padding: 12px 25px;
             border-radius: 5px;
             transition: background-color 0.3s;
-            word-break: break-all; /* Per evitare overflow su schermi piccoli */
+            word-break: break-all; 
         }
         .reservation-box a.email-button:hover {
             background-color: #d19e44;
@@ -261,7 +276,7 @@
             font-size: 0.9em;
             z-index: 1000;
             border-top: 1px solid #e0ac4c;
-            display: flex;
+            display: none; /* Inizialmente nascosto, mostrato via JS */
             justify-content: center;
             align-items: center;
             flex-wrap: wrap;
@@ -303,8 +318,8 @@
             .event-content h2.subtitle { font-size: 1.2em; }
             .cookie-banner p { text-align: center; }
             .cookie-banner { flex-direction: column; }
+            .social-icons-header { right: 10px; } /* Avvicina al bordo */
         }
-        /* Rimosso: Regola responsive per .carrello-link svg */
     </style>
 </head>
 <body>
@@ -320,7 +335,12 @@
                     <img src="logonew.png" alt="Logo ITALIAN BEER SCHOOL" />
                 </a>
             </div>
-            </header>
+            <div class="social-icons-header">
+                <a href="https://www.instagram.com/italianbeerschool/" target="_blank" aria-label="Seguici su Instagram">
+                    <i class="fa-brands fa-instagram"></i>
+                </a>
+            </div>
+        </header>
 
         <div class="menu-pop-up">
             <div class="close-menu">&times;</div>
@@ -362,9 +382,9 @@ In questa serata, parleremo di miti, leggende e caratteristiche uniche di queste
             </div>
 
             <div class="reservation-box">
-                <p>Contattaci per prenotare:</p>
-                <a href="mailto:italianbeerschool @g mail.com" class="email-button">
-                    italianbeerschool @ gmail.com
+                <p>Prenota subito il tuo posto!</p>
+                <a href="https://www.eventbrite.it/e/degustazione-birre-trappiste-tickets-1902281207299?aff=oddtdtcreator" target="_blank" class="email-button">
+                    ACQUISTA IL BIGLIETTO SU EVENTBRITE
                 </a>
             </div>
 
@@ -390,7 +410,6 @@ In questa serata, parleremo di miti, leggende e caratteristiche uniche di queste
         const hamburgerBtn = document.querySelector('.hamburger-menu');
         const menuPopUp = document.querySelector('.menu-pop-up');
         const closeMenuBtn = document.querySelector('.close-menu');
-        // Rimosso: const cartCountEl = document.querySelector('.cart-count');
         const cookieBanner = document.getElementById('cookie-banner');
 
         function toggleMenu() {
@@ -400,8 +419,6 @@ In questa serata, parleremo di miti, leggende e caratteristiche uniche di queste
 
         hamburgerBtn.addEventListener('click', toggleMenu);
         closeMenuBtn.addEventListener('click', toggleMenu);
-
-        // Rimosso: function updateCartCount()
 
         // Funzione per mostrare/nascondere il banner dei cookie
         function checkCookieConsent() {
@@ -416,15 +433,11 @@ In questa serata, parleremo di miti, leggende e caratteristiche uniche di queste
         function acceptCookies() {
             localStorage.setItem('cookie_consent', 'accepted');
             cookieBanner.style.display = 'none';
-            // Qui si potrebbe implementare l'attivazione dei cookie analitici/profilazione
         }
 
         document.addEventListener('DOMContentLoaded', () => {
-            // Rimosso: updateCartCount();
             checkCookieConsent();
         });
-        
-        // Rimosso: window.addEventListener('storage')
     </script>
 </body>
 </html>
