@@ -86,7 +86,7 @@
         .hamburger-menu.open .line:nth-child(2) { opacity: 0; }
         .hamburger-menu.open .line:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
         
-        /* STILI AGGIUNTI PER ICONA INSTAGRAM NELL'HEADER */
+        /* STILI PER ICONA INSTAGRAM NELL'HEADER */
         .social-icons-header {
             /* Per posizionare a destra */
             margin-left: auto; 
@@ -99,7 +99,7 @@
             color: #fff;
             font-size: 1.5em; /* Dimensione icona */
         }
-        /* Fine Stili Aggiunti */
+        /* Fine Stili Icona */
 
         /* Pop-up Menu Laterale (Come le altre pagine) */
         .menu-pop-up {
@@ -186,8 +186,12 @@
             margin-bottom: 30px;
             padding-bottom: 20px;
             border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-            /* Centratura del testo aggiunta qui */
-            text-align: center; 
+            /* Allineamento a sinistra (come era in origine) */
+            text-align: left; 
+        }
+        .event-description p {
+            /* Rimuove margini per evitare spazi indesiderati tra i paragrafi */
+            margin: 0 0 1em 0; 
         }
         .program-section h3 {
             font-size: 1.8em;
@@ -368,12 +372,15 @@
 
             <div class="event-description">
                 <p>
-                    Un viaggio nel cuore della tradizione birraria. Le Birre Trappiste narrano storie di origini<br>
-                    antiche, mantenendo una qualità costante ed eccelsa. Purtroppo, stanno<br>
-                    diventando sempre più introvabili. I monaci invecchiano, alcuni monasteri<br>
-                    chiudono il birrificio interno e ne vengono prodotte sempre meno.<br>
-                    È il momento di scoprire questi capolavori liquidi. <br>
-                    Parleremo di leggende, caratteristiche produttive e tipicità uniche di queste birre iconiche.
+                    Un viaggio nel cuore della tradizione birraria. Le Birre Trappiste narrano storie di origini antiche, mantenendo una qualità costante ed eccelsa.
+                </p>
+                
+                <p>
+                    Purtroppo, stanno diventando sempre più introvabili. I monaci invecchiano, alcuni monasteri chiudono il birrificio interno e ne vengono prodotte sempre meno.
+                </p>
+                
+                <p>
+                    È il momento di scoprire questi capolavori liquidi. Parleremo di leggende, caratteristiche produttive, stili e tipicità di queste birre iconiche.
                 </p>
             </div>
 
