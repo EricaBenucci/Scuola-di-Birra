@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Contatti - Italian Beer School</title>
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet" />
     <style>
         /* ---------------------- */
         /* Base pagina e sfondo   */
@@ -14,7 +14,7 @@
             padding: 0;
             height: 100%;
             font-family: 'Quicksand', sans-serif;
-            background: url('contattibirra.jpg') no-repeat center center fixed;
+            background: url('sfondobichiere.jpg') no-repeat center center fixed;
             background-size: cover;
             color: #fff;
         }
@@ -48,11 +48,13 @@
             z-index: 2;
         }
         .logo-container {
+            /* Mantenuto lo stile per la centratura del logo */
             position: absolute;
             left: 50%;
             transform: translateX(-50%);
             padding: 0;
             border-radius: 0;
+            background-color: transparent;
         }
         .logo-container img {
             height: 110px;
@@ -77,10 +79,15 @@
             border-radius: 5px;
             transition: all 0.3s ease;
         }
-        .hamburger-menu.open .line:nth-child(1) { transform: translateY(9px) rotate(45deg); }
-        .hamburger-menu.open .line:nth-child(2) { opacity: 0; }
-        .hamburger-menu.open .line:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
-        /* Rimosse le regole CSS relative al carrello */
+        .hamburger-menu.open .line:nth-child(1) {
+            transform: translateY(9px) rotate(45deg);
+        }
+        .hamburger-menu.open .line:nth-child(2) {
+            opacity: 0;
+        }
+        .hamburger-menu.open .line:nth-child(3) {
+            transform: translateY(-9px) rotate(-45deg);
+        }
         /* Pop-up Menu Laterale */
         .menu-pop-up {
             position: fixed;
@@ -102,7 +109,6 @@
             display: block;
             font-size: 1.2em;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            color: #fff;
         }
         .menu-pop-up a:hover {
             background-color: rgba(255, 255, 255, 0.1);
@@ -119,73 +125,33 @@
             cursor: pointer;
         }
         /* ---------------------- */
-        /* Contenuto Contatti     */
+        /* Contenuto Principale   */
         /* ---------------------- */
         .page-content {
             padding: 40px 20px;
             max-width: 1200px;
             margin: auto;
-            flex-grow: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        .form-container {
-            background-color: rgba(0, 0, 0, 0.5);
-            padding: 30px;
-            border-radius: 15px;
-            max-width: 500px;
-            width: 100%;
-            color: #fff;
-            box-shadow: 0 0 15px rgba(0,0,0,0.7);
-        }
-        .form-container h2 {
             text-align: center;
-            font-size: 2em;
-            margin-bottom: 20px;
-            color: #e0ac4c;
+            flex-grow: 1;
         }
-        .form-group {
-            margin-bottom: 15px;
-        }
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
+        .page-title {
+            font-size: 3em;
             font-weight: bold;
+            margin-bottom: 40px;
         }
-        .form-group input, .form-group textarea {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            background-color: rgba(255, 255, 255, 0.1);
-            color: #fff;
-            box-sizing: border-box;
-            font-family: 'Quicksand', sans-serif;
+        /* Stili specifici per il contenuto Contatti */
+        .contact-info {
+            font-size: 1.8em;
+            max-width: 800px;
+            margin: 80px auto; 
+            line-height: 1.6;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.5); 
+            border-radius: 10px;
         }
-        .form-group input:focus, .form-group textarea:focus {
-            outline: none;
-            border-color: #e0ac4c;
-        }
-        .required-label::after {
-            content: " *";
-            color: #e0ac4c;
-        }
-        .submit-button {
-            background-color: #4CAF50;
-            color: #fff;
-            border: none;
-            padding: 15px;
-            font-size: 1em;
-            border-radius: 8px;
-            cursor: pointer;
-            width: 100%;
-            font-weight: bold;
-            text-transform: uppercase;
-            margin-top: 10px;
-        }
-        .submit-button:hover {
-            background-color: #45a049;
+        .contact-info a {
+             color: #e0ac4c;
+             font-weight: bold;
         }
         /* ---------------------- */
         /* Footer                 */
@@ -195,7 +161,6 @@
             text-align: center;
             padding: 10px;
             font-size: 0.9em;
-            margin-top: 40px;
         }
         .footer a {
             color: #fff;
@@ -210,10 +175,79 @@
         @media screen and (max-width: 800px) {
             header { padding: 30px 10px; }
             .logo-container img { height: 65px; }
-            .form-container { padding: 20px; }
-            .form-container h2 { font-size: 1.8em; }
+            .page-title { font-size: 2.2em; }
+            .contact-info { font-size: 1.4em; margin: 40px auto; }
         }
-        /* Rimosso blocco media query per il carrello */
+        @media screen and (max-width: 500px) {
+            .contact-info { font-size: 1.1em; }
+        }
+
+        /* CODICE CSS AGGIUNTO PER IL COOKIE BANNER */
+        #cookie-banner {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.85);
+            color: #fff;
+            padding: 20px;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            display: none; 
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            font-size: 0.9em;
+        }
+        .cookie-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 800px;
+            width: 100%;
+        }
+        .cookie-content p {
+            margin: 0 0 15px;
+        }
+        .cookie-buttons button {
+            background-color: #e0ac4c;
+            color: #000;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1em;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+            font-family: 'Quicksand', sans-serif;
+        }
+        .cookie-buttons button:hover {
+            background-color: #dddddd;
+        }
+        #cookie-settings {
+            margin-top: 20px;
+            max-width: 800px;
+            width: 100%;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            text-align: left;
+        }
+        #cookie-settings h3 {
+            margin: 0 0 10px;
+            text-align: center;
+        }
+        .cookie-category {
+            margin-bottom: 10px;
+        }
+        .cookie-category input[type="checkbox"] {
+            margin-right: 10px;
+        }
+        #save-cookies {
+            width: 100%;
+            margin-top: 15px;
+            background-color: #4CAF50;
+            color: #fff;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
@@ -225,9 +259,11 @@
                 <span class="line"></span>
             </button>
             <div class="logo-container">
-                <img src="logonew.png" alt="Logo ITALIAN BEER SCHOOL" />
+                <a href="index.html">
+                    <img src="logonew.png" alt="Logo ITALIAN BEER SCHOOL" />
+                </a>
             </div>
-            </header>
+        </header>
 
         <div class="menu-pop-up">
             <div class="close-menu">&times;</div>
@@ -240,36 +276,12 @@
         </div>
 
         <main class="page-content">
-            <div class="form-container">
-                <h2>Contattaci</h2>
-                <form action="mailto:italianbeerschool@gmail.com" method="POST" enctype="text/plain">
-                    <div class="form-group">
-                        <label for="nome" class="required-label">Nome</label>
-                        <input type="text" id="nome" name="Nome" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="azienda">Azienda</label>
-                        <input type="text" id="azienda" name="Azienda">
-                    </div>
-                    <div class="form-group">
-                        <label for="telefono">Telefono</label>
-                        <input type="tel" id="telefono" name="Telefono">
-                    </div>
-                    <div class="form-group">
-                        <label for="email" class="required-label">Email</label>
-                        <input type="email" id="email" name="Email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="attivita">Attività di interesse</label>
-                        <input type="text" id="attivita" name="Attività di interesse" placeholder="Es: Corso di birra, Degustazioni, Eventi, Altro...">
-                    </div>
-                    <div class="form-group">
-                        <label for="messaggio" class="required-label">Il tuo messaggio</label>
-                        <textarea id="messaggio" name="Messaggio" rows="5" required></textarea>
-                    </div>
-                    <button type="submit" class="submit-button">Invia</button>
-                </form>
+            <h1 class="page-title">Contatti</h1>
+            
+            <div class="contact-info">
+                Per qualsiasi informazione scrivete a italianbeerschool @ gmail.com
             </div>
+            
         </main>
 
         <div class="footer">
@@ -277,40 +289,111 @@
         </div>
     </div>
 
+    <div id="cookie-banner" style="display: none;">
+        <div class="cookie-content">
+            <p>
+                Questo sito utilizza cookie tecnici e, previo tuo consenso, cookie di profilazione e analitici di terze parti per migliorare l'esperienza utente. Per maggiori informazioni, consulta la nostra <a href="privacy.html">Privacy Policy</a>.
+            </p>
+            <div class="cookie-buttons">
+                <button id="accept-cookies">Accetta tutti</button>
+                <button id="reject-cookies">Rifiuta tutti</button>
+                <button id="manage-cookies">Personalizza le scelte</button>
+            </div>
+        </div>
+        <div id="cookie-settings" style="display: none;">
+            <h3>Gestisci le tue preferenze sui cookie</h3>
+            <p>Scegli quali categorie di cookie desideri accettare:</p>
+            <div class="cookie-category">
+                <input type="checkbox" id="cookie-tecnici" checked disabled>
+                <label for="cookie-tecnici">Cookie Tecnici (Obbligatori)</label>
+            </div>
+            <div class="cookie-category">
+                <input type="checkbox" id="cookie-analitici">
+                <label for="cookie-analitici">Cookie Analitici</label>
+            </div>
+            <div class="cookie-category">
+                <input type="checkbox" id="cookie-marketing">
+                <label for="cookie-marketing">Cookie di Marketing e Profilazione</label>
+            </div>
+            <button id="save-cookies">Salva le mie scelte</button>
+        </div>
+    </div>
+
     <script>
         const hamburgerBtn = document.querySelector('.hamburger-menu');
         const menuPopUp = document.querySelector('.menu-pop-up');
         const closeMenuBtn = document.querySelector('.close-menu');
-        // Rimosso const cartCountEl = document.querySelector('.cart-count');
 
         function toggleMenu() {
             menuPopUp.classList.toggle('open');
             hamburgerBtn.classList.toggle('open');
         }
 
-        // Rimosse le funzioni e gli event listener per il carrello
-        /*
-        function updateCartCount() {
-            const cart = JSON.parse(localStorage.getItem('cart')) || [];
-            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-            cartCountEl.textContent = totalItems;
-        }
-        */
-
         hamburgerBtn.addEventListener('click', toggleMenu);
         closeMenuBtn.addEventListener('click', toggleMenu);
 
-        /*
-        document.addEventListener('DOMContentLoaded', () => {
-            updateCartCount();
+        // Funzioni per la gestione dei cookie
+        const cookieBanner = document.getElementById('cookie-banner');
+        const cookieSettings = document.getElementById('cookie-settings');
+        const acceptBtn = document.getElementById('accept-cookies');
+        const rejectBtn = document.getElementById('reject-cookies');
+        const manageBtn = document.getElementById('manage-cookies');
+        const saveBtn = document.getElementById('save-cookies');
+        const analyticalCheckbox = document.getElementById('cookie-analitici');
+        const marketingCheckbox = document.getElementById('cookie-marketing');
+
+        function getCookie(name) {
+            const value = `; ${document.cookie}`;
+            const parts = value.split(`; ${name}=`);
+            if (parts.length === 2) return parts.pop().split(';').shift();
+        }
+
+        function setCookie(name, value, days) {
+            const d = new Date();
+            d.setTime(d.getTime() + (days * 24 * 60 * 60 * 1000));
+            const expires = `expires=${d.toUTCString()}`;
+            document.cookie = `${name}=${value};${expires};path=/;samesite=Lax`;
+        }
+
+        function showBanner() {
+            if (!getCookie('cookie_consent')) {
+                cookieBanner.style.display = 'flex';
+            }
+        }
+
+        function hideBanner() {
+            cookieBanner.style.display = 'none';
+        }
+
+        acceptBtn.addEventListener('click', () => {
+            setCookie('cookie_consent', 'all', 365);
+            hideBanner();
         });
 
-        window.addEventListener('storage', (event) => {
-            if (event.key === 'cart') {
-                updateCartCount();
-            }
+        rejectBtn.addEventListener('click', () => {
+            setCookie('cookie_consent', 'only_technical', 365);
+            hideBanner();
         });
-        */
+
+        manageBtn.addEventListener('click', () => {
+            cookieSettings.style.display = 'block';
+            document.querySelector('.cookie-buttons').style.display = 'none';
+        });
+
+        saveBtn.addEventListener('click', () => {
+            const consent = [];
+            consent.push('tecnici');
+            if (analyticalCheckbox.checked) {
+                consent.push('analitici');
+            }
+            if (marketingCheckbox.checked) {
+                consent.push('marketing');
+            }
+            setCookie('cookie_consent', consent.join(','), 365);
+            hideBanner();
+        });
+
+        document.addEventListener('DOMContentLoaded', showBanner);
     </script>
 </body>
 </html>
