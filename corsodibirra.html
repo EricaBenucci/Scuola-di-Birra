@@ -81,12 +81,14 @@
         .hamburger-menu.open .line:nth-child(2) { opacity: 0; }
         .hamburger-menu.open .line:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
         
-        /* AGGIORNATO: STILI PER ICONA INSTAGRAM NELL'HEADER */
+        /* CORREZIONE: STILI PER ICONA INSTAGRAM NELL'HEADER */
+        /* Ho rimosso top: 50% e transform: translateY per un posizionamento più pulito */
         .social-icons-header {
-            position: absolute; /* Posizionamento assoluto per fissarlo a destra */
-            top: 50%; /* Centra verticalmente rispetto all'header */
-            transform: translateY(-50%); /* Regola per l'altezza effettiva dell'elemento */
+            position: absolute; 
             right: 20px; /* Spazio dal bordo destro */
+            /* Ho usato il padding dell'header per posizionare verticalmente */
+            top: 50%; 
+            transform: translateY(-50%);
             display: flex; 
             align-items: center;
             z-index: 3;
@@ -95,7 +97,7 @@
             color: #fff;
             font-size: 1.5em; /* Dimensione icona */
         }
-        /* Fine Stili Aggiunti */
+        /* Fine Correzioni */
 
         /* Pop-up Menu Laterale */
         .menu-pop-up {
@@ -189,7 +191,7 @@
         }
 
         /* ---------------------- */
-        /* Box delle serate */
+        /* Box delle serate - CORREZIONE LAYOUT */
         /* ---------------------- */
         .boxes {
             display: flex;
@@ -198,9 +200,14 @@
             gap: 30px;
             margin-top: 40px;
             padding: 0 20px;
+            max-width: 1200px; /* Limita la larghezza massima per contenere */
+            margin-left: auto;
+            margin-right: auto;
         }
         .box {
-            width: 300px;
+            /* Uso calc per assicurare che 4 box stiano affiancati con i margini */
+            width: calc(25% - 25px); 
+            min-width: 250px; /* Assicura che non si restringa troppo */
             padding: 20px;
             background-color: rgba(255, 255, 255, 0.1);
             border: 2px dashed #fff;
@@ -247,7 +254,7 @@
             padding: 20px;
             box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.5);
             z-index: 1000;
-            display: none; /* Nascondi di default, gestito da JS */
+            display: none; 
             flex-direction: column;
             align-items: center;
             text-align: center;
@@ -307,6 +314,10 @@
         /* ---------------------- */
         @media screen and (max-width: 1200px) {
             .logo-container img { height: 90px; }
+            .box {
+                /* Su schermi leggermente più piccoli, facciamo in modo che si allineino a due a due */
+                width: calc(50% - 25px);
+            }
         }
         @media screen and (max-width: 800px) {
             header { padding: 30px 10px; }
@@ -314,10 +325,10 @@
             .section { flex-direction: column; padding: 20px 10px; }
             .description-container { padding-right: 0; text-align: center; }
             .image-container { margin-top: 20px; }
-            .social-icons-header { right: 10px; } /* Avvicina al bordo su schermi piccoli */
+            .social-icons-header { right: 10px; } 
+            .box { width: 90%; } /* Su schermi piccoli, un box per riga */
         }
         @media screen and (max-width: 500px) {
-            .box { width: 90%; }
             .logo-container img { height: 55px; }
         }
     </style>
@@ -391,3 +402,137 @@
             </div>
             <div class="box">
                 <h2>TERZA SERATA</h2>
+                <ul>
+                    <li>Viaggio tra gli stili birrari del mondo</li>
+                    <li>Belgio, Germania, Italia, Isole Britanniche, Stati Uniti</li>
+                    <li>4 birre in degustazione</li>
+                </ul>
+            </div>
+            <div class="box">
+                <h2>QUARTA SERATA</h2>
+                <ul>
+                    <li>La birra a tavola</li>
+                    <li>Abbinare cibo e birra, piccoli assaggi con </li>
+                    <li>4 birre in degustazione</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer">
+            2025 ITALIAN BEER SCHOOL – Tutti i diritti riservati P.IVA: IT07436420488 | <a href="privacy.html">Privacy</a>
+        </div>
+    </div>
+    
+    <div id="cookie-banner" style="display: none;">
+        <div class="cookie-content">
+            <p>
+                Questo sito utilizza cookie tecnici e, previo tuo consenso, cookie di profilazione e analitici di terze parti per migliorare l'esperienza utente. Per maggiori informazioni, consulta la nostra <a href="privacy.html">Privacy Policy</a>.
+            </p>
+            <div class="cookie-buttons">
+                <button id="accept-cookies">Accetta tutti</button>
+                <button id="reject-cookies">Rifiuta tutti</button>
+                <button id="manage-cookies">Personalizza le scelte</button>
+            </div>
+        </div>
+        <div id="cookie-settings" style="display: none;">
+            <h3>Gestisci le tue preferenze sui cookie</h3>
+            <p>Scegli quali categorie di cookie desideri accettare:</p>
+            <div class="cookie-category">
+                <input type="checkbox" id="cookie-tecnici" checked disabled>
+                <label for="cookie-tecnici">Cookie Tecnici (Obbligatori)</label>
+            </div>
+            <div class="cookie-category">
+                <input type="checkbox" id="cookie-analitici">
+                <label for="cookie-analitici">Cookie Analitici</label>
+            </div>
+            <div class="cookie-category">
+                <input type="checkbox" id="cookie-marketing">
+                <label for="cookie-marketing">Cookie di Marketing e Profilazione</label>
+            </div>
+            <button id="save-cookies">Salva le mie scelte</button>
+        </div>
+    </div>
+    
+    <script>
+        const hamburgerBtn = document.querySelector('.hamburger-menu');
+        const menuPopUp = document.querySelector('.menu-pop-up');
+        const closeMenuBtn = document.querySelector('.close-menu');
+
+        // Funzione per il menu hamburger
+        function toggleMenu() {
+            menuPopUp.classList.toggle('open');
+            hamburgerBtn.classList.toggle('open');
+        }
+
+        hamburgerBtn.addEventListener('click', toggleMenu);
+        closeMenuBtn.addEventListener('click', toggleMenu);
+
+        // Funzioni per la gestione dei cookie
+        function getCookie(name) {
+            const value = `; ${document.cookie}`;
+            const parts = value.split(`; ${name}=`);
+            if (parts.length === 2) return parts.pop().split(';').shift();
+        }
+
+        function setCookie(name, value, days) {
+            const d = new Date();
+            d.setTime(d.getTime() + (days * 24 * 60 * 60 * 1000));
+            const expires = `expires=${d.toUTCString()}`;
+            document.cookie = `${name}=${value};${expires};path=/;samesite=Lax`;
+        }
+
+        function showBanner() {
+            const cookieConsent = getCookie('cookie_consent');
+            if (!cookieConsent) {
+                document.getElementById('cookie-banner').style.display = 'flex';
+            }
+        }
+
+        function hideBanner() {
+            document.getElementById('cookie-banner').style.display = 'none';
+        }
+
+        // Event listener per i pulsanti del cookie banner
+        const acceptBtn = document.getElementById('accept-cookies');
+        const rejectBtn = document.getElementById('reject-cookies');
+        const manageBtn = document.getElementById('manage-cookies');
+        const saveBtn = document.getElementById('save-cookies');
+        const cookieSettings = document.getElementById('cookie-settings');
+        const analyticalCheckbox = document.getElementById('cookie-analitici');
+        const marketingCheckbox = document.getElementById('cookie-marketing');
+
+        acceptBtn.addEventListener('click', () => {
+            setCookie('cookie_consent', 'all', 365);
+            hideBanner();
+        });
+
+        rejectBtn.addEventListener('click', () => {
+            setCookie('cookie_consent', 'only_technical', 365);
+            hideBanner();
+        });
+
+        manageBtn.addEventListener('click', () => {
+            cookieSettings.style.display = 'block';
+            document.querySelector('.cookie-buttons').style.display = 'none';
+        });
+
+        saveBtn.addEventListener('click', () => {
+            const consent = [];
+            consent.push('tecnici');
+            if (analyticalCheckbox.checked) {
+                consent.push('analitici');
+            }
+            if (marketingCheckbox.checked) {
+                consent.push('marketing');
+            }
+            setCookie('cookie_consent', consent.join(','), 365);
+            hideBanner();
+        });
+
+        // Inizializza tutto all'avvio della pagina
+        document.addEventListener('DOMContentLoaded', () => {
+            showBanner();
+        });
+    </script>
+</body>
+</html>
