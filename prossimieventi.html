@@ -22,17 +22,11 @@
             text-decoration: none;
             color: inherit;
         }
-        a:visited {
-            color: inherit;
-            text-decoration: none;
-        }
         .overlay {
             display: flex;
             flex-direction: column;
             min-height: 100vh;
             background-color: rgba(0, 0, 0, 0.6);
-            position: relative;
-            z-index: 1;
         }
         /* ---------------------- */
         /* Header / Navbar        */
@@ -43,7 +37,6 @@
             align-items: center;
             background-color: rgba(0, 0, 0, 0.7);
             padding: 85px 20px;
-            flex-wrap: wrap;
             position: relative;
             z-index: 2;
         }
@@ -51,8 +44,6 @@
             position: absolute;
             left: 50%;
             transform: translateX(-50%);
-            padding: 0;
-            border-radius: 0;
         }
         .logo-container img {
             height: 110px;
@@ -61,14 +52,11 @@
             background: none;
             border: none;
             cursor: pointer;
-            padding: 0;
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            align-items: center;
             gap: 6px;
             width: 30px;
-            height: 30px;
+            z-index: 5;
         }
         .hamburger-menu .line {
             width: 30px;
@@ -80,8 +68,7 @@
         .hamburger-menu.open .line:nth-child(1) { transform: translateY(9px) rotate(45deg); }
         .hamburger-menu.open .line:nth-child(2) { opacity: 0; }
         .hamburger-menu.open .line:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
-        
-        /* Pop-up Menu Laterale */
+
         .menu-pop-up {
             position: fixed;
             top: 0;
@@ -89,185 +76,105 @@
             width: 280px;
             height: 100%;
             background-color: rgba(0, 0, 0, 0.95);
-            color: #fff;
             padding-top: 80px;
             transition: left 0.3s ease-in-out;
             z-index: 4;
             display: flex;
             flex-direction: column;
-            gap: 20px;
         }
+        .menu-pop-up.open { left: 0; }
         .menu-pop-up a {
             padding: 15px 20px;
-            display: block;
             font-size: 1.2em;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            color: #fff;
-        }
-        .menu-pop-up a:hover {
-            background-color: rgba(255, 255, 255, 0.1);
-        }
-        .menu-pop-up.open {
-            left: 0;
         }
         .close-menu {
             position: absolute;
             top: 20px;
             right: 20px;
-            color: #fff;
             font-size: 2em;
             cursor: pointer;
         }
+
         /* ---------------------- */
-        /* Contenuto Principale   */
+        /* Contenuto Eventi       */
         /* ---------------------- */
-        .page-content {
+        .content {
+            flex: 1;
             padding: 40px 20px;
-            max-width: 1200px;
-            margin: auto;
-            text-align: center;
-            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
-        .page-title {
+        h1 {
             font-size: 3em;
-            font-weight: bold;
             margin-bottom: 40px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
         }
-        .events-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 40px;
-            justify-content: center;
+        .event-list {
+            display: flex;
+            flex-direction: column;
+            gap: 50px;
+            width: 100%;
+            max-width: 900px;
         }
-        .event-card {
+        .event-item {
+            display: flex;
             background-color: rgba(0, 0, 0, 0.5);
             border-radius: 15px;
             overflow: hidden;
-            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
             transition: transform 0.3s ease;
         }
-        .event-card:hover {
-            transform: translateY(-10px);
-        }
-        .event-link {
-            display: block; /* Rende tutta la card cliccabile */
-            color: #fff;
-        }
-        .event-image-container {
-            width: 100%;
-            height: 250px;
-            overflow: hidden;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: relative;
+        .event-item:hover {
+            transform: scale(1.02);
         }
         .event-image {
-            width: 100%;
-            height: 100%;
+            width: 300px;
+            height: 300px;
             object-fit: cover;
-            transition: transform 0.3s ease;
         }
-        .event-card:hover .event-image {
-            transform: scale(1.05);
-        }
-        .event-content {
-            padding: 20px;
+        .event-details {
+            padding: 30px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
         .event-title {
-            font-size: 1.8em;
+            font-size: 2em;
             font-weight: bold;
             margin-bottom: 10px;
+            color: #e0ac4c;
         }
         .event-date {
-            font-style: italic;
+            font-size: 1.3em;
             margin-bottom: 15px;
+            opacity: 0.9;
         }
+        .event-location {
+            font-size: 1.1em;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+
         /* ---------------------- */
-        /* Footer                */
+        /* Footer                  */
         /* ---------------------- */
         .footer {
             background-color: rgba(0, 0, 0, 0.8);
             text-align: center;
-            padding: 10px;
+            padding: 20px;
             font-size: 0.9em;
-            margin-top: 40px;
-        }
-        .footer a {
-            color: #fff;
-            text-decoration: underline;
-        }
-        /* ---------------------- */
-        /* Responsive rules       */
-        /* ---------------------- */
-        @media screen and (max-width: 1200px) {
-            .logo-container img { height: 90px; }
-        }
-        @media screen and (max-width: 800px) {
-            header { padding: 30px 10px; }
-            .logo-container img { height: 65px; }
-            .page-title { font-size: 2.2em; }
         }
 
-        /* ---------------------- */
-        /* Cookie Banner CSS      */
-        /* ---------------------- */
-        .cookie-banner {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background-color: rgba(0, 0, 0, 0.9);
-            color: #fff;
-            text-align: center;
-            padding: 15px;
-            box-sizing: border-box;
-            z-index: 1000;
-            display: none; /* Inizialmente nascosto */
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-        .cookie-banner-content {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            max-width: 900px;
-            margin: auto;
-        }
-        .cookie-banner p {
-            margin: 0 0 10px 0;
-            line-height: 1.4;
-            font-size: 0.9em;
-        }
-        .cookie-banner a {
-            color: #e0ac4c;
-            text-decoration: underline;
-        }
-        .cookie-banner button {
-            background-color: #e0ac4c;
-            color: #000;
-            border: none;
-            padding: 8px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: bold;
-            text-transform: uppercase;
-            margin-top: 10px;
-        }
-        @media screen and (min-width: 768px) {
-            .cookie-banner-content {
-                flex-direction: row;
-                justify-content: space-between;
-                gap: 20px;
-            }
-            .cookie-banner p {
-                margin: 0;
-            }
-            .cookie-banner button {
-                margin-top: 0;
-                white-space: nowrap;
-            }
+        /* Responsive */
+        @media (max-width: 768px) {
+            .event-item { flex-direction: column; }
+            .event-image { width: 100%; height: 250px; }
+            h1 { font-size: 2em; }
+            header { padding: 30px 10px; }
+            .logo-container img { height: 65px; }
         }
     </style>
 </head>
@@ -295,62 +202,35 @@
             <a href="degustazionipassate.html">DEGUSTAZIONI PASSATE</a>
             <a href="contatti.html">CONTATTI</a>
         </div>
-        
-        <main class="page-content">
-            <h1 class="page-title">Prossimi Eventi</h1>
-            <section class="events-grid">
-                
-                <a href="birrenatale.html" class="event-card event-link">
-                    <div class="event-image-container">
-                        <img src="birrenatale.jpg" alt="Birre di Natale" class="event-image" />
-                    </div>
-                    <div class="event-content">
-                        <h2 class="event-title">BIRRE DI NATALE</h2>
-                        <p class="event-date">Venerdì 28 Novembre 2025</p>
+
+        <div class="content">
+            <h1>Prossimi Eventi</h1>
+            
+            <div class="event-list">
+                <a href="corsodibirra.html" class="event-item">
+                    <img src="corsohome.jpg" alt="Corso di Birra" class="event-image" />
+                    <div class="event-details">
+                        <div class="event-title">CORSO DI BIRRA</div>
+                        <div class="event-date">Febbraio - Marzo 2026</div>
+                        <div class="event-location">
+                            📍 Calice H<br>
+                            Via Bellini 59, Firenze
+                        </div>
                     </div>
                 </a>
 
-                <a href="trappiste.html" class="event-card event-link">
-                    <div class="event-image-container">
-                        <img src="trappiste.jpg" alt="Birre dei monaci trappisti" class="event-image" />
-                    </div>
-                    <div class="event-content">
-                        <h2 class="event-title">BIRRE TRAPPISTE</h2>
-                        <p class="event-date">Gennaio 2026</p>
-                    </div>
-                </a>
+                </div>
+        </div>
 
-                <a href="corsodibirra.html" class="event-card event-link">
-                    <div class="event-image-container">
-                        <img src="corsohome.jpg" alt="Corso di Birra" class="event-image" />
-                    </div>
-                    <div class="event-content">
-                        <h2 class="event-title">CORSO DI BIRRA</h2>
-                        <p class="event-date">Febbraio - Marzo 2026</p>
-                    </div>
-                </a>
-                
-                </section>
-        </main>
-        
         <div class="footer">
-            2025 ITALIAN BEER SCHOOL – Tutti i diritti riservati P.IVA: IT07436420488 | <a href="privacy.html">Privacy</a>
+            2025 ITALIAN BEER SCHOOL – Tutti i diritti riservati P.IVA: IT07436420488 | <a href="privacy.html" style="color: #fff; text-decoration: underline;">Privacy</a>
         </div>
     </div>
 
-    <div class="cookie-banner" id="cookieBanner">
-        <div class="cookie-banner-content">
-            <p>Questo sito utilizza i cookie per offrirti un'esperienza di navigazione migliore. Cliccando su "Accetta" acconsenti all'uso dei cookie. Per maggiori informazioni, puoi consultare la nostra <a href="privacy.html">Informativa sulla Privacy</a>.</p>
-            <button id="acceptCookiesBtn">Accetta</button>
-        </div>
-    </div>
-    
     <script>
         const hamburgerBtn = document.querySelector('.hamburger-menu');
         const menuPopUp = document.querySelector('.menu-pop-up');
         const closeMenuBtn = document.querySelector('.close-menu');
-        const cookieBanner = document.getElementById('cookieBanner');
-        const acceptCookiesBtn = document.getElementById('acceptCookiesBtn');
 
         function toggleMenu() {
             menuPopUp.classList.toggle('open');
@@ -359,41 +239,6 @@
 
         hamburgerBtn.addEventListener('click', toggleMenu);
         closeMenuBtn.addEventListener('click', toggleMenu);
-
-        // Funzione per aggiornare il conteggio del carrello in alto (Mantenuta ma non usata nell'HTML)
-        function updateCartCount() {
-            // Logica del carrello rimosso, la funzione è solo un placeholder
-        }
-
-        // Cookie Consent Logic
-        function hasAcceptedCookies() {
-            return localStorage.getItem('cookiesAccepted') === 'true';
-        }
-
-        function showCookieBanner() {
-            if (!hasAcceptedCookies()) {
-                cookieBanner.style.display = 'flex';
-            }
-        }
-
-        function acceptCookies() {
-            localStorage.setItem('cookiesAccepted', 'true');
-            cookieBanner.style.display = 'none';
-        }
-
-        acceptCookiesBtn.addEventListener('click', acceptCookies);
-        
-        // Sincronizza il contatore del carrello in tempo reale tra le pagine (Mantenuto ma non operativo)
-        window.addEventListener('storage', (event) => {
-            if (event.key === 'cart') {
-                updateCartCount();
-            }
-        });
-
-        document.addEventListener('DOMContentLoaded', () => {
-            updateCartCount();
-            showCookieBanner();
-        });
     </script>
 </body>
 </html>
