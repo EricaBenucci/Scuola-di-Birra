@@ -172,11 +172,16 @@
         }
 
         .event-title {
-            font-size: 2.5em; /* Dimensione del titolo */
+            font-size: 2.2em; /* CORREZIONE: Ridotto leggermente per forzare una riga sola */
             font-weight: bold;
             color: #fff;
             margin-top: 25px;
             line-height: 1.2;
+            
+            /* CORREZIONE PER ALLINEARE SU UNA RIGA SOLA */
+            white-space: nowrap; /* Impedisce l'andata a capo automatica */
+            overflow: hidden;    /* Nasconde il testo in eccesso se non ci sta (opzionale ma sicuro) */
+            text-overflow: ellipsis; /* Aggiunge "..." se il testo viene tagliato (opzionale) */
         }
         
         .event-date {
@@ -206,7 +211,7 @@
         /* ---------------------- */
         @media screen and (max-width: 1200px) {
             .event-title {
-                font-size: 2em;
+                font-size: 2em; /* Manteniamo la proporzione su tablet */
             }
             .event-date {
                 font-size: 1.3em;
@@ -232,6 +237,7 @@
             }
             .event-title {
                 font-size: 1.8em;
+                white-space: normal; /* Ripristiniamo l'andata a capo su mobile dove lo spazio è poco */
             }
         }
 
@@ -345,7 +351,7 @@
                     <a href="corsodibirra.html">
                         <img src="corsohome.jpg" alt="Corso di Birra" />
                         <div class="event-title">🍺 CORSO DI BIRRA</div>
-                        <div class="event-date">Corso in 4 serate<br>1, 8, 15 e 22 ottobre 2026</div>
+                        <div class="event-date">Corso in 4 serate<br>1 8 15 e 22 ottobre 2026</div>
                     </a>
                 </div>
 
