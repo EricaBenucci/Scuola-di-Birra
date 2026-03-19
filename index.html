@@ -134,22 +134,20 @@
             padding: 40px 20px;
         }
         
-        /* Layout per affiancare gli eventi */
         .event-grid {
             display: flex;
             flex-wrap: wrap;
-            gap: 60px; /* Spazio tra i due eventi */
+            gap: 60px;
             justify-content: center;
             align-items: flex-start;
             max-width: 1200px;
             margin: auto;
         }
 
-        /* Stile comune per ogni evento */
         .event-box {
             flex: 1;
-            min-width: 300px; /* Larghezza minima su mobile */
-            max-width: 480px; /* Larghezza massima su PC per l'immagine */
+            min-width: 300px;
+            max-width: 480px;
             text-align: center;
             display: flex;
             flex-direction: column;
@@ -157,31 +155,28 @@
         }
 
         .event-box img {
-            width: 100%; /* Prende la larghezza del parent (max 480px) */
+            width: 100%;
             height: auto;
-            aspect-ratio: 1 / 1; /* Forza l'immagine ad essere quadrata */
-            object-fit: cover; /* Taglia l'immagine per riempire il quadrato */
-            border-radius: 50%; /* Rende l'immagine circolare */
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+            border-radius: 50%;
             box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
             transition: transform 0.3s ease;
         }
 
-        /* Effetto hover leggero sull'immagine */
         .event-box a:hover img {
             transform: scale(1.02);
         }
 
         .event-title {
-            font-size: 2.2em; /* CORREZIONE: Ridotto leggermente per forzare una riga sola */
+            font-size: 2.2em;
             font-weight: bold;
             color: #fff;
             margin-top: 25px;
             line-height: 1.2;
-            
-            /* CORREZIONE PER ALLINEARE SU UNA RIGA SOLA */
-            white-space: nowrap; /* Impedisce l'andata a capo automatica */
-            overflow: hidden;    /* Nasconde il testo in eccesso se non ci sta (opzionale ma sicuro) */
-            text-overflow: ellipsis; /* Aggiunge "..." se il testo viene tagliato (opzionale) */
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
         
         .event-date {
@@ -210,35 +205,17 @@
         /* Responsive rules       */
         /* ---------------------- */
         @media screen and (max-width: 1200px) {
-            .event-title {
-                font-size: 2em; /* Manteniamo la proporzione su tablet */
-            }
-            .event-date {
-                font-size: 1.3em;
-            }
-            .event-grid {
-                gap: 40px;
-            }
+            .event-title { font-size: 2em; }
+            .event-date { font-size: 1.3em; }
+            .event-grid { gap: 40px; }
         }
         
         @media screen and (max-width: 800px) {
-            header {
-                padding: 30px 10px;
-            }
-            .logo-container img {
-                height: 65px;
-            }
-            .event-grid {
-                flex-direction: column; /* Impila verticalmente su mobile */
-                gap: 50px;
-            }
-            .event-box {
-                max-width: 90%; /* Occupa quasi tutta la larghezza */
-            }
-            .event-title {
-                font-size: 1.8em;
-                white-space: normal; /* Ripristiniamo l'andata a capo su mobile dove lo spazio è poco */
-            }
+            header { padding: 30px 10px; }
+            .logo-container img { height: 65px; }
+            .event-grid { flex-direction: column; gap: 50px; }
+            .event-box { max-width: 90%; }
+            .event-title { font-size: 1.8em; white-space: normal; }
         }
 
         /* ---------------------- */
@@ -267,9 +244,7 @@
             max-width: 800px;
             width: 100%;
         }
-        .cookie-content p {
-            margin: 0 0 15px;
-        }
+        .cookie-content p { margin: 0 0 15px; }
         .cookie-buttons button {
             background-color: #e0ac4c;
             color: #000;
@@ -281,9 +256,7 @@
             margin: 5px;
             font-family: 'Quicksand', sans-serif;
         }
-        .cookie-buttons button:hover {
-            background-color: #dddddd;
-        }
+        .cookie-buttons button:hover { background-color: #dddddd; }
         #cookie-settings {
             margin-top: 20px;
             max-width: 800px;
@@ -292,16 +265,9 @@
             border-top: 1px solid rgba(255, 255, 255, 0.2);
             text-align: left;
         }
-        #cookie-settings h3 {
-            margin: 0 0 10px;
-            text-align: center;
-        }
-        .cookie-category {
-            margin-bottom: 10px;
-        }
-        .cookie-category input[type="checkbox"] {
-            margin-right: 10px;
-        }
+        #cookie-settings h3 { margin: 0 0 10px; text-align: center; }
+        .cookie-category { margin-bottom: 10px; }
+        .cookie-category input[type="checkbox"] { margin-right: 10px; }
         #save-cookies {
             width: 100%;
             margin-top: 15px;
@@ -329,7 +295,7 @@
         <div class="menu-pop-up">
             <div class="close-menu">&times;</div>
             <a href="index.html">HOME</a>
-            <a href="prossimieventi.html">PROSSIMI EVENTI</a>
+            <a href="bio.html">CHI SONO</a> <a href="prossimieventi.html">PROSSIMI EVENTI</a>
             <a href="losapeviche.html">LO SAPEVI CHE?</a>
             <a href="corsodibirra.html">CORSO DI BIRRA</a>
             <a href="degustazionipassate.html">DEGUSTAZIONI PASSATE</a>
@@ -457,12 +423,8 @@
         saveBtn.addEventListener('click', () => {
             const consent = [];
             consent.push('tecnici');
-            if (analyticalCheckbox.checked) {
-                consent.push('analitici');
-            }
-            if (marketingCheckbox.checked) {
-                consent.push('marketing');
-            }
+            if (analyticalCheckbox.checked) { consent.push('analitici'); }
+            if (marketingCheckbox.checked) { consent.push('marketing'); }
             setCookie('cookie_consent', consent.join(','), 365);
             hideBanner();
         });
