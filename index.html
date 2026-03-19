@@ -124,144 +124,120 @@
             cursor: pointer;
         }
         /* ---------------------- */
-        /* Corso di birra box     */
-        /* ---------------------- */
-        .main-course-box {
-            text-align: center;
-            margin: 40px 0;
-        }
-        .main-course-box a {
-            text-decoration: none;
-            color: inherit;
-        }
-        .main-course-box img {
-            width: 480px;
-            height: 480px;
-            object-fit: cover;
-            border-radius: 50%;
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
-        }
-        .main-course-title {
-            font-size: 4.5em;
-            font-weight: bold;
-            color: #fff;
-            margin-top: 20px;
-        }
-        .main-course-date {
-            font-size: 2.25em;
-            color: #fff;
-            margin-top: 10px;
-        }
-        /* ---------------------- */
-        /* Contenuto eventi       */
+        /* Contenitore Eventi     */
         /* ---------------------- */
         .content {
             flex: 1;
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
-            padding: 20px;
+            padding: 40px 20px;
         }
-        .event-container {
+        
+        /* Layout per affiancare gli eventi */
+        .event-grid {
             display: flex;
             flex-wrap: wrap;
-            gap: 40px;
+            gap: 60px; /* Spazio tra i due eventi */
             justify-content: center;
-            align-items: center;
-            text-align: center;
+            align-items: flex-start;
+            max-width: 1200px;
+            margin: auto;
         }
-        .event {
+
+        /* Stile comune per ogni evento */
+        .event-box {
+            flex: 1;
+            min-width: 300px; /* Larghezza minima su mobile */
+            max-width: 480px; /* Larghezza massima su PC per l'immagine */
+            text-align: center;
             display: flex;
             flex-direction: column;
             align-items: center;
-            max-width: 600px;
         }
-        .event img {
-            width: 400px;
-            height: 400px;
-            object-fit: cover;
-            border-radius: 50%;
-            box-shadow: 0 0 15px rgba(0,0,0,0.7);
+
+        .event-box img {
+            width: 100%; /* Prende la larghezza del parent (max 480px) */
+            height: auto;
+            aspect-ratio: 1 / 1; /* Forza l'immagine ad essere quadrata */
+            object-fit: cover; /* Taglia l'immagine per riempire il quadrato */
+            border-radius: 50%; /* Rende l'immagine circolare */
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s ease;
         }
+
+        /* Effetto hover leggero sull'immagine */
+        .event-box a:hover img {
+            transform: scale(1.02);
+        }
+
         .event-title {
-            margin-top: 20px;
-            font-size: 1.5em;
+            font-size: 2.5em; /* Dimensione del titolo */
             font-weight: bold;
             color: #fff;
+            margin-top: 25px;
+            line-height: 1.2;
         }
+        
         .event-date {
-            margin-top: 10px;
-            font-size: 1.1em;
+            font-size: 1.5em;
             color: #fff;
+            margin-top: 10px;
+            font-weight: normal;
         }
+
         /* ---------------------- */
-        /* Footer                  */
+        /* Footer                 */
         /* ---------------------- */
         .footer {
             background-color: rgba(0, 0, 0, 0.8);
             text-align: center;
-            padding: 10px;
+            padding: 15px;
             font-size: 0.9em;
+            margin-top: auto;
         }
         .footer a {
             color: #fff;
             text-decoration: underline;
         }
+        
         /* ---------------------- */
         /* Responsive rules       */
         /* ---------------------- */
         @media screen and (max-width: 1200px) {
-            .event img {
-                width: 300px;
-                height: 300px;
+            .event-title {
+                font-size: 2em;
             }
-            .main-course-box img {
-                width: 360px;
-                height: 360px;
+            .event-date {
+                font-size: 1.3em;
             }
-            .main-course-title {
-                font-size: 3em;
-            }
-            .main-course-date {
-                font-size: 1.5em;
+            .event-grid {
+                gap: 40px;
             }
         }
+        
         @media screen and (max-width: 800px) {
-            .event img {
-                width: 250px;
-                height: 250px;
-            }
-            .main-course-box img {
-                width: 300px;
-                height: 300px;
-            }
-            .main-course-title {
-                font-size: 2.2em;
-            }
-            .main-course-date {
-                font-size: 1.2em;
-            }
             header {
                 padding: 30px 10px;
             }
             .logo-container img {
                 height: 65px;
             }
-        }
-        @media screen and (max-width: 500px) {
-            .event img {
-                width: 90%;
-                height: auto;
-                border-radius: 50%;
+            .event-grid {
+                flex-direction: column; /* Impila verticalmente su mobile */
+                gap: 50px;
             }
-            .main-course-box img {
-                width: 90%;
-                height: auto;
-                border-radius: 50%;
+            .event-box {
+                max-width: 90%; /* Occupa quasi tutta la larghezza */
+            }
+            .event-title {
+                font-size: 1.8em;
             }
         }
-        /* CODICE CSS AGGIUNTO PER IL COOKIE BANNER */
+
+        /* ---------------------- */
+        /* Cookie Banner          */
+        /* ---------------------- */
         #cookie-banner {
             position: fixed;
             bottom: 0;
@@ -354,18 +330,26 @@
             <a href="contatti.html">CONTATTI</a>
         </div>
 
-        <div class="main-course-box">
-            <a href="corsodibirra.html">
-                <img src="corsohome.jpg" alt="Corso di Birra" />
-                <div class="main-course-title">CORSO DI BIRRA</div>
-                <div class="main-course-date">1 8 15 e 22 ottobre 2026</div>
-            </a>
-        </div>
-
-        <div class="content">
-            <div class="event-container">
+        <main class="content">
+            <div class="event-grid">
+                
+                <div class="event-box">
+                    <a href="iga.html"> <img src="iga.jpg" alt="🍇 IGA Italian Grape Ale" />
+                        <div class="event-title">🍇 IGA Italian Grape Ale : Il Punto d’Incontro tra Vino e Vite</div>
+                        <div class="event-date">10 giugno</div>
+                    </a>
                 </div>
-        </div>
+
+                <div class="event-box">
+                    <a href="corsodibirra.html">
+                        <img src="corsohome.jpg" alt="Corso di Birra" />
+                        <div class="event-title">CORSO DI BIRRA</div>
+                        <div class="event-date">1 8 15 e 22 ottobre 2026</div>
+                    </a>
+                </div>
+
+            </div>
+        </main>
 
         <div class="footer">
             2025 IBS ITALIAN BEER SCHOOL – Tutti i diritti riservati P.IVA: IT07436420488 | <a href="privacy.html">Privacy</a>
