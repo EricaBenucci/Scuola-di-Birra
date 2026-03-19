@@ -171,6 +171,19 @@
         /* Container per distanziare il pulsante Stripe */
         .stripe-container {
             margin-top: 25px;
+            max-width: 300px; /* Limita la larghezza del widget */
+        }
+
+        /* CSS AGGIUNTIVO PER NASCONDERE IMMAGINE E TESTO DA STRIPE */
+        stripe-buy-button::part(card) {
+            border: none !important;
+            background: transparent !important;
+            box-shadow: none !important;
+        }
+        stripe-buy-button::part(product-image),
+        stripe-buy-button::part(product-title),
+        stripe-buy-button::part(product-description) {
+            display: none !important;
         }
 
         /* ---------------------- */
@@ -298,6 +311,7 @@
             .description-container { padding-right: 0; text-align: center; }
             .image-container { margin-top: 20px; }
             .social-icons-header { right: 10px; } 
+            .stripe-container { margin: 25px auto 0; } /* Centra pulsante su mobile */
         }
         @media screen and (max-width: 500px) {
             .box { width: 90%; }
