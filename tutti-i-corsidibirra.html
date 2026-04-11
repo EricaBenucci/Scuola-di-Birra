@@ -7,41 +7,26 @@
     <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet" />
     <style>
         html, body {
-            margin: 0;
-            padding: 0;
-            height: 100%;
+            margin: 0; padding: 0; height: 100%;
             font-family: 'Quicksand', sans-serif;
             background: url('sfondo-birra-scuola.webp') no-repeat center center fixed;
-            background-size: cover;
-            color: #fff;
-            overflow-x: hidden;
+            background-size: cover; color: #fff; overflow-x: hidden;
         }
         a { text-decoration: none; color: inherit; transition: opacity 0.3s; }
         a:hover { opacity: 0.8; }
         
         .overlay {
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-            background-color: rgba(0, 0, 0, 0.6);
-            position: relative;
-            z-index: 1;
+            display: flex; flex-direction: column; min-height: 100vh;
+            background-color: rgba(0, 0, 0, 0.6); position: relative; z-index: 1;
         }
 
         header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background-color: rgba(0, 0, 0, 0.8);
-            padding: 25px 20px;
-            position: relative;
-            z-index: 10;
-            min-height: 80px;
+            display: flex; justify-content: space-between; align-items: center;
+            background-color: rgba(0, 0, 0, 0.8); padding: 25px 20px;
+            position: relative; z-index: 10; min-height: 80px;
         }
         .logo-container {
-            position: absolute;
-            left: 50%;
-            top: 50%;
+            position: absolute; left: 50%; top: 50%;
             transform: translate(-50%, -50%);
         }
         .logo-container img { height: 90px; display: block; }
@@ -74,10 +59,14 @@
             padding: 25px; border-radius: 20px; text-align: center;
         }
 
+        /* Immagine base tonda */
         .img-circle {
             width: 180px; height: 180px; border-radius: 50%;
-            object-fit: cover; border: 3px solid rgba(224, 172, 76, 0.5); flex-shrink: 0;
+            object-fit: cover; flex-shrink: 0;
         }
+
+        /* Bordo dorato SOLO per le foto dei corsi */
+        .border-gold { border: 3px solid rgba(224, 172, 76, 0.5); }
 
         .course-main-info h2, .wset-text h3 { margin: 0; font-size: 1.8em; color: #e0ac4c; text-transform: uppercase; }
         .course-main-info p, .wset-text p { margin: 10px 0; font-size: 1.1em; font-weight: bold; }
@@ -86,7 +75,6 @@
             display: flex; flex-direction: column; align-items: center; gap: 15px; width: 100%;
         }
 
-        /* Desktop Layout */
         @media screen and (min-width: 900px) {
             .course-row { flex-direction: row; text-align: left; gap: 40px; }
             .wset-container { flex-direction: row; justify-content: flex-end; text-align: right; }
@@ -132,7 +120,7 @@
         <main class="content">
             <div class="course-row">
                 <a href="corso-base-firenze.html">
-                    <img src="corso-birra-base-firenze.webp" class="img-circle" alt="Corso Base">
+                    <img src="corso-birra-base-firenze.webp" class="img-circle border-gold" alt="Corso Base">
                 </a>
                 <div class="course-main-info">
                     <a href="corso-base-firenze.html">
@@ -155,7 +143,7 @@
 
             <div class="course-row">
                 <a href="corso-secondo-livello-firenze.html">
-                    <img src="corso-birra-livello2-firenze.webp" class="img-circle" alt="Corso Avanzato">
+                    <img src="corso-birra-livello2-firenze.webp" class="img-circle border-gold" alt="Corso Avanzato">
                 </a>
                 <div class="course-main-info">
                     <a href="corso-secondo-livello-firenze.html">
