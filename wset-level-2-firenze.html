@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WSET Level 2 Award in Beer - Italian Beer School</title>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <style>
+        /* RESET E STILI BASE */
+        html, body {
+            margin: 0; padding: 0; height: 100%;
+            font-family: 'Quicksand', sans-serif;
+            background: url('sfondo-birra-scuola.webp') no-repeat center center fixed;
+            background-size: cover; color: #fff; overflow-x: hidden;
+        }
+        a { text-decoration: none; color: inherit; transition: opacity 0.3s; }
+        .overlay {
+            display: flex; flex-direction: column; min-height: 100vh;
+            background-color: rgba(0, 0, 0, 0.75); position: relative; z-index: 1;
+        }
+
+        /* HEADER CON INSTAGRAM */
+        header {
+            display: flex; justify-content: space-between; align-items: center;
+            background-color: rgba(0, 0, 0, 0.85); padding: 25px 20px;
+            position: relative; z-index: 10; min-height: 80px;
+        }
+        .logo-container { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); }
+        .logo-container img { height: 90px; display: block; }
+
+        .nav-right { display: flex; align-items: center; gap: 20px; z-index: 15; }
+        .ig-link { font-size: 1.5em; color: #fff; transition: color 0.3s; }
+        .ig-link:hover { color: #e0ac4c; }
+
+        .hamburger-menu {
+            background: none; border: none; cursor: pointer;
+            display: flex; flex-direction: column; gap: 6px; width: 30px;
+        }
+        .hamburger-menu .line { width: 30px; height: 3px; background-color: #fff; border-radius: 5px; transition: all 0.3s ease; }
+        .hamburger-menu.open .line:nth-child(1) { transform: translateY(9px) rotate(45deg); }
+        .hamburger-menu.open .line:nth-child(2) { opacity: 0; }
+        .hamburger-menu.open .line:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
+
+        .menu-pop-up {
+            position: fixed; top: 0; left: -300px; width: 280px; height: 100%;
+            background-color: rgba(0, 0, 0, 0.95); padding-top: 100px;
+            transition: left 0.3s ease-in-out; z-index: 14; display: flex; flex-direction: column;
+        }
+        .menu-pop-up a { padding: 15px 25px; font-size: 1.2em; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+        .menu-pop-up.open { left: 0; }
+        .close-menu { position: absolute; top: 25px; right: 25px; font-size: 2.5em; cursor: pointer; }
+
+        /* CONTENUTO */
+        .content { flex: 1; padding: 60px 20px; max-width: 1100px; margin: 0 auto; }
+
+        .top-section {
+            display: flex; flex-direction: column-reverse; gap: 40px; align-items: flex-start; margin-bottom: 50px;
+        }
+        
+        @media screen and (min-width: 900px) {
+            .top-section { flex-direction: row; text-align: left; }
+        }
+
+        .text-column { flex: 1.2; text-align: left; }
+        h1 { color: #e0ac4c; font-size: 2.8em; text-transform: uppercase; margin-bottom: 5px; }
+        h2 { color: #fff; font-size: 1.4em; margin-bottom: 30px; font-weight: 300; }
+        
+        .main-text { font-size: 1.1em; line-height: 1.8; font-weight: 300; color: #eee; }
+        .main-text p { margin-bottom: 20px; }
+        .main-text h3 { color: #e0ac4c; margin-top: 35px; text-transform: uppercase; font-size: 1.3em; }
+        
+        .main-text ul { list-style: none; padding: 0; }
+        .main-text ul li { margin-bottom: 15px; padding-left: 20px; position: relative; }
+        .main-text ul li::before { content: '•'; position: absolute; left: 0; color: #e0ac4c; }
+        .sub-list { color: #bbb; font-size: 0.95em; display: block; margin-top: 4px; }
+
+        /* COLLABORAZIONE */
+        .collab-section {
+            display: flex; align-items: center; gap: 20px; margin-top: 40px; 
+            padding: 20px; background: rgba(255,255,255,0.05); border-radius: 15px;
+        }
+        .collab-section span { font-size: 1em; font-weight: bold; }
+        .collab-section img { height: 50px; width: auto; }
+
+        /* INFO BOX E BOTTONE */
+        .tech-info { 
+            margin-top: 40px; padding: 25px; border-left: 4px solid #e0ac4c; 
+            background: rgba(0,0,0,0.3); border-radius: 0 15px 15px 0; 
+        }
+        .tech-info p { margin: 8px 0; font-size: 1.1em; }
+        .tech-info strong { color: #e0ac4c; }
+
+        .btn-acquista {
+            display: inline-block; background-color: #1a73e8; color: #fff;
+            padding: 16px 50px; font-weight: bold; font-size: 1.2em;
+            border-radius: 8px; margin-top: 30px; transition: transform 0.2s;
+        }
+        .btn-acquista:hover { transform: translateY(-3px); background-color: #1557b0; }
+
+        .img-column { flex: 1; display: flex; flex-direction: column; align-items: center; }
+        .main-course-img {
+            width: 100%; max-width: 500px; height: auto;
+            border-radius: 20px; box-shadow: 0 15px 40px rgba(0,0,0,0.6);
+        }
+
+        /* FOOTER */
+        .footer { background-color: rgba(0, 0, 0, 0.8); text-align: center; padding: 25px; font-size: 0.85em; margin-top: auto; }
+    </style>
+</head>
+<body>
+    <div class="overlay">
+        <header>
+            <button class="hamburger-menu" aria-label="Menu">
+                <span class="line"></span><span class="line"></span><span class="line"></span>
+            </button>
+            <div class="logo-container">
+                <a href="index.html"><img src="logonew.png" alt="Logo IBS" /></a>
+            </div>
+            <div class="nav-right">
+                <a href="https://www.instagram.com/italianbeerschool/?hl=en" target="_blank" class="ig-link">
+                    <i class="fab fa-instagram"></i>
+                </a>
+            </div>
+        </header>
+
+        <nav class="menu-pop-up">
+            <div class="close-menu">&times;</div>
+            <a href="index.html">HOME</a>
+            <a href="corsodibirra.html">CORSI DI BIRRA</a>
+            <a href="losapeviche.html">LO SAPEVI CHE?</a>
+            <a href="quizdibirrabirra.html">QUIZ</a>
+            <a href="degustazionipassate.html">DEGUSTAZIONI PASSATE</a>
+            <a href="bio.html">CHI SONO</a>
+            <a href="contatti.html">CONTATTI</a>
+        </nav>
+
+        <main class="content">
+            <div class="top-section">
+                <div class="text-column">
+                    <h1>WSET Level 2</h1>
+                    <h2>Award in Beer</h2>
+                    
+                    <div class="main-text">
+                        <p>The WSET Level 2 Award in Beer focuses on how key ingredients and production processes influence the style and quality of beer. It will also teach you how to taste, describe and evaluate the quality of beer.</p>
+                        <p>If you’re a beer or hospitality professional, you’ll be able to offer valuable guidance on selection and service to your colleagues and customers as a beer expert. If you’re a beer enthusiast, you’ll know exactly what to look for when choosing beers for any occasion.</p>
+                        
+                        <h3>What's covered?</h3>
+                        <ul>
+                            <li><strong>Main ingredients and their influence</strong>
+                                <span class="sub-list">Malt and adjuncts, water, hops and other flavourings, yeast and bacteria</span>
+                            </li>
+                            <li><strong>How beer production influences style and quality</strong>
+                                <span class="sub-list">Alcoholic fermentation process, brewing process, equipment, and mixed culture options</span>
+                            </li>
+                            <li><strong>Storage and service of beer</strong>
+                                <span class="sub-list">Packaging, shelf life, temperatures, glassware, beer on tap, common faults, beer and food</span>
+                            </li>
+                            <li><strong>Over 60 beer styles and characteristics</strong>
+                                <span class="sub-list">Malt-driven, hop-driven, and yeast-driven ales and lagers, mixed fermentation, and speciality beers</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="collab-section">
+                        <span>In Collaboration with</span>
+                        <img src="WSI-logo.webp" alt="Wine School Italia Logo">
+                    </div>
+
+                    <div class="tech-info">
+                        <p><strong>Date:</strong> 14, 15, 22 November 2026</p>
+                        <p><strong>Time:</strong> 09:30 – 17:30</p>
+                        <p><strong>Location:</strong> Florence, Italy</p>
+                        <p><strong>Price:</strong> €450 (Includes study pack and exam fees)</p>
+                    </div>
+
+                    <a href="#" class="btn-acquista">Book Now</a>
+                </div>
+
+                <div class="img-column">
+                    <img src="wset-level-1-firenze-course.webp" class="main-course-img" alt="WSET Level 2 Beer Course">
+                </div>
+            </div>
+        </main>
+
+        <footer class="footer">
+            © 2025 IBS ITALIAN BEER SCHOOL – P.IVA: IT07436420488 | <a href="privacy.html" style="color:#e0ac4c">Privacy</a>
+        </footer>
+    </div>
+
+    <script>
+        const hb = document.querySelector('.hamburger-menu'), menu = document.querySelector('.menu-pop-up'), close = document.querySelector('.close-menu');
+        function toggle() { menu.classList.toggle('open'); hb.classList.toggle('open'); }
+        hb.onclick = toggle; close.onclick = toggle;
+    </script>
+</body>
+</html>
