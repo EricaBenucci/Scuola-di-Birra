@@ -148,7 +148,7 @@
         .event-box {
             flex: 1;
             min-width: 300px;
-            max-width: 480px;
+            max-width: 350px; /* Ridotto per pareggiare le dimensioni */
             text-align: center;
             display: flex;
             flex-direction: column;
@@ -170,14 +170,14 @@
         }
 
         .event-title {
-            font-size: 2.2em;
+            font-size: 1.8em; /* Uniformato per migliore leggibilità nel cerchio */
             font-weight: bold;
             color: #fff;
             margin-top: 25px;
             line-height: 1.2;
-            white-space: nowrap;
+            white-space: normal; /* Permette al titolo lungo di andare a capo */
+            min-height: 2.4em;   /* Mantiene allineati i box anche con titoli diversi */
             overflow: hidden;
-            text-overflow: ellipsis;
         }
         
         .event-date {
@@ -206,7 +206,7 @@
         /* Responsive rules       */
         /* ---------------------- */
         @media screen and (max-width: 1200px) {
-            .event-title { font-size: 2em; }
+            .event-title { font-size: 1.6em; }
             .event-date { font-size: 1.3em; }
             .event-grid { gap: 40px; }
         }
