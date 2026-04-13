@@ -22,7 +22,6 @@
             background-color: rgba(0, 0, 0, 0.6); position: relative; z-index: 1;
         }
 
-        /* Header uniformato alla pagina corsi */
         header {
             display: flex; justify-content: space-between; align-items: center;
             background-color: rgba(0, 0, 0, 0.8); padding: 25px 20px;
@@ -45,7 +44,6 @@
             width: 30px; height: 3px; background-color: #fff; border-radius: 5px; transition: all 0.3s ease;
         }
 
-        /* Menu Pop-up con Silos */
         .menu-pop-up {
             position: fixed; top: 0; left: -300px; width: 280px; height: 100%;
             background-color: rgba(0, 0, 0, 0.95); padding-top: 80px;
@@ -54,9 +52,19 @@
         .menu-pop-up a { padding: 12px 25px; font-size: 1.1em; border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
         .menu-pop-up a.sub-menu {
             padding-left: 45px; font-size: 0.95em; color: #e0ac4c; border-bottom: none; opacity: 0.8;
+            display: flex; align-items: center; gap: 8px;
         }
         .menu-pop-up.open { left: 0; }
         .close-menu { position: absolute; top: 25px; right: 25px; font-size: 2.5em; cursor: pointer; }
+
+        /* Stile per le icone delle bandiere */
+        .flag-icon {
+            width: 20px;
+            height: auto;
+            vertical-align: middle;
+            margin-left: 5px;
+            border-radius: 2px;
+        }
 
         .content { flex: 1; display: flex; justify-content: center; align-items: center; padding: 40px 20px; }
         
@@ -77,6 +85,7 @@
         .event-title {
             font-size: 1.8em; font-weight: bold; color: #fff;
             margin-top: 25px; line-height: 1.2;
+            display: flex; align-items: center; justify-content: center; gap: 10px; flex-wrap: wrap;
         }
         .event-date { font-size: 1.4em; color: #e0ac4c; margin-top: 10px; }
 
@@ -109,10 +118,10 @@
             <div class="close-menu">&times;</div>
             <a href="index.html">HOME</a>
             <a href="tutti-i-corsidibirra.html">CORSI DI BIRRA</a>
-            <a href="wset-level-1-firenze.html" class="sub-menu">• WSET LEVEL 1 🇬🇧</a>
-            <a href="wset-level-2-firenze.html" class="sub-menu">• WSET LEVEL 2 🇬🇧</a>
-            <a href="corso-base-firenze.html" class="sub-menu">• CORSO BASE 🇮🇹</a>
-            <a href="corso-secondo-livello-firenze.html" class="sub-menu">• CORSO AVANZATO 🇮🇹</a>
+            <a href="wset-level-1-firenze.html" class="sub-menu">• WSET LEVEL 1 <img src="https://flagcdn.com/gb.svg" class="flag-icon" alt="GB"></a>
+            <a href="wset-level-2-firenze.html" class="sub-menu">• WSET LEVEL 2 <img src="https://flagcdn.com/gb.svg" class="flag-icon" alt="GB"></a>
+            <a href="corso-base-firenze.html" class="sub-menu">• CORSO BASE <img src="https://flagcdn.com/it.svg" class="flag-icon" alt="IT"></a>
+            <a href="corso-secondo-livello-firenze.html" class="sub-menu">• CORSO AVANZATO <img src="https://flagcdn.com/it.svg" class="flag-icon" alt="IT"></a>
             <a href="losapeviche.html">LO SAPEVI CHE?</a>
             <a href="quizdibirra.html">QUIZ</a>
             <a href="degustazionipassate.html">DEGUSTAZIONI PASSATE</a>
@@ -126,16 +135,20 @@
                 <div class="event-box">
                     <a href="iga.html"> 
                         <img src="degustazione-birra-estate-firenze.webp" alt="Degustazione Estate" />
-                        <div class="event-title">Birre d'A-Mare<br>per un'estate effervescente! 🇮🇹</div>
+                        <div class="event-title">Birre d'A-Mare:<br>un'estate effervescente!</div>
                         <div class="event-date">10 giugno 2026, Firenze</div>
                     </a>
                 </div>
 
                 <div class="event-box">
-                    <a href="corsodibirra.html">
+                    <a href="tutti-i-corsidibirra.html">
                         <img src="corso-birra-base-firenze.webp" alt="Corsi di Birra" />
-                        <div class="event-title">CORSI DI BIRRA 🇮🇹 🇬🇧</div>
-                        <div class="event-date">A Firenze, in Italiano e Inglese</div>
+                        <div class="event-title">
+                            CORSI DI BIRRA 
+                            <img src="https://flagcdn.com/it.svg" class="flag-icon" style="width: 25px;" alt="IT">
+                            <img src="https://flagcdn.com/gb.svg" class="flag-icon" style="width: 25px;" alt="GB">
+                        </div>
+                        <div class="event-date">Firenze, in Italiano e Inglese</div>
                     </a>
                 </div>
 
