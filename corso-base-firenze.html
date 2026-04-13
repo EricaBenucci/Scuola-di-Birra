@@ -21,20 +21,20 @@
             background-color: rgba(0, 0, 0, 0.75); position: relative; z-index: 1;
         }
 
-        /* HEADER */
+        /* HEADER - UNIFORMATO A WSET (Padding 15px, Altezza 70px) */
         header {
             display: flex; justify-content: space-between; align-items: center;
-            background-color: rgba(0, 0, 0, 0.85); padding: 10px 20px;
-            position: relative; z-index: 10; min-height: 60px;
+            background-color: rgba(0, 0, 0, 0.85); padding: 15px 20px;
+            position: relative; z-index: 10; min-height: 70px;
         }
         .logo-container { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); }
-        .logo-container img { height: 60px; display: block; }
+        .logo-container img { height: 70px; display: block; }
         .nav-right { z-index: 15; }
         .ig-link { font-size: 1.5em; color: #fff; }
 
         .hamburger-menu {
             background: none; border: none; cursor: pointer;
-            display: flex; flex-direction: column; gap: 5px; width: 30px; z-index: 15;
+            display: flex; flex-direction: column; gap: 6px; width: 30px; z-index: 15;
         }
         .hamburger-menu .line { width: 30px; height: 3px; background-color: #fff; border-radius: 5px; }
 
@@ -75,16 +75,16 @@
         /* COLONNA SINISTRA (Testo) */
         .text-column { order: 2; font-size: 1em; line-height: 1.6; font-weight: 300; color: #eee; }
         
-        /* BOX DELLE SERATE COMPATTI */
+        /* BOX DELLE SERATE COMPATTI (Per Above the Fold su PC) */
         .boxes {
             display: flex; flex-wrap: wrap; justify-content: flex-start;
             gap: 12px; margin-top: 25px;
         }
         .box {
-            width: 220px; padding: 15px; background-color: rgba(255, 255, 255, 0.08);
+            width: 220px; padding: 12px; background-color: rgba(255, 255, 255, 0.08);
             border: 1px dashed rgba(255,255,255,0.4); border-radius: 15px 50px 15px 50px;
         }
-        .box h2 { font-size: 0.95em; margin-bottom: 8px; color: #e0ac4c; text-transform: uppercase; }
+        .box h2 { font-size: 0.9em; margin-bottom: 8px; color: #e0ac4c; text-transform: uppercase; }
         .box ul { list-style-type: none; padding: 0; font-size: 0.85em; margin: 0; }
         .box ul li { margin: 5px 0; position: relative; padding-left: 12px; line-height: 1.3; }
         .box ul li::before { content: "•"; position: absolute; left: 0; color: #e0ac4c; }
@@ -95,7 +95,7 @@
         /* PC LAYOUT */
         @media screen and (min-width: 900px) {
             h1 { font-size: 2.5em; text-align: left; }
-            .content { padding-top: 20px; }
+            .content { padding-top: 10px; }
             .main-container { flex-direction: row; align-items: flex-start; }
             .text-column { flex: 1.3; order: 1; }
             .img-column { flex: 1; order: 2; position: sticky; top: 15px; }
