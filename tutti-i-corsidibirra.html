@@ -43,30 +43,39 @@
             width: 30px; height: 3px; background-color: #fff; border-radius: 5px; transition: all 0.3s ease;
         }
 
+        /* MENU POP-UP AGGIORNATO */
         .menu-pop-up {
             position: fixed; top: 0; left: -300px; width: 280px; height: 100%;
-            background-color: rgba(0, 0, 0, 0.95); padding-top: 100px;
+            background-color: rgba(0, 0, 0, 0.95); padding-top: 80px;
             transition: left 0.3s ease-in-out; z-index: 14; display: flex; flex-direction: column;
         }
-        .menu-pop-up a { padding: 15px 25px; font-size: 1.2em; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+        .menu-pop-up a { padding: 12px 25px; font-size: 1.1em; border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
+        
+        /* Sottovoci del Silos Corsi */
+        .menu-pop-up a.sub-menu {
+            padding-left: 45px;
+            font-size: 0.95em;
+            color: #e0ac4c;
+            border-bottom: none;
+            opacity: 0.8;
+        }
+        
         .menu-pop-up.open { left: 0; }
         .close-menu { position: absolute; top: 25px; right: 25px; font-size: 2.5em; cursor: pointer; }
 
         .content { flex: 1; padding: 40px 20px; max-width: 1200px; margin: 0 auto; }
 
-        /* CONTENITORE PRINCIPALE CORSI */
         .courses-grid {
             display: flex;
-            flex-direction: column; /* Mobile: una colonna */
+            flex-direction: column;
             gap: 20px;
         }
 
-        /* SINGOLO BOX CORSO */
         .course-card {
             display: flex;
             flex-direction: column;
             align-items: center;
-            background: rgba(45, 25, 10, 0.8); /* Marrone più scuro */
+            background: rgba(45, 25, 10, 0.8);
             padding: 25px;
             border-radius: 20px;
             text-align: center;
@@ -74,7 +83,6 @@
             border: 1px solid rgba(224, 172, 76, 0.2);
         }
 
-        /* Immagini: dimensione fissa per tutti */
         .img-circle {
             width: 180px; height: 180px; border-radius: 50%;
             object-fit: cover; flex-shrink: 0;
@@ -84,28 +92,22 @@
         .course-card h2, .course-card h3 { margin: 0; font-size: 1.5em; color: #e0ac4c; text-transform: uppercase; }
         .course-card p { margin: 5px 0; font-size: 1.1em; font-weight: bold; }
 
-        /* DESKTOP LAYOUT (900px+) */
         @media screen and (min-width: 900px) {
             .courses-grid {
                 display: grid;
-                grid-template-columns: 1fr 1fr; /* Due colonne */
+                grid-template-columns: 1fr 1fr;
                 gap: 40px;
-                background: none;
             }
             .course-card {
-                flex-direction: row; /* Immagine e testo affiancati */
+                flex-direction: row;
                 text-align: left;
                 background: rgba(0, 0, 0, 0.4);
             }
-            /* Ordine Desktop: WSET a sinistra (col 1), IBS a destra (col 2) */
             .wset1 { grid-column: 1; grid-row: 1; }
             .wset2 { grid-column: 1; grid-row: 2; }
             .base  { grid-column: 2; grid-row: 1; }
             .avanzato { grid-column: 2; grid-row: 2; }
-
             .img-circle { width: 200px; height: 200px; }
-            
-            /* Invertiamo l'ordine interno dei box IBS per avere immagine a destra su desktop */
             .base, .avanzato { flex-direction: row-reverse; text-align: right; }
         }
 
@@ -139,6 +141,11 @@
             <div class="close-menu">&times;</div>
             <a href="index.html">HOME</a>
             <a href="corsodibirra.html">CORSI DI BIRRA</a>
+            <a href="wset-level-1-firenze.html" class="sub-menu">• WSET LEVEL 1</a>
+            <a href="wset-level-2-firenze.html" class="sub-menu">• WSET LEVEL 2</a>
+            <a href="corso-base-firenze.html" class="sub-menu">• CORSO BASE</a>
+            <a href="corso-secondo-livello-firenze.html" class="sub-menu">• CORSO AVANZATO</a>
+            
             <a href="losapeviche.html">LO SAPEVI CHE?</a>
             <a href="quizdibirrabirra.html">QUIZ</a>
             <a href="degustazionipassate.html">DEGUSTAZIONI PASSATE</a>
@@ -148,7 +155,6 @@
 
         <main class="content">
             <div class="courses-grid">
-                
                 <a href="wset-level-1-firenze.html" class="wset1">
                     <div class="course-card">
                         <img src="wset-logo-beer-course-level 1.webp" class="img-circle" alt="WSET 1">
@@ -188,7 +194,6 @@
                         </div>
                     </div>
                 </a>
-
             </div>
         </main>
 
