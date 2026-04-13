@@ -40,7 +40,7 @@
         .hamburger-menu.open .line:nth-child(2) { opacity: 0; }
         .hamburger-menu.open .line:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
 
-        /* MENU LATERALE AGGIORNATO */
+        /* MENU LATERALE */
         .menu-pop-up {
             position: fixed; top: 0; left: -300px; width: 280px; height: 100%;
             background-color: rgba(0, 0, 0, 0.95); padding-top: 100px;
@@ -52,44 +52,51 @@
         .flag-rect { width: 20px; height: auto; }
         .close-menu { position: absolute; top: 25px; right: 25px; font-size: 2.5em; cursor: pointer; }
 
-        /* CONTENUTO DINAMICO */
+        /* CONTENUTO */
         .content { flex: 1; padding: 40px 20px; max-width: 1100px; margin: 0 auto; }
 
+        /* TITOLO MOBILE FRIENDLY */
         .page-title-area { text-align: center; margin-bottom: 40px; }
-        h1 { color: #e0ac4c; font-size: 2.8em; text-transform: uppercase; margin-bottom: 5px; display: inline-flex; align-items: center; }
-        h2 { color: #fff; font-size: 1.4em; margin-bottom: 0; font-weight: 300; }
-        .flag-round { width: 35px; height: 35px; border-radius: 50%; object-fit: cover; margin-left: 15px; border: 1px solid rgba(255,255,255,0.2); }
+        h1 { color: #e0ac4c; font-size: 2.5em; text-transform: uppercase; margin-bottom: 10px; line-height: 1.2; }
+        .title-main { display: block; }
+        .title-number { display: inline-block; }
+        .flag-round { width: 35px; height: 35px; border-radius: 50%; object-fit: cover; border: 1px solid rgba(255,255,255,0.2); margin-top: 10px; display: inline-block; }
+        h2 { color: #fff; font-size: 1.4em; margin-bottom: 20px; font-weight: 300; }
+
+        /* NUOVA COLLABORAZIONE IN ALTO */
+        .top-collab { font-size: 0.9em; display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 20px; color: #bbb; }
+        .top-collab img { height: 30px; width: auto; }
 
         .main-container { display: flex; flex-direction: column; gap: 40px; }
 
-        /* Immagine in alto su mobile */
+        /* IMMAGINE */
         .img-column { order: 1; display: flex; flex-direction: column; align-items: center; }
         .main-course-img { width: 100%; max-width: 500px; height: auto; border-radius: 20px; box-shadow: 0 15px 40px rgba(0,0,0,0.6); }
 
-        /* Testo sotto immagine su mobile */
+        /* TESTO */
         .text-column { order: 2; text-align: left; }
         .main-text { font-size: 1.1em; line-height: 1.8; font-weight: 300; color: #eee; }
-        .main-text p { margin-bottom: 20px; }
         .main-text h3 { color: #e0ac4c; margin-top: 35px; text-transform: uppercase; font-size: 1.3em; }
         .main-text ul { list-style: none; padding: 0; }
         .main-text ul li { margin-bottom: 15px; padding-left: 20px; position: relative; }
         .main-text ul li::before { content: '•'; position: absolute; left: 0; color: #e0ac4c; }
         .sub-list { color: #bbb; font-size: 0.95em; display: block; margin-top: 4px; }
 
-        /* COLLABORAZIONE E INFO */
-        .collab-section { display: flex; align-items: center; gap: 20px; margin-top: 40px; padding: 20px; background: rgba(255,255,255,0.05); border-radius: 15px; }
-        .collab-section img { height: 50px; width: auto; }
-        .tech-info { margin-top: 40px; padding: 25px; border-left: 4px solid #e0ac4c; background: rgba(0,0,0,0.3); border-radius: 0 15px 15px 0; }
+        /* INFO BOX E BOTTONE */
+        .tech-info { margin-top: 40px; padding: 25px; border-left: 4px solid #e0ac4c; background: rgba(0,0,0,0.3); border-radius: 0 15px 15px 0; width: 100%; max-width: 450px; box-sizing: border-box; }
         .tech-info strong { color: #e0ac4c; }
-        .btn-acquista { display: inline-block; background-color: #1a73e8; color: #fff; padding: 16px 50px; font-weight: bold; font-size: 1.2em; border-radius: 8px; margin-top: 30px; transition: transform 0.2s; }
+        .btn-acquista { display: inline-block; background-color: #1a73e8; color: #fff; padding: 16px 30px; font-weight: bold; font-size: 1.1em; border-radius: 8px; margin-top: 30px; transition: transform 0.2s; text-align: center; width: 100%; max-width: 450px; box-sizing: border-box; }
         .btn-acquista:hover { transform: translateY(-3px); background-color: #1557b0; }
 
         /* DESKTOP LAYOUT (PC) */
         @media screen and (min-width: 900px) {
             .main-container { flex-direction: row; align-items: flex-start; }
             .text-column { flex: 1.2; order: 1; }
-            .img-column { flex: 1; order: 2; }
-            .page-title-area { text-align: center; }
+            .img-column { flex: 1; order: 2; position: sticky; top: 20px; }
+            h1 { font-size: 3.2em; }
+            .title-main { display: inline; }
+            .flag-round { margin-left: 15px; margin-top: 0; vertical-align: middle; }
+            .top-collab { justify-content: center; font-size: 1.1em; }
         }
 
         /* FOOTER & COOKIE */
@@ -120,15 +127,20 @@
             <a href="wset-level-2-firenze.html" class="sub-menu">• WSET LEVEL 2 <img src="https://flagcdn.com/gb.svg" class="flag-rect"></a>
             <a href="corso-base-firenze.html" class="sub-menu">• CORSO BASE <img src="https://flagcdn.com/it.svg" class="flag-rect"></a>
             <a href="losapeviche.html">LO SAPEVI CHE?</a>
-            <a href="quizdibirrabirra.html">QUIZ</a>
+            <a href="quiz-di-birra.html">QUIZ</a>
             <a href="degustazionipassate.html">DEGUSTAZIONI PASSATE</a>
             <a href="bio.html">CHI SONO</a>
             <a href="contatti.html">CONTATTI</a>
         </nav>
 
         <main class="content">
+            <div class="top-collab">
+                <span>In collaboration with</span>
+                <img src="WSI-logo.webp" alt="Wine School Italia Logo">
+            </div>
+
             <div class="page-title-area">
-                <h1>WSET Level 1 <img src="https://flagcdn.com/gb.svg" class="flag-round" alt="English"></h1>
+                <h1><span class="title-main">WSET Level</span> <span class="title-number">1</span> <br class="mobile-only"><img src="https://flagcdn.com/gb.svg" class="flag-round" alt="English"></h1>
                 <h2>Award in Beer</h2>
             </div>
 
@@ -142,7 +154,7 @@
                         <p><strong>Location:</strong> Florence, Italy</p>
                         <p><strong>Price:</strong> €270 (Includes study guide and exam)</p>
                     </div>
-                    <a href="#" class="btn-acquista">Book Now</a>
+                    <a href="https://wineschoolitalia.com" target="_blank" class="btn-acquista">PRENOTA SU WINE SCHOOL ITALIA</a>
                 </div>
 
                 <div class="text-column">
@@ -168,11 +180,6 @@
                                 <span class="sub-list">Malt-driven (Porters, Stouts), Hop-driven (IPAs, Pilsners), Yeast-driven (Weissbier, Tripels), and Sour styles.</span>
                             </li>
                         </ul>
-                    </div>
-
-                    <div class="collab-section">
-                        <span>In Collaboration with</span>
-                        <img src="WSI-logo.webp" alt="Wine School Italia Logo">
                     </div>
                 </div>
             </div>
