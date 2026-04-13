@@ -13,8 +13,8 @@
             background: url('sfondo-birra-scuola.webp') no-repeat center center fixed;
             background-size: cover; color: #fff; overflow-x: hidden;
         }
-        a { text-decoration: none; color: inherit; transition: opacity 0.3s; }
-        a:hover { opacity: 0.8; }
+        a { text-decoration: none; color: inherit; transition: opacity 0.3s; width: 100%; }
+        a:hover { opacity: 0.9; }
         
         .overlay {
             display: flex; flex-direction: column; min-height: 100vh;
@@ -42,9 +42,6 @@
         .hamburger-menu .line {
             width: 30px; height: 3px; background-color: #fff; border-radius: 5px; transition: all 0.3s ease;
         }
-        .hamburger-menu.open .line:nth-child(1) { transform: translateY(9px) rotate(45deg); }
-        .hamburger-menu.open .line:nth-child(2) { opacity: 0; }
-        .hamburger-menu.open .line:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
 
         .menu-pop-up {
             position: fixed; top: 0; left: -300px; width: 280px; height: 100%;
@@ -57,56 +54,69 @@
 
         .content { flex: 1; padding: 40px 20px; max-width: 1200px; margin: 0 auto; }
 
-        /* Struttura a righe: MOBILE FIRST (WSET sopra, IBS sotto) */
-        .course-row {
-            display: flex; 
-            flex-direction: column; /* Mobile: incolonna */
-            margin-bottom: 60px; gap: 40px; 
-            background: rgba(0, 0, 0, 0.3);
-            padding: 30px; border-radius: 20px; text-align: center;
+        /* CONTENITORE PRINCIPALE CORSI */
+        .courses-grid {
+            display: flex;
+            flex-direction: column; /* Mobile: una colonna */
+            gap: 20px;
         }
 
-        .wset-container, .ibs-container {
-            display: flex; flex-direction: column; align-items: center; gap: 15px; width: 100%;
+        /* SINGOLO BOX CORSO */
+        .course-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: rgba(45, 25, 10, 0.8); /* Marrone più scuro */
+            padding: 25px;
+            border-radius: 20px;
+            text-align: center;
+            gap: 15px;
+            border: 1px solid rgba(224, 172, 76, 0.2);
         }
 
-        /* Immagini: dimensione identica per tutti */
+        /* Immagini: dimensione fissa per tutti */
         .img-circle {
             width: 180px; height: 180px; border-radius: 50%;
             object-fit: cover; flex-shrink: 0;
         }
         .border-gold { border: 3px solid rgba(224, 172, 76, 0.5); }
 
-        .course-main-info h2, .wset-text h3 { margin: 0; font-size: 1.6em; color: #e0ac4c; text-transform: uppercase; }
-        .course-main-info p, .wset-text p { margin: 10px 0; font-size: 1.1em; font-weight: bold; }
+        .course-card h2, .course-card h3 { margin: 0; font-size: 1.5em; color: #e0ac4c; text-transform: uppercase; }
+        .course-card p { margin: 5px 0; font-size: 1.1em; font-weight: bold; }
 
-        /* DESKTOP LAYOUT */
+        /* DESKTOP LAYOUT (900px+) */
         @media screen and (min-width: 900px) {
-            .course-row { 
-                flex-direction: row; /* Desktop: affianca */
-                text-align: left; 
-                justify-content: space-between;
-                background: none; /* Rimuoviamo lo sfondo per un look più pulito come richiesto */
+            .courses-grid {
+                display: grid;
+                grid-template-columns: 1fr 1fr; /* Due colonne */
+                gap: 40px;
+                background: none;
             }
+            .course-card {
+                flex-direction: row; /* Immagine e testo affiancati */
+                text-align: left;
+                background: rgba(0, 0, 0, 0.4);
+            }
+            /* Ordine Desktop: WSET a sinistra (col 1), IBS a destra (col 2) */
+            .wset1 { grid-column: 1; grid-row: 1; }
+            .wset2 { grid-column: 1; grid-row: 2; }
+            .base  { grid-column: 2; grid-row: 1; }
+            .avanzato { grid-column: 2; grid-row: 2; }
+
+            .img-circle { width: 200px; height: 200px; }
             
-            /* Spostiamo WSET a sinistra e IBS a destra */
-            .wset-container { order: 1; flex-direction: row; text-align: left; justify-content: flex-start; }
-            .ibs-container { order: 2; flex-direction: row-reverse; text-align: right; justify-content: flex-end; }
-            
-            .img-circle { width: 220px; height: 220px; }
+            /* Invertiamo l'ordine interno dei box IBS per avere immagine a destra su desktop */
+            .base, .avanzato { flex-direction: row-reverse; text-align: right; }
         }
 
         .footer { background-color: rgba(0, 0, 0, 0.8); text-align: center; padding: 25px; font-size: 0.9em; margin-top: auto; }
-        .footer a { text-decoration: underline; }
-
+        
         #cookie-banner {
             position: fixed; bottom: 0; width: 100%; background: rgba(0,0,0,0.95);
             padding: 20px; display: none; flex-direction: column; align-items: center;
-            z-index: 2000; border-top: 2px solid #e0ac4c; text-align: center;
+            z-index: 2000; border-top: 2px solid #e0ac4c;
         }
-        .cookie-buttons button {
-            background: #e0ac4c; border: none; padding: 10px 25px; margin: 10px; cursor: pointer; border-radius: 5px; font-weight: bold;
-        }
+        .cookie-buttons button { background: #e0ac4c; border: none; padding: 10px 25px; cursor: pointer; border-radius: 5px; font-weight: bold; }
     </style>
 </head>
 <body>
@@ -137,68 +147,58 @@
         </nav>
 
         <main class="content">
-            
-            <div class="course-row">
-                <div class="wset-container">
-                    <a href="wset-level-1-firenze.html">
+            <div class="courses-grid">
+                
+                <a href="wset-level-1-firenze.html" class="wset1">
+                    <div class="course-card">
                         <img src="wset-logo-beer-course-level 1.webp" class="img-circle" alt="WSET 1">
-                    </a>
-                    <div class="wset-text">
-                        <a href="wset-level-1-firenze.html">
-                            <h3>WSET LEVEL 1</h3>
+                        <div>
+                            <h3>WSET Level 1</h3>
                             <p>18 OTTOBRE 2026</p>
-                        </a>
+                        </div>
                     </div>
-                </div>
+                </a>
 
-                <div class="ibs-container">
-                    <a href="corso-base-firenze.html">
-                        <img src="corso-birra-base-firenze.webp" class="img-circle border-gold" alt="Corso Base">
-                    </a>
-                    <div class="course-main-info">
-                        <a href="corso-base-firenze.html">
-                            <h2>CORSO BASE</h2>
-                            <p>1, 8, 15 e 22 OTTOBRE 2026</p>
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="course-row">
-                <div class="wset-container">
-                    <a href="wset-level-2-firenze.html">
+                <a href="wset-level-2-firenze.html" class="wset2">
+                    <div class="course-card">
                         <img src="wset-logo-beer-course-level 2.webp" class="img-circle" alt="WSET 2">
-                    </a>
-                    <div class="wset-text">
-                        <a href="wset-level-2-firenze.html">
-                            <h3>WSET LEVEL 2</h3>
+                        <div>
+                            <h3>WSET Level 2</h3>
                             <p>14, 15, 22 NOVEMBRE 2026</p>
-                        </a>
+                        </div>
                     </div>
-                </div>
+                </a>
 
-                <div class="ibs-container">
-                    <a href="corso-secondo-livello-firenze.html">
+                <a href="corso-base-firenze.html" class="base">
+                    <div class="course-card">
+                        <img src="corso-birra-base-firenze.webp" class="img-circle border-gold" alt="Corso Base">
+                        <div>
+                            <h2>Corso Base</h2>
+                            <p>1, 8, 15 e 22 OTTOBRE 2026</p>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="corso-secondo-livello-firenze.html" class="avanzato">
+                    <div class="course-card">
                         <img src="corso-birra-livello2-firenze.webp" class="img-circle border-gold" alt="Corso Avanzato">
-                    </a>
-                    <div class="course-main-info">
-                        <a href="corso-secondo-livello-firenze.html">
-                            <h2>CORSO AVANZATO</h2>
+                        <div>
+                            <h2>Corso Avanzato</h2>
                             <p>GENNAIO 2027</p>
-                        </a>
+                        </div>
                     </div>
-                </div>
-            </div>
+                </a>
 
+            </div>
         </main>
 
         <footer class="footer">
-            2025 IBS ITALIAN BEER SCHOOL – P.IVA: IT07436420488 | <a href="privacy.html" style="color:#e0ac4c">Privacy</a> | <a href="cookie.html" style="color:#e0ac4c">Cookie Policy</a>
+            2025 IBS ITALIAN BEER SCHOOL – P.IVA: IT07436420488 | <a href="privacy.html" style="color:#e0ac4c">Privacy</a>
         </footer>
     </div>
 
     <div id="cookie-banner">
-        <p>Utilizziamo i cookie per migliorare la tua esperienza. Accetti? <a href="privacy.html" style="color:#e0ac4c">Info</a></p>
+        <p>Utilizziamo i cookie per migliorare la tua esperienza. <a href="privacy.html" style="color:#e0ac4c">Info</a></p>
         <div class="cookie-buttons">
             <button id="accept-cookies">Accetta</button>
             <button id="reject-cookies">Rifiuta</button>
@@ -207,7 +207,7 @@
 
     <script>
         const hb = document.querySelector('.hamburger-menu'), menu = document.querySelector('.menu-pop-up'), close = document.querySelector('.close-menu');
-        function toggle() { menu.classList.toggle('open'); hb.classList.toggle('open'); }
+        function toggle() { menu.classList.toggle('open'); }
         hb.onclick = toggle; close.onclick = toggle;
 
         const banner = document.getElementById('cookie-banner');
