@@ -24,17 +24,17 @@
         /* HEADER */
         header {
             display: flex; justify-content: space-between; align-items: center;
-            background-color: rgba(0, 0, 0, 0.85); padding: 15px 20px;
-            position: relative; z-index: 10; min-height: 70px;
+            background-color: rgba(0, 0, 0, 0.85); padding: 10px 20px;
+            position: relative; z-index: 10; min-height: 60px;
         }
         .logo-container { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); }
-        .logo-container img { height: 70px; display: block; }
+        .logo-container img { height: 60px; display: block; }
         .nav-right { z-index: 15; }
         .ig-link { font-size: 1.5em; color: #fff; }
 
         .hamburger-menu {
             background: none; border: none; cursor: pointer;
-            display: flex; flex-direction: column; gap: 6px; width: 30px; z-index: 15;
+            display: flex; flex-direction: column; gap: 5px; width: 30px; z-index: 15;
         }
         .hamburger-menu .line { width: 30px; height: 3px; background-color: #fff; border-radius: 5px; }
 
@@ -47,69 +47,75 @@
         .menu-pop-up.open { left: 0; }
         .menu-pop-up a { padding: 12px 25px; font-size: 1.1em; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
         .menu-pop-up a.sub-menu { padding-left: 45px; font-size: 0.9em; color: #e0ac4c; border-bottom: none; display: flex; align-items: center; gap: 8px; }
-        .flag-rect { width: 20px; }
 
-        /* CONTENUTO PRINCIPALE */
-        .content { flex: 1; padding: 20px; max-width: 1200px; margin: 0 auto; }
+        /* CONTENUTO */
+        .content { flex: 1; padding: 15px; max-width: 1200px; margin: 0 auto; }
 
-        /* TITOLO PAGINA */
-        .page-header-wrapper { margin-bottom: 30px; text-align: center; }
-        h1 { color: #e0ac4c; font-size: 2.2em; text-transform: uppercase; margin: 0; }
+        .page-header-wrapper { margin-bottom: 15px; }
+        h1 { color: #e0ac4c; font-size: 1.8em; text-transform: uppercase; margin: 0; }
 
-        /* LAYOUT MAIN CONTAINER */
-        .main-container { display: flex; flex-direction: column; gap: 30px; }
+        .main-container { display: flex; flex-direction: column; gap: 20px; }
 
-        /* COLONNA IMMAGINE E INFO (DESTRA SU PC) */
+        /* COLONNA DESTRA (PC) */
         .img-column { order: 1; display: flex; flex-direction: column; align-items: center; }
-        .main-course-img { width: 100%; max-width: 440px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .main-course-img { width: 100%; max-width: 380px; border-radius: 12px; box-shadow: 0 8px 25px rgba(0,0,0,0.5); }
 
         .tech-info { 
-            margin-top: 20px; padding: 15px 20px; 
+            margin-top: 15px; padding: 12px 18px; 
             border-left: 4px solid #e0ac4c; background: rgba(0,0,0,0.4); 
-            border-radius: 0 10px 10px 0; width: 100%; max-width: 440px; 
-            box-sizing: border-box; font-size: 0.95em; text-align: left;
+            border-radius: 0 10px 10px 0; width: 100%; max-width: 380px; 
+            box-sizing: border-box; font-size: 0.9em; text-align: left;
         }
-        .tech-info p { margin: 8px 0; }
+        .tech-info p { margin: 5px 0; }
         .tech-info strong { color: #e0ac4c; }
 
-        .stripe-container { width: 100%; max-width: 440px; margin-top: 15px; }
+        .stripe-container { width: 100%; max-width: 380px; margin-top: 10px; }
+        
+        /* PULSANTE SOLO MOBILE */
+        .mobile-only-btn { display: none; margin: 20px auto 40px auto; text-align: center; }
 
-        /* COLONNA TESTO (SINISTRA SU PC) */
-        .text-column { order: 2; font-size: 1.1em; line-height: 1.6; font-weight: 300; color: #eee; }
-        .text-column strong { font-weight: 700; color: #fff; }
+        /* COLONNA SINISTRA (PC) */
+        .text-column { order: 2; font-size: 0.95em; line-height: 1.5; font-weight: 300; color: #eee; }
+        .description-text { margin-bottom: 20px; }
 
-        /* BOX DELLE SERATE */
+        /* BOX DELLE SERATE RIDOTTI */
         .boxes {
-            display: flex; flex-wrap: wrap; justify-content: center;
-            gap: 20px; margin-top: 40px; padding-bottom: 40px;
+            display: flex; flex-wrap: wrap; justify-content: flex-start;
+            gap: 12px; margin-top: 20px;
         }
         .box {
-            width: 260px; padding: 20px; background-color: rgba(255, 255, 255, 0.1);
-            border: 2px dashed #fff; border-radius: 25px 80px 25px 80px;
-            box-shadow: 0 0 15px rgba(0,0,0,0.5);
+            width: 210px; padding: 12px; background-color: rgba(255, 255, 255, 0.08);
+            border: 1px dashed rgba(255,255,255,0.5); border-radius: 15px 40px 15px 40px;
         }
-        .box h2 { font-size: 1.1em; margin-bottom: 10px; color: #e0ac4c; text-transform: uppercase; }
-        .box ul { list-style-type: none; padding: 0; font-size: 0.9em; }
-        .box ul li { margin: 8px 0; position: relative; padding-left: 15px; }
+        .box h2 { font-size: 0.9em; margin-bottom: 8px; color: #e0ac4c; text-transform: uppercase; letter-spacing: 1px; }
+        .box ul { list-style-type: none; padding: 0; font-size: 0.85em; margin: 0; }
+        .box ul li { margin: 5px 0; position: relative; padding-left: 12px; line-height: 1.2; }
         .box ul li::before { content: "•"; position: absolute; left: 0; color: #e0ac4c; }
 
         /* PC LAYOUT */
         @media screen and (min-width: 900px) {
-            h1 { font-size: 3em; text-align: left; }
-            .page-header-wrapper { text-align: left; margin-bottom: 40px; }
+            h1 { font-size: 2.5em; text-align: left; }
+            .content { padding-top: 30px; }
             .main-container { flex-direction: row; align-items: flex-start; }
-            .text-column { flex: 1.3; order: 1; }
-            .img-column { flex: 1; order: 2; position: sticky; top: 20px; }
+            .text-column { flex: 1.4; order: 1; }
+            .img-column { flex: 1; order: 2; position: sticky; top: 10px; }
         }
 
-        .footer { background: rgba(0,0,0,0.85); text-align: center; padding: 20px; font-size: 0.8em; margin-top: auto; }
+        /* MOBILE LAYOUT */
+        @media screen and (max-width: 899px) {
+            .boxes { justify-content: center; }
+            .box { width: 45%; min-width: 140px; }
+            .mobile-only-btn { display: block; }
+        }
+
+        .footer { background: rgba(0,0,0,0.85); text-align: center; padding: 15px; font-size: 0.8em; margin-top: auto; }
     </style>
     <script async src="https://js.stripe.com/v3/buy-button.js"></script>
 </head>
 <body>
     <div class="overlay">
         <header>
-            <button class="hamburger-menu" onclick="toggleMenu()" aria-label="Menu">
+            <button class="hamburger-menu" onclick="toggleMenu()">
                 <span class="line"></span><span class="line"></span><span class="line"></span>
             </button>
             <div class="logo-container">
@@ -123,10 +129,10 @@
         <nav class="menu-pop-up" id="mobileMenu">
             <a href="index.html">HOME</a>
             <a href="tutti-i-corsidibirra.html">CORSI DI BIRRA</a>
-            <a href="wset-level-1-firenze.html" class="sub-menu">• WSET LEVEL 1 <img src="https://flagcdn.com/gb.svg" class="flag-rect"></a>
-            <a href="wset-level-2-firenze.html" class="sub-menu">• WSET LEVEL 2 <img src="https://flagcdn.com/gb.svg" class="flag-rect"></a>
-            <a href="corso-base-firenze.html" class="sub-menu">• CORSO BASE <img src="https://flagcdn.com/it.svg" class="flag-rect"></a>
-            <a href="corso-avanzato-firenze.html" class="sub-menu">• CORSO AVANZATO <img src="https://flagcdn.com/it.svg" class="flag-rect"></a>
+            <a href="wset-level-1-firenze.html" class="sub-menu">• WSET LEVEL 1</a>
+            <a href="wset-level-2-firenze.html" class="sub-menu">• WSET LEVEL 2</a>
+            <a href="corso-base-firenze.html" class="sub-menu">• CORSO BASE</a>
+            <a href="corso-avanzato-firenze.html" class="sub-menu">• CORSO AVANZATO</a>
             <a href="losapeviche.html">LO SAPEVI CHE?</a>
             <a href="quiz-di-birra.html">QUIZ</a>
             <a href="degustazionipassate.html">DEGUSTAZIONI PASSATE</a>
@@ -145,10 +151,9 @@
                     
                     <div class="tech-info">
                         <p><strong>Quando:</strong> 1, 8, 15 e 22 ottobre 2026</p>
-                        <p><strong>Orario:</strong> 20:30 – 23.00 circa</p>
+                        <p><strong>Orario:</strong> 20:30 – 23.00</p>
                         <p><strong>Dove:</strong> LUOGO DA DEFINIRE – Firenze</p>
                         <p><strong>Costo:</strong> €120</p>
-                        <p><strong>Info:</strong> italianbeerschool@gmail.com</p>
                     </div>
 
                     <div class="stripe-container">
@@ -160,52 +165,59 @@
                 </div>
 
                 <div class="text-column">
-                    <p>Quattro serate per scoprire il mondo della birra artigianale, tra tecnica, cultura e piacere della degustazione. Il corso è pensato per chi vuole approfondire le proprie conoscenze, imparare a degustare con consapevolezza e riconoscere le caratteristiche che rendono ogni birra unica.</p>
-                    
-                    <p>Inizieremo dalle basi della produzione per capire come, partendo da soli quattro ingredienti, nascano stili così diversi. Analizzeremo gli stili birrari di Germania, Belgio, Isole Britanniche, Italia e USA, esplorando le loro caratteristiche attraverso l’assaggio.</p>
-                    
-                    <p>Ogni serata prevede la degustazione guidata di 4 birre, materie prime da annusare e piccoli abbinamenti nella quarta serata.</p>
+                    <div class="description-text">
+                        Quattro serate per scoprire il mondo della birra artigianale. Analizzeremo gli stili di Germania, Belgio, UK, Italia e USA attraverso l’assaggio consapevole.<br><br>
+                        Ogni serata prevede la <strong>degustazione guidata di 4 birre</strong>, analisi delle materie prime e abbinamenti cibo-birra nell'ultimo incontro.
+                    </div>
 
                     <div class="boxes">
                         <div class="box">
-                            <h2>PRIMA SERATA</h2>
+                            <h2>LEZIONE 1</h2>
                             <ul>
-                                <li>La produzione: la magia dei 4 ingredienti</li>
-                                <li>Processo produttivo e materie prime</li>
+                                <li>Produzione e 4 ingredienti</li>
+                                <li>Processo produttivo</li>
                                 <li>4 birre in degustazione</li>
                             </ul>
                         </div>
                         <div class="box">
-                            <h2>SECONDA SERATA</h2>
+                            <h2>LEZIONE 2</h2>
                             <ul>
-                                <li>Servizio e tecnica di degustazione</li>
-                                <li>Caratteristiche e analisi dei difetti</li>
+                                <li>Servizio e tecnica</li>
+                                <li>Analisi dei difetti</li>
                                 <li>4 birre in degustazione</li>
                             </ul>
                         </div>
                         <div class="box">
-                            <h2>TERZA SERATA</h2>
+                            <h2>LEZIONE 3</h2>
                             <ul>
-                                <li>Viaggio tra gli stili del mondo</li>
-                                <li>Belgio, Germania, UK, USA e Italia</li>
+                                <li>Gli stili del mondo</li>
+                                <li>Europa vs USA</li>
                                 <li>4 birre in degustazione</li>
                             </ul>
                         </div>
                         <div class="box">
-                            <h2>QUARTA SERATA</h2>
+                            <h2>LEZIONE 4</h2>
                             <ul>
                                 <li>La birra a tavola</li>
-                                <li>Abbinamenti e piccoli assaggi</li>
+                                <li>Esempi di abbinamento</li>
                                 <li>4 birre in degustazione</li>
                             </ul>
                         </div>
                     </div>
+                    
+                    <div class="mobile-only-btn">
+                        <stripe-buy-button
+                            buy-button-id="buy_btn_1TCoXaDr58zog1ugqYpth2MZ"
+                            publishable-key="pk_live_51T9ryfDr58zog1uge0JD8PovKc0fGetzsGpFkt7TEKkrHavI0580YPj85wHf9sT1v4q0Ecx973slY7KRIlkxePon00mLxwI2tL"
+                        ></stripe-buy-button>
+                    </div>
+
                 </div>
             </div>
         </main>
 
         <footer class="footer">
-            © 2025 IBS ITALIAN BEER SCHOOL – P.IVA: IT07436420488 | <a href="privacy.html">Privacy</a>
+            © 2025 IBS ITALIAN BEER SCHOOL | <a href="privacy.html" style="color:#e0ac4c">Privacy</a>
         </footer>
     </div>
 
