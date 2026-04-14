@@ -23,7 +23,6 @@
         a {
             text-decoration: none;
             color: inherit;
-            transition: opacity 0.3s;
         }
         .overlay {
             display: flex;
@@ -41,11 +40,11 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background-color: rgba(0, 0, 0, 0.85);
-            padding: 15px 20px;
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 20px;
             position: relative;
             z-index: 10;
-            min-height: 70px;
+            min-height: 80px;
         }
         .logo-container {
             position: absolute;
@@ -54,7 +53,7 @@
             transform: translate(-50%, -50%);
         }
         .logo-container img {
-            height: 75px;
+            height: 80px;
             display: block;
         }
         .nav-right {
@@ -64,6 +63,7 @@
             font-size: 1.5em;
             color: #fff;
         }
+
         .hamburger-menu {
             background: none;
             border: none;
@@ -135,18 +135,19 @@
         /* ---------------------- */
         .page-content {
             flex-grow: 1;
-            padding: 40px 20px;
         }
         .container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 40px;
+            padding: 40px 20px;
             max-width: 1200px;
             margin: 0 auto;
         }
         .flip-card {
             width: 100%;
-            height: 220px;
+            max-width: 300px;
+            height: 200px;
             perspective: 1000px;
             cursor: pointer;
             justify-self: center;
@@ -168,36 +169,38 @@
             width: 100%;
             height: 100%;
             backface-visibility: hidden;
-            border: 1px solid rgba(255,255,255,0.3);
-            border-radius: 15px;
-            padding: 20px;
+            border: 1px solid #fff;
+            border-radius: 10px;
+            padding: 15px;
             display: flex;
             justify-content: center;
             align-items: center;
             color: #000;
-            box-sizing: border-box;
+            opacity: 0.85; /* Leggermente più opaco per leggibilità */
         }
         .flip-card-front {
-            background: rgba(255, 255, 255, 0.9);
+            background: url('sfondoschiuma.jpg') no-repeat center top;
+            background-size: 100% 400%;
             font-weight: bold;
-            font-size: 1.2em;
+            font-size: 1.3em;
         }
         .flip-card-back {
             transform: rotateY(180deg);
-            background: #e0ac4c;
-            font-size: 1em;
-            font-weight: 500;
+            background: url('sfondoschiuma.jpg') no-repeat center bottom;
+            background-size: 100% 200%;
+            font-size: 1.1em;
+            font-weight: bold;
         }
 
         /* ---------------------- */
         /* Footer                 */
         /* ---------------------- */
         .footer {
-            background-color: rgba(0, 0, 0, 0.85);
+            background-color: rgba(0, 0, 0, 0.8);
             text-align: center;
             padding: 20px;
-            font-size: 0.85em;
-            margin-top: auto;
+            font-size: 0.9em;
+            margin-top: 40px;
         }
         .footer a {
             color: #e0ac4c;
@@ -248,7 +251,7 @@
             </button>
             <div class="logo-container">
                 <a href="index.html">
-                    <img src="logo-italian-beer-school.webp" alt="Logo Italian Beer School"> 
+                    <img src="logo-italian-beer-school.webp" alt="Logo Italian Beer School">
                 </a>
             </div>
             <div class="nav-right">
@@ -283,8 +286,8 @@
                 </div>
                 <div class="flip-card" onclick="this.classList.toggle('flipped')">
                     <div class="flip-card-inner">
-                        <div class="flip-card-front">La birra come fertilizzante?</div>
-                        <div class="flip-card-back">I residui di lievito e i nutrienti della produzione possono arricchire il terreno. Inoltre, è un metodo classico per allontanare le lumache dall'orto.</div>
+                        <div class="flip-card-front">La birra può essere un buon fertilizzante</div>
+                        <div class="flip-card-back">I residui di lievito e i nutrienti della produzione possono arricchire il terreno. Alcuni giardinieri la usano anche per attirare le lumache.</div>
                     </div>
                 </div>
                 <div class="flip-card" onclick="this.classList.toggle('flipped')">
@@ -293,54 +296,4 @@
                         <div class="flip-card-back">L'americano Ron Werner ha stabilito un record con oltre 25.866 bottiglie di birra diverse e rigorosamente non aperte!</div>
                     </div>
                 </div>
-                <div class="flip-card" onclick="this.classList.toggle('flipped')">
-                    <div class="flip-card-inner">
-                        <div class="flip-card-front">Chi ne beve di più?</div>
-                        <div class="flip-card-back">La Repubblica Ceca domina la classifica mondiale da anni, con una media pro capite che supera i 130 litri all'anno.</div>
-                    </div>
-                </div>
-                <div class="flip-card" onclick="this.classList.toggle('flipped')">
-                    <div class="flip-card-inner">
-                        <div class="flip-card-front">La birra era una medicina?</div>
-                        <div class="flip-card-back">In passato era più sicura dell'acqua perché bollita durante la produzione. Veniva spesso prescritta come tonico ricostituente o digestivo.</div>
-                    </div>
-                </div>
-                <div class="flip-card" onclick="this.classList.toggle('flipped')">
-                    <div class="flip-card-inner">
-                        <div class="flip-card-front">La Grande Inondazione</div>
-                        <div class="flip-card-back">Londra, 1814: la rottura di una cisterna riversò in strada 1,4 milioni di litri di Porter, causando purtroppo anche 8 vittime.</div>
-                    </div>
-                </div>
-            </div>
-        </main>
-
-        <footer class="footer">
-            © 2026 IBS ITALIAN BEER SCHOOL – P.IVA: IT07436420488 | <a href="privacy.html">Privacy & Cookies</a>
-        </footer>
-    </div>
-
-    <div class="cookie-banner" id="cookieBanner">
-        <p>Utilizziamo i cookie per migliorare la tua esperienza. <a href="privacy.html">Leggi la Privacy Policy</a></p>
-        <button onclick="acceptCookies()">ACCETTA</button>
-    </div>
-
-    <script>
-        // Gestione Menu
-        function toggleMenu() {
-            document.getElementById('mobileMenu').classList.toggle('open');
-        }
-
-        // Gestione Cookies
-        function acceptCookies() {
-            localStorage.setItem('beerSchoolCookies', 'true');
-            document.getElementById('cookieBanner').style.display = 'none';
-        }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            if (!localStorage.getItem('beerSchoolCookies')) {
-                document.getElementById('cookieBanner').style.display = 'flex';
-            }
-        });
-    </script>
-</body>
-</html>
+                <div class="flip-card" onclick="this.classList
